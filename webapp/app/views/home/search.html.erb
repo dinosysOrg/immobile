@@ -1,0 +1,297 @@
+<!-- begin css -->
+<link href="/assets/home.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="search-container">
+
+  <!-- Begin Filter-->
+  <div class="search-filter">
+    <div class="search-card-search">
+      <i class="fa fa-search"></i>
+      <input type="text" class="search-input-search" id="input-search-place"
+             <% if @searchText != nil %> value="<%= @searchText %>"
+             <% end %>
+             placeholder="Tên thành phố, quận, huyện cần tìm kiếm"
+             onFocus="geoLocate()"
+             oninput="this.onchange();"/>
+    </div>
+
+    <div class="search-filter-item" id="price-button">
+      <div id="price-click">
+        <p>Giá </p><i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+      <div class="search-filter-box box-hidden" id="price-box">
+        <div class="search-filter-box-content">
+          <input type="text" class="form-control search-input" placeholder="Từ">
+          <input type="text" class="form-control search-input" placeholder="Đến">
+        </div>
+      </div>
+    </div>
+
+    <div class="search-filter-item" id="bathroom-button">
+      <div id="bathroom-click">
+        <p>Phòng tắm </p><i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+      <div class="search-filter-box box-hidden" id="bathroom-box">
+        <div class="search-filter-box-content">
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bathroomRadio" value="0" checked="">
+              Bất kỳ
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bathroomRadio" value="1">
+              1+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bathroomRadio" value="2">
+              2+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bathroomRadio" value="3">
+              3+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bathroomRadio" value="4">
+              4+
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-filter-item" id="bedroom-button">
+      <div id="bedroom-click">
+        <p>Phòng ngủ </p><i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+      <div class="search-filter-box box-hidden" id="bedroom-box">
+        <div class="search-filter-box-content">
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bedroomRadio" value="0" checked="">
+              Bất kỳ
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bedroomRadio" value="1">
+              1+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bedroomRadio" value="2">
+              2+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bedroomRadio" value="3">
+              3+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="bedroomRadio" value="4">
+              4+
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-filter-item search-filter-item-last" id="size-button">
+      <div id="size-click">
+        <p>Diện tích </p><i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+      <div class="search-filter-box box-hidden" id="size-box">
+        <div class="search-filter-box-content">
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="sizeRadio" value="0" checked="">
+              Bất kỳ
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="sizeRadio" value="1">
+              50+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="sizeRadio" value="2">
+              100+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="sizeRadio" value="3">
+              150+
+            </label>
+          </div>
+          <div class="radio search-radio">
+            <label>
+              <input type="radio" name="sizeRadio" value="4">
+              200+
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- End Filter -->
+
+  <!-- Begin Content -->
+  <div class="search-content">
+    <ul class="search-list">
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho1.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 1</p>
+            <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">8.000.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>2</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">3</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">80</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho2.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 2</p>
+            <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">4.000.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>1</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">3</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">50</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho3.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 3</p>
+            <p class="search-item-text-address">180 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">12.500.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>3</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">4</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">150</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho4.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 4</p>
+            <p class="search-item-text-address">228 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">18.800.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>5</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">4</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">220</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho5.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 5</p>
+            <p class="search-item-text-address">213 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">3.500.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>2</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">1</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">40</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho6.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 6</p>
+            <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">9.400.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>1</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">3</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">90</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho7.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 7</p>
+            <p class="search-item-text-address">93 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">6.800.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>2</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">2</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">68</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-item">
+        <div class="search-item-content">
+          <img class="search-item-cover" src="/assets/canho8.jpg"/>
+          <div class="search-item-text">
+            <p class="search-item-text-title">Căn hộ mẫu số 8</p>
+            <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
+            <p class="search-item-text-price">8.400.000.000 đ</p>
+            <div class="search-item-text-icon">
+              <h6>2</h6><i class="fa fa-bath" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">2</h6><i class="fa fa-bed" aria-hidden="true"></i>
+              <h6 style="margin-left: 30px;">88</h6><i class="fa fa-crop" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ul>
+
+    <div class="search-map" id="map"></div>
+  </div>
+  <!-- End Content -->
+
+</div>
+
+<!-- begin script -->
+<script src="/assets/jquery-1.9.1.js"></script>
+<script src="/assets/search.js"></script>
+<script src="/assets/home.js"></script>
+<script type="text/javascript">
+  function mapCallBack(){
+    initMap();
+    initAutocomplete();
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Constant::GOOGLE_SERVER_KEY %>&libraries=places&callback=mapCallBack&language=en-US" async defer></script>
+<!-- end script -->
