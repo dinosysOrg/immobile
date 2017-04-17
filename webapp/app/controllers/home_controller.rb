@@ -8,4 +8,11 @@ class HomeController < ApplicationController
 
   end
 
+  def detail
+
+  end
+
+  def contact
+
+  end
 end

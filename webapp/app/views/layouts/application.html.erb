@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <title>Color Admin | One Page Parallax Front End Theme</title>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-  <meta content="" name="description" />
-  <meta content="" name="author" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <meta content="" name="description"/>
+  <meta content="" name="author"/>
 
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <link href="/assets/bootstrap.css" rel="stylesheet" />
-  <link href="/assets/font-awesome.css" rel="stylesheet" />
-  <link href="/assets/animate.css" rel="stylesheet" />
-  <link href="/assets/style.css" rel="stylesheet" />
-  <link href="/assets/style-responsive.css" rel="stylesheet" />
-  <link href="/assets/default.css" id="theme" rel="stylesheet" />
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+  <link href="/assets/bootstrap.css" rel="stylesheet"/>
+  <link href="/assets/font-awesome.css" rel="stylesheet"/>
+  <link href="/assets/animate.css" rel="stylesheet"/>
+  <link href="/assets/style.css" rel="stylesheet"/>
+  <link href="/assets/style-responsive.css" rel="stylesheet"/>
+  <link href="/assets/default.css" id="theme" rel="stylesheet"/>
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <!-- ================== BEGIN BASE JS ================== -->
@@ -38,21 +39,18 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="index.html" class="navbar-brand">
-          <span class="brand-logo"></span>
-          <span class="brand-text">
-                            <span class="text-theme">Color</span> Admin
-                        </span>
+        <a href="/" class="navbar-brand">
+          <img class="header-logo" src="/assets/logo_sunnyworld.png"/>
         </a>
       </div>
       <!-- end navbar-header -->
       <!-- begin navbar-collapse -->
       <div class="collapse navbar-collapse" id="header-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" >Trang chủ</a></li>
+          <li><a href="/">Trang chủ</a></li>
           <li><a href="#service" data-click="scroll-to-target">Dịch vụ</a></li>
           <li><a href="#client" data-click="scroll-to-target">Khách hàng</a></li>
-          <li><a href="#contact" data-click="scroll-to-target">Liên hệ</a></li>
+          <li><a href="/contact">Liên hệ</a></li>
         </ul>
       </div>
       <!-- end navbar-collapse -->
@@ -62,6 +60,27 @@
   <!-- end #header -->
 
   <%= yield %>
+
+  <!-- begin #footer -->
+  <div id="footer" class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <img class="header-logo" src="/assets/logo_sunnyworld.png"/>
+      </div>
+      <p>
+        &copy; Copyright Color Admin 2014 <br/>
+        An admin & front end theme with serious impact. Created by <a href="#">SeanTheme</a>
+      </p>
+      <p class="social-list">
+        <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
+        <a href="#"><i class="fa fa-instagram fa-fw"></i></a>
+        <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
+        <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
+        <a href="#"><i class="fa fa-dribbble fa-fw"></i></a>
+      </p>
+    </div>
+  </div>
+  <!-- end #footer -->
 </div>
 <!-- end #page-container -->
 
@@ -75,7 +94,7 @@
 <!-- ================== END BASE JS ================== -->
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     App.init();
   });
 </script>

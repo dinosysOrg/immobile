@@ -71,9 +71,7 @@ function initMap() {
         strokeOpacity: 0.5,
         strokeWeight: 1,
         fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        draggable: true,
-        geodesic: true
+        fillOpacity: 0.35
     });
     bermudaTriangle.setMap(map);
 }

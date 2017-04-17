@@ -337,6 +337,10 @@ body.page-navbar-fixed-top-sm {
 ------------------------------- */
 
 /* 3.1 General Content Setting */
+.header-logo {
+    width: auto;
+    height: 35px;
+}
 
 .content {
     padding: 60px 15px 75px;
