@@ -269,13 +269,14 @@
 
 .detail-content-cover {
   width: 100%;
-  height: 400px;
-  display: flex;
+  //height: 400px;
+  //display: flex;
 }
 
 .detail-content-cover a {
-  width: 40%;
-  height: 100%;
+  //width: 40%;
+  height: 400px;
+  padding: 0px !important;
 }
 
 .detail-content-cover img {
@@ -287,13 +288,14 @@
 }
 
 .detail-content-cover iframe {
-  width: 60%;
-  height: 100%;
+  //width: 60%;
+  height: 400px;
+  padding: 0px !important;
 }
 
 .detail-content-info {
-  display: flex;
-  margin-left: 100px;
+  //display: flex;
+  //margin-left: 100px;
   margin-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -310,28 +312,28 @@
 }
 
 .detail-content-info-price {
-  width: 200px;
-  display: inline-block;
+  //width: 200px;
+  //display: inline-block;
 }
 
 .detail-content-info-bedroom {
-  width: 150px;
-  display: inline-block;
+  //width: 150px;
+  //display: inline-block;
 }
 
 .detail-content-info-bathroom {
-  width: 150px;
-  display: inline-block;
+  //width: 150px;
+  //display: inline-block;
 }
 
 .detail-content-info-size {
-  width: 150px;
-  display: inline-block;
+  //width: 150px;
+  //display: inline-block;
 }
 
 .detail-content-description {
-  margin-left: 100px;
-  display: flex;
+  //margin-left: 100px;
+  //display: flex;
   margin-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -341,14 +343,12 @@
   font-size: 20px;
   font-weight: 500;
   display: inline-block;
-  width: 10%;
 }
 
 .detail-content-description h6 {
   font-size: 14px;
   font-weight: 300;
   display: inline-block;
-  width: 70%;
   white-space: pre-line;
 }
 
@@ -360,8 +360,8 @@
 
 .detail-map-view {
   height: 250px;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .detail-icon-expand {
