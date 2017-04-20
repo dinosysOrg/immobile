@@ -461,7 +461,9 @@ body.page-navbar-fixed-top-sm {
 .home-content .btn + .btn {
     margin-left: 15px;
 }
-
+.no-padding {
+    padding: 0px !important;
+}
 
 
 /* -------------------------------

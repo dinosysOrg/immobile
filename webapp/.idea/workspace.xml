@@ -43,8 +43,8 @@
       <file leaf-file-name="detail.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/detail.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="332">
+              <caret line="23" column="64" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -63,10 +63,10 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5115">
-              <caret line="341" column="13" selection-start-line="341" selection-start-column="13" selection-end-line="341" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="464" column="28" selection-start-line="464" selection-start-column="28" selection-end-line="464" selection-end-column="28" />
               <folding>
-                <marker date="1492417423000" expanded="true" signature="8982:9330" ph="{...}" />
+                <marker date="1492690036000" expanded="true" signature="8982:9330" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -75,8 +75,8 @@
       <file leaf-file-name="home.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="363" column="20" selection-start-line="363" selection-start-column="20" selection-end-line="363" selection-end-column="20" />
+            <state relative-caret-position="240">
+              <caret line="272" column="19" selection-start-line="272" selection-start-column="19" selection-end-line="272" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -110,7 +110,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/search.js" />
         <option value="$PROJECT_DIR$/app/views/home/contactus.html.erb" />
         <option value="$PROJECT_DIR$/app/views/home/contact.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
@@ -118,6 +117,7 @@
         <option value="$PROJECT_DIR$/app/views/home/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/home/detail.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/home.scss" />
       </list>
     </option>
@@ -593,12 +593,12 @@
       <workItem from="1492066735573" duration="10590000" />
       <workItem from="1492105573523" duration="16925000" />
       <workItem from="1492398516257" duration="19028000" />
-      <workItem from="1492686072586" duration="2177000" />
+      <workItem from="1492686072586" duration="2559000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53104000" />
+    <option name="totallyTimeSpent" value="53486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="731" extended-state="6" />
@@ -609,7 +609,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28721803" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -922,16 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5115">
-          <caret line="341" column="13" selection-start-line="341" selection-start-column="13" selection-end-line="341" selection-end-column="13" />
-          <folding>
-            <marker date="1492417423000" expanded="true" signature="8982:9330" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -950,16 +940,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/detail.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="332">
+          <caret line="23" column="64" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="64" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="464" column="28" selection-start-line="464" selection-start-column="28" selection-end-line="464" selection-end-column="28" />
+          <folding>
+            <marker date="1492690036000" expanded="true" signature="8982:9330" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="363" column="20" selection-start-line="363" selection-start-column="20" selection-end-line="363" selection-end-column="20" />
+        <state relative-caret-position="240">
+          <caret line="272" column="19" selection-start-line="272" selection-start-column="19" selection-end-line="272" selection-end-column="19" />
           <folding />
         </state>
       </provider>

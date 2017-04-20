@@ -269,6 +269,8 @@
 
 .detail-content-cover {
   width: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
   //height: 400px;
   //display: flex;
 }
@@ -276,7 +278,6 @@
 .detail-content-cover a {
   //width: 40%;
   height: 400px;
-  padding: 0px !important;
 }
 
 .detail-content-cover img {
@@ -290,7 +291,6 @@
 .detail-content-cover iframe {
   //width: 60%;
   height: 400px;
-  padding: 0px !important;
 }
 
 .detail-content-info {
