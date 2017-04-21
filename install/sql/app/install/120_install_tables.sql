@@ -1,30 +1,49 @@
 \connect immobile
 
+CREATE TABLE management.photos
+(
+  id bigserial NOT NULL,
+  user_id bigint,
+  product_id bigint,
+  address character varying(200),
+  number_bedroom integer,
+  number_bathroom integer,
+  size character varying(50),
+  price character varying(50),
+  matterport_url character varying(200),
+  description text,
+  latitude double precision,
+  longitude double precision,
+  CONSTRAINT pk_products PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE management.products
+  OWNER TO postgres;
 
--- CREATE TABLE management.products
--- (
---   id bigserial NOT NULL,
---   identifier character varying(50) NOT NULL,
---   name character varying(50) NOT NULL,
---   unit character varying(50),
---   category character varying(50),
---   value_type character varying(50),
---   format_string character varying(50),
---   is_calculated boolean DEFAULT false,
---   aggregation_func character varying(50),
---   cal_message_id1 integer,
---   cal_message_id2 integer,
---   cal_operator character varying(50),
---   default_value real,
---   module character varying(50),
---   CONSTRAINT pk_messages PRIMARY KEY (id),
---   CONSTRAINT messages_identifier_key UNIQUE (identifier)
--- )
--- WITH (
---   OIDS=FALSE
--- );
--- ALTER TABLE management.products
---   OWNER TO postgres;
+
+CREATE TABLE management.products
+(
+  id bigserial NOT NULL,
+  user_id bigint,
+  name character varying(50) NOT NULL,
+  address character varying(200),
+  number_bedroom integer,
+  number_bathroom integer,
+  size character varying(50),
+  price character varying(50),
+  matterport_url character varying(200),
+  description text,
+  latitude double precision,
+  longitude double precision,
+  CONSTRAINT pk_products PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE management.products
+  OWNER TO postgres;
 
 -- BEGIN STAGING.TABLES
 
