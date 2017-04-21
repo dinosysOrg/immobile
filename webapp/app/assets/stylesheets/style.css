@@ -256,7 +256,7 @@ body.page-navbar-fixed-top-sm {
 }
 .header.navbar.navbar-transparent .navbar-nav > li > a,
 .header.navbar.navbar-inverse .navbar-nav > li > a {
-    color: #8F8E8E;
+    color: #e8e8e8;
 }
 .header.navbar.navbar-transparent .brand-text,
 .header.navbar.navbar-inverse .brand-text {
@@ -2985,6 +2985,15 @@ a.list-group-item.active:focus {
     font-family: 'FontAwesome';
     src: url('/assets/fontawesome-webfont.eot');
     src: url('/assets/fontawesome-webfont.eot') format('embedded-opentype'), url('/assets/fontawesome-webfont.woff2') format('woff2'), url('/assets/fontawesome-webfont.woff') format('woff'), url('/assets/fontawesome-webfont.ttf') format('truetype'), url('/assets/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('/assets/SVN-Gotham-Bold.ttf');
+    src: url('/assets/SVN-Gotham-Light.ttf');
+    src: url('/assets/SVN-Gotham-Book.ttf');
     font-weight: normal;
     font-style: normal;
 }
