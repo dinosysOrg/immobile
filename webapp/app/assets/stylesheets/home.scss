@@ -305,6 +305,7 @@
   font-size: 20px;
   margin-bottom: 5px;
   font-weight: 500;
+  margin-top: 20px;
 }
 
 .detail-content-info h6 {
@@ -329,6 +330,24 @@
 .detail-content-info-size {
   //width: 150px;
   //display: inline-block;
+}
+
+
+.detail-content-info-vr {
+  //width: 150px;
+  //display: inline-block;
+  display: flex;
+}
+
+#qrcode {
+  display: inline-block;
+}
+
+.detail-content-info-vr-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  margin-top: 20px;
 }
 
 .detail-content-description {
@@ -372,6 +391,7 @@
   padding: 8px;
   display: flex;
   color: #ddd;
+  z-index: 1;
 }
 
 .detail-icon-expand i {
