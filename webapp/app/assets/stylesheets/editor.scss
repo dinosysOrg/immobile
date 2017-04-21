@@ -1,0 +1,31 @@
+// Place all the styles related to the editor controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.editor-content {
+  margin-top: 70px;
+  width: 100%;
+  height: auto;
+  border-top: 1px solid #ddd;
+}
+
+.edit-title {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.list-item-image{
+  padding: 0px !important;
+}
+
+.list-item-action {
+  padding-top: 25px !important;
+  padding-right: 0px !important;
+}
+
+.list-item-thumb {
+  width: 149px;
+  height: 80px;
+  object-fit: cover;
+}

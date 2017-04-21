@@ -16,7 +16,4 @@ class HomeController < ApplicationController
 
   end
 
-  def edit
-    
-  end
 end
