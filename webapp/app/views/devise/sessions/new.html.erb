@@ -1,0 +1,103 @@
+
+<div class="login login-with-news-feed">
+  <!-- begin news-feed -->
+  <div class="news-feed">
+    <div class="news-image" >
+      <%= image_tag("sunnyworld_background.jpg", height: '100%') %>
+    </div>
+    <div class="news-caption">
+      <h4 class="caption-title"><i>
+        <%= image_tag("logo_sunnyworld.png", height: '64', 'data-id': "login-cover-image" ) %>
+      </i> </h4>
+      <p>
+      </p>
+    </div>
+  </div>
+  <!-- end news-feed -->
+  <!-- begin right-content -->
+  <div class="right-content" >
+    <!-- begin login-header -->
+    <div class="login-header">
+      <h1 class="register-header" style="font-size: 32px !important;">
+        Đăng nhập
+      </h1>
+
+    </div>
+    <!-- end login-header -->
+    <!-- begin login-content -->
+    <div class="login-content"  >
+
+      <%= form_for resource, as: resource_name, url: session_path(resource_name), class: 'margin-bottom-0' do |f| %>
+          <div class="form-group m-b-20">
+            <%= f.email_field :email, class: 'form-control input-lg', placeholder: 'Username', autofocus: true %>
+          </div>
+          <div class="form-group m-b-20">
+            <%= f.password_field :password, autocomplete: "off", class: "form-control input-lg", placeholder: "Password" %>
+          </div>
+          <div class="login-buttons">
+            <%= f.submit "Sign in", class: "btn btn-success btn-block btn-lg" %>
+          </div>
+          <br>
+          <div class="form-group m-b-20 clearfix">
+            <a class="btn btn-block btn-social btn-facebook" href="<%=user_facebook_omniauth_authorize_path%>">
+              <span><i class="fa fa-facebook"></i>  Sign in with Facebook</span>
+            </a>
+
+            <a class="btn btn-block btn-social btn-google-plus" href="<%=user_google_oauth2_omniauth_authorize_path%>">
+              <span><i class="fa fa-google"></i>  Sign in with Google</span>
+            </a>
+
+          </div>
+
+          <div class="m-t-20 m-b-40 p-b-40">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+            <% end -%>
+            <br>
+            Have a member? Click <a href="/users/sign_up">here</a> to sign up.
+            <div class="form-group m-t-20 has-error has-feedback text-center">
+            </div>
+            <p class="text-center text-inverse">
+              &copy; Sunny World All Right Reserved 2016
+            </p>
+          </div>
+
+
+          <hr />
+
+
+
+
+      <% end %>
+
+
+    </div>
+    <!-- end login-content -->
+
+
+  </div>
+  <!-- end right-container -->
+</div>
+
+
+
+</div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

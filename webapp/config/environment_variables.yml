@@ -1,0 +1,53 @@
+# Be sure to restart your server when you modify this file.
+
+# Your secret key is used for verifying the integrity of signed cookies.
+# If you change this key, all old signed cookies will become invalid!
+
+# Make sure the secret is at least 30 characters and all random,
+# no regular words or you'll be exposed to dictionary attacks.
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.
+development:
+    SECRET_KEY_BASE:
+  #Facebook app
+    FACEBOOK_APP_ID : 253867511675742
+    FACEBOOK_APP_SECRET: 7c0a2196e83e40516ad69e632628537e
+
+    BASE_URL_FACEBOOK_CALL_BACK: http://localhost:3000/users/auth/facebook/callback
+
+  #Google app
+    GOOGLE_APP_ID: 758694496404-phk3ar6v9frvegfrdce9e9vq2cgfqlas.apps.googleusercontent.com
+    GOOGLE_APP_SECRET: 3Xbbw8aAG9LHOV9LT83-Q7hn
+
+    BASE_URL_GOOGLE_CALL_BACK: http://localhost:3000/users/auth/google_oauth2/callback
+
+  #Minio
+    MINIO_ENDPOINT: http://178.63.40.201:1818
+    MINIO_PORT: 1818
+    MINIO_KEY: HSZXD61KVR9CH1J79EHF
+    MINIO_SECRET: QMVFGT/K7AMsFi75aaTSyE1cpstRmzvI+9gLWJcc
+
+
+production:
+    SECRET_KEY_BASE : fb6d5ba59fe6200f9f11cbcdfdd3bcaf2b30681dd1ab02b14e0f8d96a8dd550a4561aa454fefc1f65466c2aa5f478c89a34fc79dd82b913f70b63d2f52f4cca3
+
+
+    #Facebook app
+    FACEBOOK_APP_ID : 253867511675742
+    FACEBOOK_APP_SECRET: 7c0a2196e83e40516ad69e632628537e
+
+    BASE_URL_FACEBOOK_CALL_BACK: https://echoop.net/users/auth/facebook/callback
+
+    #Google app
+    GOOGLE_APP_ID: 758694496404-phk3ar6v9frvegfrdce9e9vq2cgfqlas.apps.googleusercontent.com
+    GOOGLE_APP_SECRET: 3Xbbw8aAG9LHOV9LT83-Q7hn
+
+    BASE_URL_GOOGLE_CALL_BACK: https://echoop.net/users/auth/google_oauth2/callback
+
+    #Minio
+    MINIO_ENDPOINT: http://178.63.40.201:1818
+    MINIO_PORT: 1818
+    MINIO_KEY: HSZXD61KVR9CH1J79EHF
+    MINIO_SECRET: QMVFGT/K7AMsFi75aaTSyE1cpstRmzvI+9gLWJcc

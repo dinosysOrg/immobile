@@ -7496,9 +7496,6 @@ body .fc button:active {
 }
 .login.login-with-news-feed .news-caption,
 .register.register-with-news-feed .news-caption {
-    background: rgba(255,255,255,0.15);
-    background: rgba(0, 0, 0, 0.7);
-    color: #999;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -7523,7 +7520,7 @@ body .fc button:active {
 .login.login-with-news-feed .right-content,
 .register.register-with-news-feed .right-content {
     float: right;
-    width: 500px;
+    width: 480px;
 }
 .login.login-with-news-feed .login-content,
 .register.register-with-news-feed .register-content {
@@ -7540,12 +7537,12 @@ body .fc button:active {
     margin: 0;
     left: 0;
     right: 0;
-    padding: 100px 60px 0;
+    padding: 50px 60px 0;
 }
 .register.register-with-news-feed .register-header {
-    padding: 60px 60px 0;
+    padding: 40px 60px 0;
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 500;
 }
 .register.register-with-news-feed .register-header small {
     color: #707478;
@@ -7553,6 +7550,10 @@ body .fc button:active {
     font-size: 14px;
     margin-top: 10px;
     line-height: 20px;
+}
+
+.register-header {
+    font-size: 32px !important;
 }
 .login.login-with-news-feed .login-header .brand {
     color: #212121;
