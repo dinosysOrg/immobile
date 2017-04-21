@@ -713,8 +713,9 @@ body.page-navbar-fixed-top-sm {
     margin-bottom: 10px;
 }
 .work .image img {
-    max-width: 100%;
+    /*max-width: 100%;*/
     object-fit: cover;
+    width: 100%;
     height: 200px;
 }
 .work:hover .desc,
