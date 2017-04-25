@@ -12,14 +12,14 @@
 development:
     SECRET_KEY_BASE:
   #Facebook app
-    FACEBOOK_APP_ID : 253867511675742
-    FACEBOOK_APP_SECRET: 7c0a2196e83e40516ad69e632628537e
+    FACEBOOK_APP_ID : 310642566038027
+    FACEBOOK_APP_SECRET: 1678f6099d91778ca70e5ffb6acdba6f
 
     BASE_URL_FACEBOOK_CALL_BACK: http://localhost:3000/users/auth/facebook/callback
 
   #Google app
-    GOOGLE_APP_ID: 758694496404-phk3ar6v9frvegfrdce9e9vq2cgfqlas.apps.googleusercontent.com
-    GOOGLE_APP_SECRET: 3Xbbw8aAG9LHOV9LT83-Q7hn
+    GOOGLE_APP_ID: 426374303502-qhti3gvasgdqadonvn43u0o355f0h5u1.apps.googleusercontent.com
+    GOOGLE_APP_SECRET: Mz2ygKm4mglSd6n7zw5d0c5b
 
     BASE_URL_GOOGLE_CALL_BACK: http://localhost:3000/users/auth/google_oauth2/callback
 
@@ -29,22 +29,21 @@ development:
     MINIO_KEY: HSZXD61KVR9CH1J79EHF
     MINIO_SECRET: QMVFGT/K7AMsFi75aaTSyE1cpstRmzvI+9gLWJcc
 
-
 production:
     SECRET_KEY_BASE : fb6d5ba59fe6200f9f11cbcdfdd3bcaf2b30681dd1ab02b14e0f8d96a8dd550a4561aa454fefc1f65466c2aa5f478c89a34fc79dd82b913f70b63d2f52f4cca3
 
 
     #Facebook app
-    FACEBOOK_APP_ID : 253867511675742
-    FACEBOOK_APP_SECRET: 7c0a2196e83e40516ad69e632628537e
+    FACEBOOK_APP_ID : 310642566038027
+    FACEBOOK_APP_SECRET: 1678f6099d91778ca70e5ffb6acdba6f
 
-    BASE_URL_FACEBOOK_CALL_BACK: https://echoop.net/users/auth/facebook/callback
+    BASE_URL_FACEBOOK_CALL_BACK: https://immobile.dinosys.vn/users/auth/facebook/callback
 
     #Google app
-    GOOGLE_APP_ID: 758694496404-phk3ar6v9frvegfrdce9e9vq2cgfqlas.apps.googleusercontent.com
-    GOOGLE_APP_SECRET: 3Xbbw8aAG9LHOV9LT83-Q7hn
+    GOOGLE_APP_ID: 426374303502-qhti3gvasgdqadonvn43u0o355f0h5u1.apps.googleusercontent.com
+    GOOGLE_APP_SECRET: Mz2ygKm4mglSd6n7zw5d0c5b
 
-    BASE_URL_GOOGLE_CALL_BACK: https://echoop.net/users/auth/google_oauth2/callback
+    BASE_URL_GOOGLE_CALL_BACK: https://immobile.dinosys.vn/users/auth/google_oauth2/callback
 
     #Minio
     MINIO_ENDPOINT: http://178.63.40.201:1818

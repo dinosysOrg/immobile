@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
         user.email = ''
       end
       user.password = Devise.friendly_token[0, 20]
-      user.token = Devise.friendly_token[0, 20]
-      user.user_ts = Time.current
       user.confirmed_at = Time.current
     end
 
@@ -49,8 +47,6 @@ class User < ActiveRecord::Base
         user.email = ''
       end
       user.password = Devise.friendly_token[0, 20]
-      user.token = Devise.friendly_token[0, 20]
-      user.user_ts = Time.current
       user.confirmed_at = Time.current
     end
 
@@ -71,5 +67,24 @@ class User < ActiveRecord::Base
 
   def self.current=(user)
     Thread.current[:user] = user
+  end
+
+  def role?(roleName, userID)
+    @has = true
+    # @listRole = RoleUser.where(:user_id => userID.to_i)
+    # unless @listRole.nil? && @listRole.size > 0
+    #   @listRole.each do |item|
+    #
+    #     @role = Role.find(item.role_id.to_i)
+    #
+    #     unless @role.nil?
+    #       unless @role.name.equal? roleName
+    #         return true
+    #       end
+    #     end
+    #
+    #   end
+    # end
+    return @has
   end
 end

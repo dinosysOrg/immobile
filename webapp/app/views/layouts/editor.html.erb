@@ -93,6 +93,7 @@
         <li <% if @pageType == 'new' %> class="active" <% end %> ><a href="/editor/new"><i class="fa fa-plus" aria-hidden="true"></i> <span>Tạo mới</span></a></li>
         <li <% if @pageType == 'list' %> class="active" <% end %> ><a href="/editor/list"><i class="fa fa-list-ul" aria-hidden="true"></i> <span>Danh sách</span></a></li>
         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span>Cài đặt</span></a></li>
+        <li><a rel="nofollow" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Đăng xuất</span></a></li>
       </ul>
       <!-- end sidebar nav -->
     </div><div class="slimScrollBar ui-draggable" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 274.714px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
@@ -101,6 +102,8 @@
   <div class="sidebar-bg"></div>
   <!-- end #sidebar -->
 
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <%= yield %>
 
   <!-- begin scroll to top btn -->

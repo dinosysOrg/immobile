@@ -1,4 +1,4 @@
-class Devise::ConfirmationsController < Devise::ConfirmationsController
+class Devise::ConfirmationsCustomController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new
   #   super
@@ -22,7 +22,7 @@ class Devise::ConfirmationsController < Devise::ConfirmationsController
   # end
 
   # The path used after confirmation.
-  # def after_confirmation_path_for(resource_name, resource)
-  #   super(resource_name, resource)
-  # end
+  def after_confirmation_path_for(resource_name, resource)
+    super(resource_name, resource)
+  end
 end

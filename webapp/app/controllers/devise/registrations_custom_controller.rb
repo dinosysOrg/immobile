@@ -8,8 +8,6 @@ class Devise::RegistrationsCustomController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
-    @user.user_ts = Time.current
-    @user.token = Devise.friendly_token[0, 20]
     @user.name = @user.firstname+' '+@user.lastname
     if @user.save
       flash[:notice] = "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."

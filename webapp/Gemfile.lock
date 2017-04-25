@@ -46,6 +46,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.15.0)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -84,6 +85,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     jwt (1.5.6)
+    log4r (1.1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -194,13 +196,15 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
+  cancancan (~> 1.9)
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  log4r
   omniauth-facebook
-  omniauth-google-oauth2 (~> 0.4.1)
+  omniauth-google-oauth2
   pg (= 0.18.4)
   rails (= 4.2.6)
   sass-rails (~> 5.0)

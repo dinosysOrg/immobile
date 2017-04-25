@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails webapp: development" uuid="83def25f-c22e-4531-b27d-44aa2caedbb8">
+      <user-name>postgres</user-name>
+      <introspection-scope>immobile:public,pg_catalog,postgres</introspection-scope>
+      <resolve-scope>immobile:public,postgres</resolve-scope>
+    </data-source>
+    <data-source name="Rails webapp: production" uuid="17352acf-f44e-48c6-8806-0315f82c093d">
+      <user-name>postgres</user-name>
+      <user-password>dfcedfc3dfc4dfc5df84dfcedfcfdfdc</user-password>
+    </data-source>
+    <data-source name="Rails webapp: test" uuid="6572d847-97a7-4ba1-8171-336a5181d1d6">
+      <user-name>postgres</user-name>
+      <user-password>dfcedfc3dfc4dfc5df84dfcedfcfdfdc</user-password>
+    </data-source>
+  </component>
+</project>

@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   get 'contact', to: 'home#contact'
 
   devise_for :users, :controllers => {
-      :omniauth_callbacks => 'devise/omniauth_callbacks',
-      :registrations_custom => 'devise/registrations_custom',
+      :omniauth_callbacks => 'authentication/omniauth_callbacks',
+      :registrations => 'devise/registrations_custom',
+      :confirmations => 'devise/confirmations_custom',
       :sessions => 'devise/sessions_custom'
   }
+
 end

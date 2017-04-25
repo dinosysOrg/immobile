@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(version: 20170421103853) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "avatar"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "confirmation_token"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0, null: false
+    t.string   :unlock_token
+    t.datetime "locked_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
