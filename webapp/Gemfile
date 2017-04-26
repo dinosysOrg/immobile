@@ -24,6 +24,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Authentication
 gem 'devise'
+#Login by social account
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+#Role for user
+gem 'cancancan', '~> 1.9'
+# Use log4r for logging
+gem 'log4r'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

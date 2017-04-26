@@ -1,0 +1,105 @@
+
+<div class="register register-with-news-feed">
+  <!-- begin news-feed -->
+  <div class="news-feed">
+    <div class="news-image">
+      <%= image_tag("sunnyworld_background.jpg", height: '100%') %>
+    </div>
+    <div class="news-caption">
+      <div class="news-caption">
+        <h4 class="caption-title"><i>
+          <%= image_tag("logo_sunnyworld.png", height: '64', 'data-id': "login-cover-image" ) %>
+        </i></h4>
+      </div>
+    </div>
+  </div>
+  <!-- end news-feed -->
+  <!-- begin right-content -->
+  <div class="right-content">
+    <!-- begin register-header -->
+    <h1 class="register-header" style="font-size: 32px !important;">
+      Đăng ký
+    </h1>
+    <h1 class="register-header-title">
+    </h1>
+    <!-- end register-header -->
+    <!-- begin register-content -->
+    <div class="register-content">
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <label class="control-label">Name</label>
+          <div class="row row-space-10">
+            <div class="col-md-6 m-b-15">
+
+              <input class="form-control" autofocus="autofocus" name="user[firstname]" required="required" type="firstname" placeholder="First Name">
+            </div>
+            <div class="col-md-6 m-b-15">
+              <input class="form-control" autofocus="autofocus" name="user[lastname]"  required="required" type="lastname" placeholder="Last Name">
+            </div>
+          </div>
+          <label class="control-label">Email</label>
+          <div class="row m-b-15">
+            <div class="col-md-12">
+              <input class="form-control" autofocus="autofocus" name="user[email]" id="user_email" required="required" type="email" placeholder="Email address">
+            </div>
+          </div>
+
+
+          <label class="control-label">Password</label>
+          <div class="row m-b-15">
+            <div class="col-md-12">
+              <input  class="form-control" autocomplete="off" name="user[password]" id="user_password" required="required" type="password" minlength="6" placeholder="Password">
+            </div>
+          </div>
+          <label class="control-label">Confirm Password</label>
+          <div class="row m-b-15">
+            <div class="col-md-12">
+              <input class="form-control" autocomplete="off" name="user[password_confirmation]" id="user_password_confirmation" required="required" type="password" minlength="6" placeholder="Re-Enter Password">
+            </div>
+          </div>
+
+          <div class="checkbox m-b-30">
+            <label>
+              <input type="checkbox" /> By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
+            </label>
+          </div>
+          <div class="register-buttons">
+            <button type="submit" class="btn btn-success btn-block btn-lg">Sign Up</button>
+          </div>
+      <% end %>
+
+
+      <div class="m-t-20 m-b-40 p-b-40">
+        Already a member? Click <a href="/users/sign_in">here</a> to login.
+        <div class="form-group m-t-20 has-error has-feedback text-center">
+
+        </div>
+      </div>
+
+      <hr />
+      <p class="text-center text-inverse">
+        &copy; Sunny World All Right Reserved 2016
+      </p>
+      </form>
+    </div>
+
+
+
+
+
+  </div>
+  <!-- end register-content -->
+</div>
+<!-- end right-content -->
+</div>
+
+
+
+
+
+
+
+
+
+
+

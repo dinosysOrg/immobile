@@ -6,6 +6,7 @@ CREATE TABLE management.photos
   user_id bigint,
   product_id bigint,
   photo_url character varying(200),
+  created_at timestamp with time zone DEFAULT now(),
   CONSTRAINT pk_photos PRIMARY KEY (id)
 )
 WITH (
@@ -29,6 +30,7 @@ CREATE TABLE management.products
   is_available boolean default true,
   latitude double precision,
   longitude double precision,
+  created_at timestamp with time zone DEFAULT now(),
   CONSTRAINT pk_products PRIMARY KEY (id)
 )
 WITH (
