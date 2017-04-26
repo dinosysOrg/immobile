@@ -1,7 +1,5 @@
 class DeviseCreateUsers < ActiveRecord::Migration
   def change
-    execute 'CREATE SCHEMA management'
-
     create_table 'management.users' do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
