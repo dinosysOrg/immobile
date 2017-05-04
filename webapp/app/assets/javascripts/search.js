@@ -67,10 +67,10 @@ function initMap() {
     // Construct the polygon.
     var bermudaTriangle = new google.maps.Polygon({
         paths: triangleCoords,
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.5,
+        strokeColor: '#AD1457',
+        strokeOpacity: 1.0,
         strokeWeight: 1,
-        fillColor: '#FF0000',
+        fillColor: '#AD1457',
         fillOpacity: 0.35
     });
     bermudaTriangle.setMap(map);

@@ -252,12 +252,18 @@ body.page-navbar-fixed-top-sm {
 /* 2.5 Navbar Transparent & Inverse Setting  */
 
 .header.navbar.navbar-transparent {
+    background: #fff;
     border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 .header.navbar.navbar-transparent .navbar-nav > li > a,
 .header.navbar.navbar-inverse .navbar-nav > li > a {
-    color: #aaaaaa;
+    color: #2d353c;
 }
+.header.navbar.navbar-transparent .navbar-nav > li > a:hover,
+.header.navbar.navbar-inverse .navbar-nav > li > a:hover {
+    color: #AD1457 !important;
+}
+
 .header.navbar.navbar-transparent .brand-text,
 .header.navbar.navbar-inverse .brand-text {
     color: #fff;
@@ -290,6 +296,9 @@ body.page-navbar-fixed-top-sm {
 .header.navbar.navbar-transparent.navbar-small .brand-logo + .brand-text {
     color: #2d353c;
 }
+.header.navbar.navbar-transparent.navbar-small .navbar-nav > li > a:hover {
+     color: #AD1457 !important;
+ }
 .navbar-small .navbar-toggle {
     border-color: #ddd;
     margin-top: 8px;
@@ -428,7 +437,7 @@ body.page-navbar-fixed-top-sm {
 .home-content {
     z-index: 1020;
     position: absolute;
-    top: 50%;
+    top: 63%;
     left: 0;
     right: 0;
     color: #8F8E8E;
@@ -441,12 +450,13 @@ body.page-navbar-fixed-top-sm {
 .home-content h3,
 .home-content h4 {
     color: #fff;
-    margin: 0 0 30px;
+    margin: 0 0 15px;
     font-weight: 300;
 }
 .home-content h1 {
-    font-size: 64px;
-    font-weight: 600;
+    font-size: 55px;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 .home-content h3 {
     font-size: 32px;
@@ -578,6 +588,7 @@ body.page-navbar-fixed-top-sm {
 }
 .milestone .title {
     color: #dddddd;
+    font-weight: 700;
 }
 
 
@@ -937,8 +948,8 @@ body.page-navbar-fixed-top-sm {
 /* 13.1 Footer Element Setting */
 
 .footer {
-    padding: 60px 0;
-    background: #242a30;
+    padding: 40px 0;
+    background: #212121;
     text-align: center;
     box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);
     -webkit-box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);
@@ -962,7 +973,13 @@ body.page-navbar-fixed-top-sm {
     font-size: 20px;
 }
 
+.social-list i {
+     color: #AD1457;
+ }
 
+.footer a {
+    color: #fafafa;
+}
 
 /* -------------------------------
    14.0 Pace Loader Setting
@@ -2994,6 +3011,16 @@ a.list-group-item.active:focus {
     src: url('/assets/SVN-Gotham-Bold.ttf');
     src: url('/assets/SVN-Gotham-Light.ttf');
     src: url('/assets/SVN-Gotham-Book.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto-serif-2';
+    src: url('/assets/NotoSerif-Bold.ttf');
+    src: url('/assets/NotoSerif-BoldItalic.ttf');
+    src: url('/assets/NotoSerif-Italic.ttf');
+    src: url('/assets/NotoSerif-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }

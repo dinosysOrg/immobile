@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'editor/new', to: 'editor#new'
+  post 'editor/new', to: 'editor#newProduct'
   get 'editor/list', to: 'editor#list'
 
   root 'home#index'

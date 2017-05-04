@@ -70,7 +70,7 @@
   margin: 0px;
   padding: 10px;
   text-align: center;
-  background: #f4f5f9;
+  background: #fafafa;
 }
 
 .search-map {
@@ -81,7 +81,7 @@
 
 .search-item{
   width: 49%;
-  height: 400px;
+  height: 355px;
   padding: 10px;
   display: inline-block;
   position: relative;
@@ -118,7 +118,7 @@
 }
 
 .search-item-text-address {
-  margin-top: 8px;
+  margin-top: 4px;
   flex-grow: 1;
   font-size: 12px;
   line-height: 15px;
@@ -127,11 +127,10 @@
 }
 
 .search-item-text-price {
-  margin-top: 40px;
-  color: #FF6F6F;
-  font-size: 16px;
+  margin-top: 20px;
+  color: #AD1457;
+  font-size: 24px;
   line-height: 16px;
-  font-family: GT Pressura Mono,Monaco,monospace;
 }
 
 .search-item-text-icon{
@@ -151,6 +150,7 @@
 .search-item-text-icon i {
   margin-left: 10px;
   font-size: 14px;
+  color: #757575;
 }
 
 .search-filter-item{
@@ -302,7 +302,7 @@
 }
 
 .detail-content-info h4 {
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 5px;
   font-weight: 500;
   margin-top: 20px;
@@ -310,6 +310,7 @@
 
 .detail-content-info h6 {
   color: #aaa;
+  font-weight: 600;
 }
 
 .detail-content-info-price {
@@ -379,8 +380,6 @@
 
 .detail-map-view {
   height: 250px;
-  margin-left: 10%;
-  margin-right: 10%;
 }
 
 .detail-icon-expand {
@@ -422,6 +421,10 @@
 }
 
 .home-title {
-  font-family: "Gatham";
-  letter-spacing: 4px;
+  //font-family: "Noto-serif-2";
+  //font-family: 'Noto Serif', serif;
+  //font-family: 'Prata', serif;
+  //font-family: 'Cormorant', serif;
+  //font-family: 'Cormorant Upright', serif;
+  font-family: 'Judson', serif;
 }
