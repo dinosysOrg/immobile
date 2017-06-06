@@ -118,7 +118,7 @@ Website: http://www.seantheme.com/color-admin-v2.0/frontend/one-page-parallax/
 
 body {
     background: #fff;
-    font-family: 'Open Sans', "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*font-family: 'Open Sans', "Helvetica Neue",Helvetica,Arial,sans-serif;*/
     color: #707478;
     font-size: 12px;
 }
@@ -197,9 +197,9 @@ body.page-navbar-fixed-top-sm {
 .header.navbar .navbar-nav > li > a {
     font-size: 14px;
     line-height: 20px;
-    color: #2d353c;
-    font-weight: 500;
-    padding: 25px 15px;
+    color: #000 !important;
+    font-weight: 300;
+    padding: 25px 20px;
 }
 .header.navbar .navbar-nav > li.active > a,
 .header.navbar .navbar-nav > li > a:hover,
@@ -287,7 +287,7 @@ body.page-navbar-fixed-top-sm {
 }
 .header.navbar.navbar-small .navbar-brand,
 .header.navbar.navbar-small .navbar-nav > li > a {
-    padding: 15px;
+    padding: 20px;
 }
 .header.navbar.navbar-transparent.navbar-small {
     background: #fff;
@@ -366,8 +366,8 @@ body.page-navbar-fixed-top-sm {
     display: block;
     position: absolute;
     width: 40px;
-    background: #242a30;
-    height: 2px;
+    background: #000;
+    height: 1px;
     bottom: 0;
     left: 50%;
     margin-left: -20px;

@@ -12,7 +12,7 @@ var componentForm = {
 
 
 $(document).ready(function(){
-    menuTypeSelect()
+    menuTypeSelect();
 });
 
 function menuTypeSelect(){
