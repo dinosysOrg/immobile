@@ -24,10 +24,10 @@ development:
     BASE_URL_GOOGLE_CALL_BACK: http://localhost:3000/users/auth/google_oauth2/callback
 
   #Minio
-    MINIO_ENDPOINT: http://178.63.40.201:1818
-    MINIO_PORT: 1818
-    MINIO_KEY: HSZXD61KVR9CH1J79EHF
-    MINIO_SECRET: QMVFGT/K7AMsFi75aaTSyE1cpstRmzvI+9gLWJcc
+    MINIO_ENDPOINT: https://minio.dinosys.vn
+    MINIO_PORT: 80
+    MINIO_KEY: ESEK0HEV97YIHY5571HT
+    MINIO_SECRET: RJsPh64+me589ZyZxr/OFxlcefpU9du7IAXR2212
 
 production:
     SECRET_KEY_BASE : fb6d5ba59fe6200f9f11cbcdfdd3bcaf2b30681dd1ab02b14e0f8d96a8dd550a4561aa454fefc1f65466c2aa5f478c89a34fc79dd82b913f70b63d2f52f4cca3
@@ -46,7 +46,7 @@ production:
     BASE_URL_GOOGLE_CALL_BACK: https://immobile.dinosys.vn/users/auth/google_oauth2/callback
 
     #Minio
-    MINIO_ENDPOINT: http://178.63.40.201:1818
-    MINIO_PORT: 1818
-    MINIO_KEY: HSZXD61KVR9CH1J79EHF
-    MINIO_SECRET: QMVFGT/K7AMsFi75aaTSyE1cpstRmzvI+9gLWJcc
+    MINIO_ENDPOINT: https://minio.dinosys.vn
+    MINIO_PORT: 80
+    MINIO_KEY: ESEK0HEV97YIHY5571HT
+    MINIO_SECRET: RJsPh64+me589ZyZxr/OFxlcefpU9du7IAXR2212

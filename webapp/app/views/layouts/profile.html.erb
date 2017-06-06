@@ -1,0 +1,142 @@
+<html lang="en"><!--<![endif]--><head>
+  <meta charset="utf-8">
+  <title>Sunny World</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+
+  <!-- ================== BEGIN BASE CSS STYLE ================== -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+  <link href="/assets/jquery-ui.css" rel="stylesheet"/>
+  <link href="/assets/bootstrap.css" rel="stylesheet">
+  <link href="/assets/font-awesome.css" rel="stylesheet">
+  <link href="/assets/editor-animate.css" rel="stylesheet">
+  <link href="/assets/editor-style.css" rel="stylesheet">
+  <link href="/assets/editor-style-responsive.css" rel="stylesheet">
+  <link href="/assets/editor-default.css" rel="stylesheet" id="theme">
+  <!-- ================== END BASE CSS STYLE ================== -->
+
+  <!-- ================== BEGIN BASE JS ================== -->
+  <script src="/assets/editor-pace.js"></script>
+  <!-- ================== END BASE JS ================== -->
+
+  <%= csrf_meta_tags %>
+  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+</head>
+<body class="pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+  <div class="pace-progress-inner"></div>
+</div>
+  <div class="pace-activity"></div></div>
+<!-- begin #page-loader -->
+<div id="page-loader" class="hide">
+  <div class="material-loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+    </svg>
+    <div class="message">Loading...</div>
+  </div>
+</div>
+<!-- end #page-loader -->
+
+<!-- begin #page-container -->
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed page-with-wide-sidebar in">
+  <!-- begin #header -->
+  <div id="header" class="header navbar navbar-default navbar-fixed-top">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+      <!-- begin mobile sidebar expand / collapse button -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed navbar-toggle-left" data-click="sidebar-minify">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">
+          Sunny World - Profile
+        </a>
+      </div>
+      <!-- end mobile sidebar expand / collapse button -->
+
+      <div class="search-form">
+        <button class="search-btn" type="submit"><i class="material-icons">search</i></button>
+        <input type="text" class="form-control" placeholder="Search Something...">
+        <a href="#" class="close" data-dismiss="navbar-search"><i class="material-icons">close</i></a>
+      </div>
+    </div>
+    <!-- end container-fluid -->
+  </div>
+  <!-- end #header -->
+
+  <!-- begin #sidebar -->
+  <div id="sidebar" class="sidebar">
+    <!-- begin sidebar scrollbar -->
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
+      <!-- begin sidebar user -->
+      <ul class="nav">
+        <li class="nav-profile">
+          <a href="#" data-toggle="nav-profile">
+            <div class="image">
+              <img src="<%= current_user.avatar %>" alt="">
+            </div>
+            <div class="info">
+              <%= current_user.name %>
+              <% roleUser = RoleUser.where(:user_id => current_user.id).first
+                role = Role.find(roleUser.role_id) %>
+              <small>(<%= role.name %>)</small>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <!-- end sidebar user -->
+      <!-- begin sidebar nav -->
+      <ul class="nav">
+        <li <% if @pageType == 'new_house' %> class="active" <% end %> ><a href="/profile/post/new"><i class="fa fa-plus" aria-hidden="true"></i> <span>Đăng bài</span></a></li>
+        <li <% if @pageType == 'list_house' %> class="active" <% end %> ><a href="/profile/posts"><i class="fa fa-list-ul" aria-hidden="true"></i> <span>Danh sách bài đăng</span></a></li>
+        <li <% if @pageType == 'edit_profile' %> class="active" <% end %> ><a href="/profile/edit"><i class="fa fa-cog" aria-hidden="true"></i> <span>Thông tin cá nhân</span></a></li>
+        <li><a rel="nofollow" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Đăng xuất</span></a></li>
+      </ul>
+      <!-- end sidebar nav -->
+    </div><div class="slimScrollBar ui-draggable" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 274.714px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+    <!-- end sidebar scrollbar -->
+  </div>
+  <div class="sidebar-bg"></div>
+  <!-- end #sidebar -->
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+
+  <!-- begin scroll to top btn -->
+  <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+  <!-- end scroll to top btn -->
+</div>
+<!-- end page container -->
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="/assets/jquery-1.9.1.js"></script>
+<script src="/assets/jquery-migrate-1.1.0.js"></script>
+<script src="/assets/jquery-ui.min.js"></script>
+<script src="/assets/bootstrap.js"></script>
+<script src="/assets/jquery.slimscroll.min.js"></script>
+<script src="/assets/jquery.cookie.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="/assets/editor-apps.js"></script>
+<script src="/assets/ui-modal-notification.min.js"></script>
+<script src="/assets/sunny-editor.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+  $(document).ready(function() {
+    App.init();
+  });
+</script>
+
+
+</body></html>

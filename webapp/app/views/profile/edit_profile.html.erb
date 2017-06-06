@@ -1,0 +1,73 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="content edit-content">
+  <!--<div class="panel-heading">-->
+  <!--<h4 class="edit-title">Sửa thông tin cá nhân</h4>-->
+  <!--</div>-->
+
+  <div class="panel-body">
+    <%= form_tag('/profile/edit/', method: 'post', multipart: true) do %>
+
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="col-md-12 profile-avatar">
+              <img class="" src="<%= current_user.avatar %>" alt="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ảnh đại diện</label>
+            <div class="col-md-8" style="margin-top: 5px;">
+              <input type="file" name="img">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Họ và Tên</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true" value="<%= current_user.name %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Email</label>
+            <div class="col-md-8">
+              <input id="email" type="text" class="form-control" placeholder="" name="email" data-parsley-required="true" value="<%= current_user.email %>" disabled>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Địa chỉ</label>
+            <div class="col-md-8">
+              <input id="address" type="text" class="form-control" placeholder="" name="address" data-parsley-required="true" value="<%= current_user.address %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số điện thoại</label>
+            <div class="col-md-8">
+              <input id="phone" type="text" class="form-control" placeholder="" name="phone" data-parsley-required="true" value="<%= current_user.phone %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Skype</label>
+            <div class="col-md-8">
+              <input id="skype" type="text" class="form-control" placeholder="" name="skype" data-parsley-required="true" value="<%= current_user.skype %>">
+            </div>
+          </div>
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Gửi</label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

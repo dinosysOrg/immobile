@@ -1,0 +1,320 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="content edit-content">
+  <div class="panel-heading">
+    <h4 class="edit-title">Sửa thông tin bài đăng</h4>
+  </div>
+
+  <div class="panel-body">
+    <%= form_tag('/profile/post/'+@house.id.to_s, method: 'post', multipart: true) do %>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiêu đề *</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true" value="<%= @house.name %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Thuộc dự án</label>
+            <div class="col-md-3">
+              <select class="form-control" name="project_id">
+                <% projects = Project::all() %>
+                <% projects.each_with_index do |project, idx| %>
+                    <% if project.id == @house.project_id %>
+                        <option value="<%= project.id %>" selected><%= project.name %> </option>
+                    <% else %>
+                        <option value="<%= project.id %>"><%= project.name %> </option>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+
+            <label class="col-md-2 control-label">Thuộc loại</label>
+            <div class="col-md-3">
+              <select class="form-control" name="estate_id">
+                <% estates = Estate::all() %>
+                <% estates.each_with_index do |estate, idx| %>
+                    <% if estate.id == @house.estate_id %>
+                        <option value="<%= estate.id %>" selected><%= estate.name %> </option>
+                    <% else %>
+                        <option value="<%= estate.id %>"><%= estate.name %> </option>
+                    <% end %>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Địa chỉ *</label>
+            <div class="col-md-8">
+              <input id="address" type="text" class="form-control" placeholder="" name="address" value="<%= @house.address %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số phòng ngủ</label>
+            <div class="col-md-3">
+              <select class="form-control" name="number_bedroom">
+                <option value="1"
+                        <% if @house.number_bedroom == 1 %> selected
+                        <% end %> >1
+                </option>
+                <option value="2"
+                        <% if @house.number_bedroom == 2 %> selected
+                        <% end %> >2
+                </option>
+                <option value="3"
+                        <% if @house.number_bedroom == 3 %> selected
+                        <% end %> >3
+                </option>
+                <option value="4"
+                        <% if @house.number_bedroom == 4 %> selected
+                        <% end %> >4
+                </option>
+                <option value="5"
+                        <% if @house.number_bedroom == 5 %> selected
+                        <% end %> >5
+                </option>
+                <option value="6"
+                        <% if @house.number_bedroom == 6 %> selected
+                        <% end %> >6
+                </option>
+                <option value="7"
+                        <% if @house.number_bedroom == 7 %> selected
+                        <% end %> >7
+                </option>
+                <option value="8"
+                        <% if @house.number_bedroom == 8 %> selected
+                        <% end %> >8
+                </option>
+                <option value="9"
+                        <% if @house.number_bedroom == 9 %> selected
+                        <% end %> >9
+                </option>
+                <option value="10"
+                        <% if @house.number_bedroom == 10 %> selected
+                        <% end %> >10
+                </option>
+              </select>
+            </div>
+
+            <label class="col-md-2 control-label">Số phòng tắm</label>
+            <div class="col-md-3">
+              <select class="form-control" name="number_bathroom">
+                <option value="1"
+                        <% if @house.number_bathroom == 1 %> selected
+                        <% end %> >1
+                </option>
+                <option value="2"
+                        <% if @house.number_bathroom == 2 %> selected
+                        <% end %> >2
+                </option>
+                <option value="3"
+                        <% if @house.number_bathroom == 3 %> selected
+                        <% end %> >3
+                </option>
+                <option value="4"
+                        <% if @house.number_bathroom == 4 %> selected
+                        <% end %> >4
+                </option>
+                <option value="5"
+                        <% if @house.number_bathroom == 5 %> selected
+                        <% end %> >5
+                </option>
+                <option value="6"
+                        <% if @house.number_bathroom == 6 %> selected
+                        <% end %> >6
+                </option>
+                <option value="7"
+                        <% if @house.number_bathroom == 7 %> selected
+                        <% end %> >7
+                </option>
+                <option value="8"
+                        <% if @house.number_bathroom == 8 %> selected
+                        <% end %> >8
+                </option>
+                <option value="9"
+                        <% if @house.number_bathroom == 9 %> selected
+                        <% end %> >9
+                </option>
+                <option value="10"
+                        <% if @house.number_bathroom == 10 %> selected
+                        <% end %> >10
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Diện tích *</label>
+            <div class="col-md-8">
+              <input id="size" type="number" class="form-control" placeholder="" name="size" value="<%= @house.size %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Giá căn hộ *</label>
+            <div class="col-md-4">
+              <input id="price" type="number" class="form-control" placeholder="" name="price" value="<%= @house.price %>">
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" name="currency">
+                <option value="vnd"
+                        <% if @house.currency == 'vnd' %> selected
+                        <% end %> >VND
+                </option>
+                <option value="usd"
+                        <% if @house.currency == 'usd' %> selected
+                        <% end %> >USD
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" name="for_rent">
+                <option value="false"
+                        <% if @house.for_rent == false %> selected
+                        <% end %> >Bán
+                </option>
+                <option value="true"
+                        <% if @house.for_rent == true %> selected
+                        <% end %> >Cho thuê
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mô tả</label>
+            <div class="col-md-8">
+              <textarea class="form-control" placeholder="Mô tả chi tiết căn hộ" rows="8" name="description"><%= @house.description %></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Loại chủ quyền</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control" placeholder="" name="host_type" value="<%= @house.host_type %>">
+            </div>
+            <label class="col-md-2 control-label">Trạng thái</label>
+            <div class="col-md-3">
+              <select class="form-control" name="is_show">
+                <option value="true"
+                        <% if @house.is_show == true %> selected
+                        <% end %> >Chế độ công khai
+                </option>
+                <option value="false"
+                        <% if @house.is_show == false %> selected
+                        <% end %> >Chế độ riêng tư
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Đường dẫn ảnh 3D</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="" name="matterport_url" value="<%= @house.matterport_url %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ảnh chi tiết</label>
+            <div class="col-md-8" style="margin-top: 5px;">
+              <input type="file" name="img[]" multiple>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8 edit-list-thumb" style="margin-top: 5px">
+              <% @house.photos.each do |photo| %>
+                <div id="thumb-<%= photo.id %>">
+                  <i class="fa fa-trash thumb-trash" data-id="<%= photo.id %>" aria-hidden="true"></i>
+                  <img src="<%= photo.photo_url %>?width=200">
+                </div>
+              <% end %>
+            </div>
+          </div>
+          
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiện ích nội khu</label>
+            <div class="col-md-8">
+              <% conveniences = Convenience::where(:in_house => true) %>
+              <% conveniences.each_with_index do |convenience, idx| %>
+                  <%
+                    is_convenience = false
+                    @house.house_conveniences.each do |house_convenience|
+                      if house_convenience.convenience_id == convenience.id
+                        is_convenience = true
+                        break
+                      end
+                    end
+                  %>
+
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> " <% if is_convenience == true %> checked <% end %> >
+                    <%= convenience.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiện ích dự án</label>
+            <div class="col-md-8">
+              <% conveniences = Convenience::where(:in_house => false) %>
+              <% conveniences.each_with_index do |convenience, idx| %>
+                  <%
+                    is_convenience = false
+                    @house.house_conveniences.each do |house_convenience|
+                      if house_convenience.convenience_id == convenience.id
+                        is_convenience = true
+                        break
+                      end
+                    end
+                  %>
+
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> " <% if is_convenience == true %> checked <% end %> >
+                    <%= convenience.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Nội thất</label>
+            <div class="col-md-8">
+              <% furnitures = Furniture::all() %>
+              <% furnitures.each_with_index do |furniture, idx| %>
+                  <%
+                    is_furniture = false
+                    @house.house_furnitures.each do |house_furniture|
+                      if house_furniture.furniture_id == furniture.id
+                        is_furniture = true
+                        break
+                      end
+                    end
+                  %>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="furnitures[]" value="<%= furniture.id %> "  <% if is_furniture == true %> checked <% end %> >
+                    <%= furniture.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Gửi</label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

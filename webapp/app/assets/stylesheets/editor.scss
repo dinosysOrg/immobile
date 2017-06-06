@@ -3,10 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .editor-content {
-  margin-top: 70px;
+  margin-top: 10px;
   width: 100%;
   height: auto;
   border-top: 1px solid #ddd;
+}
+
+.edit-content{
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 .edit-title {
@@ -28,4 +33,43 @@
   width: 149px;
   height: 80px;
   object-fit: cover;
+}
+
+.list-paginate{
+  font-size: 16px;
+}
+
+.edit-list-thumb {
+  display: flex;
+  overflow-x: auto;
+}
+
+.edit-list-thumb div {
+  display: inline-block;
+  position: relative;
+}
+
+.edit-list-thumb img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.edit-list-thumb i {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+.profile-avatar {
+  text-align: center;
+}
+
+.profile-avatar img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
 }

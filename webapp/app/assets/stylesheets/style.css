@@ -195,10 +195,10 @@ body.page-navbar-fixed-top-sm {
     transition: all .2s linear;
 }
 .header.navbar .navbar-nav > li > a {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
     color: #2d353c;
-    font-weight: 600;
+    font-weight: 500;
     padding: 25px 15px;
 }
 .header.navbar .navbar-nav > li.active > a,
@@ -437,7 +437,7 @@ body.page-navbar-fixed-top-sm {
 .home-content {
     z-index: 1020;
     position: absolute;
-    top: 63%;
+    top: 60%;
     left: 0;
     right: 0;
     color: #8F8E8E;
@@ -735,7 +735,7 @@ body.page-navbar-fixed-top-sm {
 }
 .work .desc {
     padding: 12px 15px;
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     left: 0;
     top: 100%;
@@ -951,8 +951,8 @@ body.page-navbar-fixed-top-sm {
     padding: 40px 0;
     background: #212121;
     text-align: center;
-    box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);
-    -webkit-box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);
+    /*box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);*/
+    /*-webkit-box-shadow: inset 0 100px 80px -80px rgba(0,0,0,0.7);*/
 }
 .footer .footer-brand-logo {
     display: block;

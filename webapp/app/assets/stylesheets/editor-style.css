@@ -1967,6 +1967,9 @@ legend {
     -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.26);
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 }
+.btn-scroll-to-top i {
+    margin-top: 7px;
+}
 .page-with-right-sidebar .btn-scroll-to-top {
     left: 25px;
     right: auto;
@@ -7336,6 +7339,7 @@ body .fc button:active {
     width: 250px;
 }
 .page-with-wide-sidebar .content {
+    padding-top: 0px;
     margin-left: 250px;
 }
 .page-with-wide-sidebar.page-with-right-sidebar .content {

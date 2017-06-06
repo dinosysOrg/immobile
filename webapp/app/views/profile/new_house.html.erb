@@ -1,0 +1,197 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="content edit-content">
+  <div class="panel-heading">
+    <h4 class="edit-title">Nhập thông tin bài đăng</h4>
+  </div>
+
+  <div class="panel-body">
+    <%= form_tag('/profile/post/new', method: 'post', multipart: true) do %>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiêu đề *</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Thuộc dự án</label>
+            <div class="col-md-3">
+              <select class="form-control" name="project_id">
+                <% projects = Project::all() %>
+                <% projects.each_with_index do |project, idx| %>
+                    <option value="<%= project.id %>"><%= project.name %> </option>
+                <% end %>
+              </select>
+            </div>
+
+            <label class="col-md-2 control-label">Thuộc loại</label>
+            <div class="col-md-3">
+              <select class="form-control" name="estate_id">
+                <% estates = Estate::all() %>
+                <% estates.each_with_index do |estate, idx| %>
+                    <option value="<%= estate.id %>"><%= estate.name %> </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Địa chỉ *</label>
+            <div class="col-md-8">
+              <input id="address" type="text" class="form-control" placeholder="" name="address">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số phòng ngủ</label>
+            <div class="col-md-3">
+              <select class="form-control" name="number_bedroom">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <label class="col-md-2 control-label">Số phòng tắm</label>
+            <div class="col-md-3">
+              <select class="form-control" name="number_bathroom">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Diện tích *</label>
+            <div class="col-md-8">
+              <input id="size" type="number" class="form-control" placeholder="" name="size">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Giá căn hộ *</label>
+            <div class="col-md-4">
+              <input id="price" type="number" class="form-control" placeholder="" name="price">
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" name="currency">
+                <option value="vnd">VND</option>
+                <option value="usd">USD</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" name="for_rent">
+                <option value="false">Bán</option>
+                <option value="true">Cho thuê</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mô tả</label>
+            <div class="col-md-8">
+              <textarea class="form-control" placeholder="Mô tả chi tiết căn hộ" rows="8" name="description"></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Loại chủ quyền</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control" placeholder="" name="host_type">
+            </div>
+            <label class="col-md-2 control-label">Trạng thái</label>
+            <div class="col-md-3">
+              <select class="form-control" name="is_show">
+                <option value="true">Chế độ công khai</option>
+                <option value="false">Chế độ riêng tư</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Đường dẫn ảnh 3D</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="" name="matterport_url">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ảnh chi tiết</label>
+            <div class="col-md-8" style="margin-top: 5px;">
+              <input type="file" name="img[]" multiple>
+            </div>
+          </div>
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiện ích nội khu</label>
+            <div class="col-md-8">
+              <% conveniences = Convenience::where(:in_house => true) %>
+              <% conveniences.each_with_index do |convenience, idx| %>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> ">
+                    <%= convenience.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiện ích dự án</label>
+            <div class="col-md-8">
+              <% conveniences = Convenience::where(:in_house => false) %>
+              <% conveniences.each_with_index do |convenience, idx| %>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> ">
+                    <%= convenience.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Nội thất</label>
+            <div class="col-md-8">
+              <% furnitures = Furniture::all() %>
+              <% furnitures.each_with_index do |furnitures, idx| %>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="furnitures[]" value="<%= furnitures.id %> ">
+                    <%= furnitures.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Gửi</label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- begin script -->
+<script src="/assets/jquery-1.9.1.js"></script>
+<!-- end script -->

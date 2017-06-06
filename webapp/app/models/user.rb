@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     user.avatar = auth.info.image + '?type=large' # assuming the user model has an image
     user.save!
 
+    user.create_role
     user.skip_confirmation!
     return user
 
@@ -56,6 +57,7 @@ class User < ActiveRecord::Base
     user.avatar = auth.info.image # assuming the user model has an image
     user.save!
 
+    user.create_role
     user.skip_confirmation!
     return user
   end
@@ -69,22 +71,41 @@ class User < ActiveRecord::Base
     Thread.current[:user] = user
   end
 
-  def role?(roleName, userID)
-    @has = true
-    # @listRole = RoleUser.where(:user_id => userID.to_i)
-    # unless @listRole.nil? && @listRole.size > 0
-    #   @listRole.each do |item|
-    #
-    #     @role = Role.find(item.role_id.to_i)
-    #
-    #     unless @role.nil?
-    #       unless @role.name.equal? roleName
-    #         return true
-    #       end
-    #     end
-    #
-    #   end
-    # end
-    return @has
+  def role(roleName, userID)
+    accept = false
+    @listRole = RoleUser.where(:user_id => userID.to_i)
+    unless @listRole.nil? && @listRole.size > 0
+      @listRole.each do |item|
+
+        @role = Role.find(item.role_id.to_i)
+
+        unless @role.nil?
+          if @role.name == roleName
+            accept = true
+          end
+        end
+
+      end
+    end
+    return accept
+  end
+
+  def create_role
+    roleUser = RoleUser.where(:user_id => self.id).first
+    unless roleUser.nil?
+      return
+    end
+
+    roleUser = RoleUser.new
+    roleUser.user_id = self.id
+
+    if self.email == 'quytruong1991@gmail.com'
+      role = Role.where(:name => Constant::ROLE_ADMIN).first
+      roleUser.role_id = role.id
+    else
+      role = Role.where(:name => Constant::ROLE_GUEST).first
+      roleUser.role_id = role.id
+    end
+    roleUser.save()
   end
 end

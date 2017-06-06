@@ -1,0 +1,32 @@
+identifier,name,description,photo
+1001,Chỗ đậu xe máy,,,true
+1002,Chỗ đậu xe ô tô,,,true
+1003,Thang máy,,,true
+1004,Internet,,,true
+1005,Truyền hình cáp,,,true
+1006,Hồ bơi,,,true
+1007,Phòng gym - spa - Beauty salon,,,true
+1008,Công viên,,,true
+1009,Sân chơi trẻ em,,,true
+1010,Sân nướng BBQ,,,true
+1011,Trung tâm thương mại - dịch vụ - mua sắm,,,true
+1012,Phòng sinh hoạt cộng đồng,,,true
+1013,Bảo vệ 247,,,true
+1014,Trường học trong khuân viên,,,true
+1015,Khu dịch vụ và chăm sóc y tế,,,true
+1016,Khu vực làm việc,,,true
+1017,Cho phép nuôi thú cưng,,,true
+2001,Trung tâm thành phố,,,false
+2002,Trung tâm thương mại,,,false
+2003,Bệnh viện,,,false
+2004,siêu thị,,,false
+2005,Chợ,,,false
+2006,Trường Mầm Non,,,false
+2007,Trường Tiểu học,,,false
+2008,Trường Trung học,,,false
+2009,Trường Đại học,,,false
+2010,Rạp chiếu phim,,,false
+2011,Nhà hàng,,,false
+2012,Công viên,,,false
+2013,Bến xe,,,false
+2014,Khu công nghiệp,,,false

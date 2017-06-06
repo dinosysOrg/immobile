@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-
+    @estates = Estate::all();
   end
 
   def search

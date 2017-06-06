@@ -3,13 +3,15 @@ class Devise::RegistrationsCustomController < Devise::RegistrationsController
   skip_before_filter :require_no_authentication
 
   def check_permissions
-    authorize! :create, resource
+    authorize! :create, User
   end
 
   def create
     @user = User.new(sign_up_params)
     @user.name = @user.firstname+' '+@user.lastname
+
     if @user.save
+      @user.create_role
       flash[:notice] = "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."
       redirect_to root_url
     else
@@ -18,6 +20,7 @@ class Devise::RegistrationsCustomController < Devise::RegistrationsController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
 
   end
 

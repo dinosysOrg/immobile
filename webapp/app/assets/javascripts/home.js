@@ -10,6 +10,20 @@ var componentForm = {
     postal_code: 'short_name'
 };
 
+
+$(document).ready(function(){
+    menuTypeSelect()
+});
+
+function menuTypeSelect(){
+    $('.menu-card-type').click(function() {
+        var estateId = $(this).data('id');
+        var estateName = $(this).data('name');
+        $('#menu-card-title').html(estateName);
+        $('#menu-card-title').css('color', '#8F8E8E');
+    });
+}
+
 function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete((document.getElementById('input-search-place')),
         {types: ['geocode']});
