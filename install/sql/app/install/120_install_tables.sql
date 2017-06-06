@@ -331,7 +331,7 @@ CREATE TABLE management.contract_services
   updated_at timestamp with time zone DEFAULT now(),
   CONSTRAINT pk_contract_services PRIMARY KEY (id),
   FOREIGN KEY (contract_id) REFERENCES management.contracts (id),
-  FOREIGN KEY (service_id) REFERENCES management.services (id)
+  FOREIGN KEY (service_id) REFERENCES settings.services (id)
 )
 WITH (
   OIDS=FALSE
