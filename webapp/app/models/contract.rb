@@ -1,9 +1,9 @@
 class Contract < ActiveRecord::Base
 
   def self.create_contract(house, userId)
-    self = Contract.new
-    self.user_id = userId
-    self.house_id = house.id
-    self.save
+    contract = Contract.new
+    contract.user_id = userId
+    contract.house_id = house.id
+    contract.save
   end
 end
