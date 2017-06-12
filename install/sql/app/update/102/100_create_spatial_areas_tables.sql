@@ -1,4 +1,4 @@
-\connect immobile
+\connect :DB_NAME
 
 CREATE TABLE IF NOT EXISTS staging.spatial_areas (
   identifier varchar(255) NOT NULL,

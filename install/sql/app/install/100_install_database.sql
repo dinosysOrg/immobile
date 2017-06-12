@@ -1,4 +1,4 @@
-CREATE DATABASE immobile
+CREATE DATABASE :DB_NAME
 		WITH OWNER = postgres
 		ENCODING = 'UTF8'
 --		LC_COLLATE = 'en-US'

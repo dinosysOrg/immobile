@@ -1,4 +1,4 @@
-\connect immobile
+\connect :DB_NAME
 \encoding UTF8
 
 CREATE OR REPLACE FUNCTION staging.merge_roles()

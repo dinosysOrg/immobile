@@ -1,5 +1,4 @@
-\connect immobile
-
+\connect :DB_NAME
 
 -- BEGIN SETTINGS.TABLES
 
