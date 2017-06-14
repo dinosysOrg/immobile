@@ -1,4 +1,4 @@
-\connect immobile
+\connect :DB_NAME
 \encoding UTF8
 
 CREATE OR REPLACE FUNCTION staging.merge_roles()
@@ -138,5 +138,43 @@ $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 ALTER FUNCTION staging.merge_conveniences()
+  OWNER TO postgres;
+
+
+--- merge spatial areas ---
+CREATE OR REPLACE FUNCTION staging.merge_spatial_areas()
+  RETURNS void AS
+$BODY$
+DECLARE
+    r RECORD;
+BEGIN
+    FOR r IN SELECT
+      identifier,
+      name,
+      area
+    FROM staging.spatial_areas
+    LOOP
+        UPDATE settings.spatial_areas SET
+          name = r.name,
+          area = ST_GeographyFromText('SRID=4326;' || r.area)
+        WHERE identifier = r.identifier;
+        IF NOT FOUND THEN
+        INSERT INTO settings.spatial_areas (
+          identifier,
+          name,
+          area
+        )
+        VALUES (
+          r.identifier,
+          r.name,
+          ST_GeographyFromText('SRID=4326;' || r.area)
+        );
+        END IF;
+    END LOOP;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION staging.merge_spatial_areas()
   OWNER TO postgres;
 

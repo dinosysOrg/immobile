@@ -1,4 +1,4 @@
-\connect immobile
+\connect :DB_NAME
 
 CREATE TABLE management.photos
 (
