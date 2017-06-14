@@ -9,6 +9,12 @@
   </h1>
   <!-- end page-header -->
 
+  <div class="input-group list-house-search">
+    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <input id="list-house-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tiêu đề, địa chỉ" value="<%= @search if @search.present? %>">
+    <button type="button" class="btn btn-success" id="list-house-search-button">Tìm kiếm</button>
+  </div>
+
   <!-- begin row -->
   <div class="row">
     <!-- begin col-12 -->
@@ -25,19 +31,28 @@
                   <thead>
                   <tr role="row">
                     <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending" style="width: 150px;">Ảnh</th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Tên</th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Phòng
-                      ngủ
-                    </th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Phòng
-                      tắm
-                    </th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Diện
-                      tích
-                    </th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Giá
-                      (vnd)
-                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Tiêu đề</th>
+                    <% if @role.name == Constant::ROLE_ADMIN %>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Người đăng
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Trạng thái
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">Home
+                        </th>
+                    <% else %>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Phòng
+                          ngủ
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Phòng
+                          tắm
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Diện
+                          tích
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Giá
+                          (vnd)
+                        </th>
+                    <% end %>
                     <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức
                       năng
                     </th>
@@ -50,16 +65,31 @@
                           <img class="list-item-thumb" src="<%= house.photos.first.photo_url+'?width=300' if house.photos.present? %>"/>
                         </td>
                         <td><%= house.name %></td>
-                        <td><%= house.number_bathroom %></td>
-                        <td><%= house.number_bedroom %></td>
-                        <td><%= house.size %></td>
-                        <td><%= house.price %></td>
+                        <% if @role.name == Constant::ROLE_ADMIN %>
+                            <% user = User::find(house.user_id) %>
+                            <td><%= user.name %></td>
+                            <td class="list-item-action">
+                              <select class="form-control house-status-select" data-id="<%= house.id %>">
+                                <option value="<%= Constant::HOUSE_STATUS_PENDING %>" <% if house.status == Constant::HOUSE_STATUS_PENDING %> selected <% end %> >Chờ duyệt</option>
+                                <option value="<%= Constant::HOUSE_STATUS_REJECT %>" <% if house.status == Constant::HOUSE_STATUS_REJECT %> selected <% end %> >Từ chối</option>
+                                <option value="<%= Constant::HOUSE_STATUS_APPROVE %>" <% if house.status == Constant::HOUSE_STATUS_APPROVE %> selected <% end %> >Chấp nhận</option>
+                              </select>
+                            </td>
+                            <td class="list-item-action" >
+                              <input type="checkbox" <% if house.is_home %> checked <% end %> class="house-home-select" data-id="<%= house.id %>">
+                            </td>
+                        <% else %>
+                            <td><%= house.number_bathroom %></td>
+                            <td><%= house.number_bedroom %></td>
+                            <td><%= house.size %></td>
+                            <td><%= house.price %></td>
+                        <% end %>
                         <td class="list-item-action">
                           <a href="/profile/post/<%= house.link %>">
                             <button type="button" class="btn btn-primary m-r-5 m-b-5">Sửa</button>
                           </a>
-                          <a class="button-delete" data-id="<%= house.id %>">
-                          <button type="button" class="btn btn-danger m-r-5 m-b-5">Xoá</button>
+                          <a class="house-button-delete" data-id="<%= house.id %>">
+                            <button type="button" class="btn btn-danger m-r-5 m-b-5">Xoá</button>
                           </a>
                         </td>
                       </tr>
@@ -87,8 +117,9 @@
                     Nếu bạn xoá bài đăng, mọi thông tin liên quan tới bài đăng sẽ bị xoá vĩnh viễn.
                   </div>
                   <div class="modal-footer">
-                    <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay lại</a>
-                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done">Đồng ý</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay
+                      lại</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done-house">Đồng ý</a>
                   </div>
                 </div>
               </div>

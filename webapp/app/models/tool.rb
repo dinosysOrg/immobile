@@ -36,4 +36,19 @@ class Tool < ActiveRecord::Base
     return text
   end
 
+
+  # ************************** #
+  # Google api
+  # ************************** #
+
+  def self.queryLatLng(address)
+    response = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'&key='+Constant::GOOGLE_SERVER_KEY
+    json_object = JSON.parse(response.body)
+    if json_object['results'].count > 0
+      location = json_object['results'][0]['geometry']['location']
+      return location['lat'].to_f, location['lng'].to_f
+    end
+  end
+
+
 end

@@ -1,0 +1,117 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div id="content" class="content">
+
+  <!-- begin page-header -->
+  <h1 class="page-header">Danh sách Khách hàng
+  </h1>
+
+  <div class="input-group list-user-search">
+    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <input id="list-user-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên, email, số điện thoại" value="<%= @search if @search.present? %>">
+    <button type="button" class="btn btn-success" id="list-user-search-button">Tìm kiếm</button>
+  </div>
+  <!-- end page-header -->
+
+  <!-- begin row -->
+  <div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12 ui-sortable">
+      <!-- begin panel -->
+      <div class="panel panel-inverse">
+
+        <div class="panel-body">
+          <div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="data-table" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="data-table_info">
+                  <thead>
+                  <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending" style="width: 81px;">Ảnh</th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Tên</th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Email
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Phone
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">Chức vụ
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">Home
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức
+                      năng
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @users.each_with_index do |user, idx| %>
+                      <tr role="row">
+                        <td class="list-item-image">
+                          <img class="list-item-avatar" src="<%= user.avatar if user.avatar.present? %>"/>
+                        </td>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.phone %></td>
+                        <td class="list-item-action">
+                          <select class="form-control user-role-select" data-id="<%= user.id %>">
+                            <% role_user = RoleUser::where(:user_id => user.id).first
+                            role = Role.find(role_user.role_id) %>
+                            <option value="<%= Constant::ROLE_ADMIN %>" <% if role.name == Constant::ROLE_ADMIN %> selected <% end %> >admin</option>
+                            <option value="<%= Constant::ROLE_AGENT %>" <% if role.name == Constant::ROLE_AGENT %> selected <% end %> >agent</option>
+                            <option value="<%= Constant::ROLE_GUEST %>" <% if role.name == Constant::ROLE_GUEST %> selected <% end %> >guest</option>
+                            <option value="<%= Constant::ROLE_BLOGER %>" <% if role.name == Constant::ROLE_BLOGER %> selected <% end %> >bloger</option>
+                          </select>
+                        </td>
+                        <td class="list-item-action" >
+                          <input type="checkbox" <% if user.is_home %> checked <% end %> class="user-home-select" data-id="<%= user.id %>">
+                        </td>
+                        <td class="list-item-action">
+                          <a href="/profile/user/<%= user.id %>">
+                            <button type="button" class="btn btn-primary m-r-5 m-b-5">Sửa</button>
+                          </a>
+                        </td>
+                      </tr>
+                  <% end %>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 list-paginate">
+                <%= paginate @users %>
+              </div>
+
+            </div>
+
+            <div class="modal" id="modal-delete-house" style="display: none;">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close model-button-close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Bạn có muốn xoá bài đăng này?</h4>
+                  </div>
+                  <div class="modal-body">
+                    Nếu bạn xoá bài đăng, mọi thông tin liên quan tới bài đăng sẽ bị xoá vĩnh viễn.
+                  </div>
+                  <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay lại</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done">Đồng ý</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+  </div>
+  <!-- end row -->
+</div>

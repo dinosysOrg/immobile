@@ -1,0 +1,13 @@
+<div class="blog-title">
+
+  <h1 class="site-title">Trang tin bất động sản</h1>
+
+  <p class="site-description">Cập nhật tin tức liên tục</p>
+
+</div>
+
+<%= render @posts %>
+
+<% if @page %>
+	<%= render partial: "pagination" %>
+<% end %>

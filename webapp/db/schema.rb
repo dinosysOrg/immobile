@@ -92,24 +92,28 @@ ActiveRecord::Schema.define(version: 20170525102021) do
   end
 
   create_table "houses", id: :bigserial, force: :cascade do |t|
-    t.string   "name",            limit: 200,                   null: false
+    t.string   "name",            limit: 500,                                             null: false
+    t.string   "link",            limit: 500,                                             null: false
     t.string   "address",         limit: 200
     t.integer  "number_bedroom"
     t.integer  "number_bathroom"
     t.integer  "size"
     t.integer  "price"
     t.string   "currency",        limit: 50
-    t.boolean  "for_rent",                    default: false
+    t.boolean  "for_rent",                                              default: false
     t.string   "matterport_url",  limit: 200
     t.text     "description"
     t.string   "host_type",       limit: 50
     t.string   "status",          limit: 50
-    t.boolean  "is_available",                default: true
+    t.boolean  "is_available",                                          default: true
     t.integer  "project_id",      limit: 8
     t.integer  "user_id",         limit: 8
     t.integer  "estate_id",       limit: 8
-    t.datetime "created_at",                  default: "now()"
-    t.datetime "updated_at",                  default: "now()"
+    t.boolean  "is_home",                                               default: false
+    t.decimal  "latitude",                    precision: 16, scale: 10
+    t.decimal  "longitude",                   precision: 16, scale: 10
+    t.datetime "created_at",                                            default: "now()"
+    t.datetime "updated_at",                                            default: "now()"
   end
 
   create_table "monologue_posts", force: :cascade do |t|
@@ -150,6 +154,7 @@ ActiveRecord::Schema.define(version: 20170525102021) do
   create_table "photos", id: :bigserial, force: :cascade do |t|
     t.integer  "user_id",    limit: 8
     t.integer  "house_id",   limit: 8
+    t.integer  "project_id", limit: 8
     t.string   "photo_url",  limit: 200
     t.datetime "created_at",             default: "now()"
     t.datetime "updated_at",             default: "now()"
@@ -163,7 +168,7 @@ ActiveRecord::Schema.define(version: 20170525102021) do
   end
 
   create_table "projects", id: :bigserial, force: :cascade do |t|
-    t.string   "name",                     limit: 200,                   null: false
+    t.string   "name",                     limit: 200,                                             null: false
     t.string   "photo",                    limit: 500
     t.text     "description"
     t.string   "address",                  limit: 200
@@ -186,9 +191,13 @@ ActiveRecord::Schema.define(version: 20170525102021) do
     t.string   "currency",                 limit: 200
     t.string   "progress_construction",    limit: 500
     t.string   "sale_policy",              limit: 500
-    t.boolean  "is_available",                         default: true
-    t.datetime "created_at",                           default: "now()"
-    t.datetime "updated_at",                           default: "now()"
+    t.boolean  "is_show",                                                        default: true
+    t.boolean  "is_available",                                                   default: true
+    t.boolean  "is_home",                                                        default: false
+    t.decimal  "latitude",                             precision: 16, scale: 10
+    t.decimal  "longitude",                            precision: 16, scale: 10
+    t.datetime "created_at",                                                     default: "now()"
+    t.datetime "updated_at",                                                     default: "now()"
   end
 
   create_table "role_users", id: :bigserial, force: :cascade do |t|
@@ -204,6 +213,7 @@ ActiveRecord::Schema.define(version: 20170525102021) do
   end
 
   create_table "services", id: :bigserial, force: :cascade do |t|
+    t.string   "identifier",  limit: 50,                    null: false
     t.string   "name",        limit: 200,                   null: false
     t.text     "description"
     t.integer  "price"
@@ -220,6 +230,8 @@ ActiveRecord::Schema.define(version: 20170525102021) do
   create_table "users", id: :bigserial, force: :cascade do |t|
     t.string   "email",                  limit: 100, default: ""
     t.string   "phone",                  limit: 100, default: ""
+    t.string   "skype",                  limit: 100, default: ""
+    t.string   "address",                limit: 200
     t.string   "encrypted_password",     limit: 500, default: ""
     t.string   "reset_password_token",   limit: 500
     t.datetime "reset_password_sent_at"

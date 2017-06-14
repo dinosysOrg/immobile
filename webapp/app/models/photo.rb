@@ -6,18 +6,20 @@ class Photo < ActiveRecord::Base
   belongs_to :house
 
   def self.create_photo(house, userId, params)
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(Constant::S3_BUCKET)
-    (params[:img]).each do |img|
-      name = Base64.urlsafe_encode64(Base64.encode64(img.original_filename))
-      path = userId.to_s+'/'+house.id.to_s+'/'+name
-      bucket.object(path).put(body: img.read)
+    if params[:img].present?
+      s3 = Aws::S3::Resource.new
+      bucket = s3.bucket(Constant::S3_BUCKET)
+      (params[:img]).each do |img|
+        name = Base64.urlsafe_encode64(Base64.encode64(img.original_filename))
+        path = userId.to_s+'/'+house.id.to_s+'/'+name
+        bucket.object(path).put(body: img.read)
 
-      photo = Photo.new
-      photo.user_id = userId
-      photo.house_id = house.id
-      photo.photo_url = '/photo/'+path
-      photo.save
+        photo = Photo.new
+        photo.user_id = userId
+        photo.house_id = house.id
+        photo.photo_url = '/photo/'+path
+        photo.save
+      end
     end
   end
 

@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class ProfileController < ApplicationController
   before_action :authenticate_user!
 
@@ -24,18 +26,34 @@ class ProfileController < ApplicationController
   def list_house
     authorize! :list_house, :profile
 
-    @houses = House::where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(10)
+    # Check role admin
+    roleUser = RoleUser.where(:user_id => current_user.id).first
+    @role = Role.find(roleUser.role_id)
+
+    @search = params[:search]
+    if @search.present?
+      wildcard_search = "%#{@search}%"
+      if @role.name == Constant::ROLE_ADMIN
+        @houses = House::where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+      else
+        @houses = House::where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search).where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+      end
+    else
+      if @role.name == Constant::ROLE_ADMIN
+        @houses = House::where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+      else
+        @houses = House::where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+      end
+    end
 
     @pageType = 'list_house'
     render :'list_house', status: :ok, :layout => 'profile'
   end
 
   def edit_profile
-
     @pageType = 'edit_profile'
     render :'edit_profile', status: :ok, :layout => 'profile'
   end
-
 
   # ************************** #
   # API
@@ -46,13 +64,14 @@ class ProfileController < ApplicationController
     userId = current_user.id
 
     house = House.new
+    house.user_id = userId
     house.is_available = true
     house.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
     house.link += '-'+house.id.to_s
 
-    house.save_house(house, userId, params)
-    Photo.save_photo(house, userId, params)
-    Contract.save_contract(house, userId)
+    house.save_house(house, params)
+    Photo.create_photo(house, userId, params)
+    Contract.create_contract(house, userId)
 
     redirect_to action: 'list_house'
   end
@@ -66,7 +85,7 @@ class ProfileController < ApplicationController
     HouseConvenience::where(:house_id => house.id).destroy_all
     HouseFurniture::where(:house_id => house.id).destroy_all
 
-    house.save_house(house, userId, params)
+    house.save_house(house, params)
     Photo.create_photo(house, userId, params)
 
     redirect_to action: 'list_house'
@@ -91,8 +110,6 @@ class ProfileController < ApplicationController
   end
 
   def put_profile
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
-
     current_user.name = params[:name]
     current_user.address = params[:address]
     current_user.phone = params[:phone]
@@ -101,12 +118,13 @@ class ProfileController < ApplicationController
 
     # avatar update
     if params[:img].present?
-      avatar = hoto.create_avatar(current_user.id, params)
+      avatar = Photo.create_avatar(current_user.id, params)
       current_user.avatar = avatar
       current_user.save
     end
 
-    render json: response
+    redirect_to action: 'edit_profile'
   end
+
 
 end

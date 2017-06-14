@@ -1,0 +1,174 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="content edit-content">
+  <div class="panel-heading">
+  <h4 class="edit-title">Sửa thông tin dự án</h4>
+  </div>
+
+  <div class="panel-body panel-editor">
+    <%= form_tag('/profile/project/'+@project.id.to_s+'/edit', method: 'post', multipart: true) do %>
+
+
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tên dự án</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true" value="<%= @project.name %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Địa chỉ</label>
+            <div class="col-md-8">
+              <input id="address" type="text" class="form-control" placeholder="" name="address" data-parsley-required="true" value="<%= @project.address %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mô tả</label>
+            <div class="col-md-8">
+              <input id="description" type="text" class="form-control" placeholder="" name="description" value="<%= @project.description %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Diện tích dự án</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="" name="size" value="<%= @project.size %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Diện tích xây dựng</label>
+            <div class="col-md-8">
+              <input id="size_construction" type="text" class="form-control" placeholder="" name="size_construction" value="<%= @project.size_construction %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Thời gian xây dựng</label>
+            <div class="col-md-8">
+              <input id="time_bulding" type="text" class="form-control" placeholder="" name="time_bulding" value="<%= @project.time_bulding %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Thời gian giao nhà</label>
+            <div class="col-md-8">
+              <input id="time_completion" type="text" class="form-control" placeholder="" name="time_completion" value="<%= @project.time_completion %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số block</label>
+            <div class="col-md-8">
+              <input id="number_block" type="text" class="form-control" placeholder="" name="number_block" value="<%= @project.number_block %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số căn hộ</label>
+            <div class="col-md-8">
+              <input id="number_house" type="text" class="form-control" placeholder="" name="number_house" value="<%= @project.number_house %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số Shophouse</label>
+            <div class="col-md-8">
+              <input id="number_shophouse" type="text" class="form-control" placeholder="" name="number_shophouse" value="<%= @project.number_shophouse %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số Tầng</label>
+            <div class="col-md-8">
+              <input id="number_floor" type="text" class="form-control" placeholder="" name="number_floor" value="<%= @project.number_floor %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Chủ đầu tư</label>
+            <div class="col-md-8">
+              <input id="investor" type="text" class="form-control" placeholder="" name="investor" value="<%= @project.investor %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Công ty quản lý</label>
+            <div class="col-md-8">
+              <input id="inc_management" type="text" class="form-control" placeholder="" name="inc_management" value="<%= @project.inc_management %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Công ty thiết kế</label>
+            <div class="col-md-8">
+              <input id="inc_design" type="text" class="form-control" placeholder="" name="inc_design" value="<%= @project.inc_design %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Không gian xanh</label>
+            <div class="col-md-8">
+              <input id="green_space" type="text" class="form-control" placeholder="" name="green_space" value="<%= @project.green_space %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mật độ xây dựng</label>
+            <div class="col-md-8">
+              <input id="destinition_construction" type="text" class="form-control" placeholder="" name="destinition_construction" value="<%= @project.destinition_construction %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Phí quản lý</label>
+            <div class="col-md-8">
+              <input id="fee_management" type="text" class="form-control" placeholder="" name="fee_management" value="<%= @project.fee_management %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Phí giữ ô tô</label>
+            <div class="col-md-8">
+              <input id="fee_park_car" type="text" class="form-control" placeholder="" name="fee_park_car" value="<%= @project.fee_park_car  %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Phí giữ xe máy</label>
+            <div class="col-md-8">
+              <input id="fee_park_moto" type="text" class="form-control" placeholder="" name="fee_park_moto" value="<%= @project.fee_park_moto  %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiến trình xây dựng</label>
+            <div class="col-md-8">
+              <input id="progress_construction" type="text" class="form-control" placeholder="" name="progress_construction" value="<%= @project.progress_construction  %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Chính sách bán hàng</label>
+            <div class="col-md-8">
+              <input id="sale_policy" type="text" class="form-control" placeholder="" name="sale_policy" value="<%= @project.sale_policy  %>">
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Gửi</label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

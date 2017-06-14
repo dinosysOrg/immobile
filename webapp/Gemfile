@@ -39,6 +39,8 @@ gem 'kaminari'
 gem 'aws-sdk', '~> 2'
 # Resize image
 gem 'mini_magick'
+# Rest api
+gem 'rest-client'
 
 
 # Use ActiveModel has_secure_password

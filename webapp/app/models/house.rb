@@ -3,11 +3,10 @@ class House < ActiveRecord::Base
   has_many :house_furnitures
   has_many :photos
 
-  def save_house(house, userId, params)
+  def save_house(house, params)
 
     self.project_id = params[:project_id]
     self.estate_id = params[:estate_id]
-    self.user_id = userId
     self.name = params[:name]
     self.address = params[:address]
     self.number_bedroom = params[:number_bedroom].to_i
@@ -48,9 +47,19 @@ class House < ActiveRecord::Base
       houseConvenience.save
     end
 
+    # Address to lat, lng
+    lat_lng = Tool.queryLatLng(self.address)
+    if lat_lng.present?
+      self.latitude = lat_lng[0]
+      self.longitude = lat_lng[1]
+    else
+      self.latitude = 0.0
+      self.longitude = 0.0
+    end
+    self.save
+
     # wish list house
     # wish list agent
-    # edit profile
     # budget
   end
 

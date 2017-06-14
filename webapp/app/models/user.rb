@@ -90,6 +90,25 @@ class User < ActiveRecord::Base
     return accept
   end
 
+  def check_role(roleName)
+    accept = false
+    @listRole = RoleUser.where(:user_id => self.id)
+    unless @listRole.nil? && @listRole.size > 0
+      @listRole.each do |item|
+
+        @role = Role.find(item.role_id.to_i)
+
+        unless @role.nil?
+          if @role.name == roleName
+            accept = true
+          end
+        end
+
+      end
+    end
+    return accept
+  end
+
   def create_role
     roleUser = RoleUser.where(:user_id => self.id).first
     unless roleUser.nil?
@@ -103,7 +122,7 @@ class User < ActiveRecord::Base
       role = Role.where(:name => Constant::ROLE_ADMIN).first
       roleUser.role_id = role.id
     else
-      role = Role.where(:name => Constant::ROLE_GUEST).first
+      role = Role.where(:name => Constant::ROLE_AGENT).first
       roleUser.role_id = role.id
     end
     roleUser.save()

@@ -32,13 +32,20 @@ $(document)
         }else{
             $('#price').removeClass('parsley-error');
         }
+
+        if($('#phone').val() == '') {
+            $('#phone').addClass('parsley-error');
+            e.preventDefault(); //prevent the default action
+        }else{
+            $('#phone').removeClass('parsley-error');
+        }
     });
 
 $(document).ready(function(){
 
     //Modal for delete action
     var houseId = 0;
-    $('.button-delete').click(function() {
+    $('.house-button-delete').click(function() {
         $('#modal-delete-house').css('display','block');
         houseId = $(this).data('id');
     });
@@ -47,7 +54,7 @@ $(document).ready(function(){
         $('#modal-delete-house').css('display','none');
     });
 
-    $('.model-button-done').click(function() {
+    $('.model-button-done-house').click(function() {
         $('#modal-delete-house').css('display','none');
         //ajax
 
@@ -69,7 +76,7 @@ $(document).ready(function(){
             data: { authenticity_token: window._token },
             contentType: 'application/x-www-form-urlencoded',
             success: function (data) {
-
+                location.reload();
             },
             error: function (data) {
 

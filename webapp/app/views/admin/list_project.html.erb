@@ -1,0 +1,106 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div id="content" class="content">
+
+  <!-- begin page-header -->
+  <h1 class="page-header">Danh sách Dự án
+  </h1>
+
+
+  <div class="input-group list-project-search">
+    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <input id="list-project-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên, địa chỉ" value="<%= @search if @search.present? %>">
+    <button type="button" class="btn btn-success" id="list-project-search-button">Tìm kiếm</button>
+    <a href="/profile/project/new"><button type="button" class="btn btn-primary" id="list-project-add-button">Tạo mới</button></a>
+  </div>
+  <!-- end page-header -->
+
+  <!-- begin row -->
+  <div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12 ui-sortable">
+      <!-- begin panel -->
+      <div class="panel panel-inverse">
+
+        <div class="panel-body">
+          <div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="data-table" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="data-table_info">
+                  <thead>
+                  <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 200px;">Tên</th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 200px;">Địa chỉ
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 200px;">Tiến trình
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">Home
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức
+                      năng
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @projects.each_with_index do |project, idx| %>
+                      <tr role="row">
+                        <td><%= project.name %></td>
+                        <td><%= project.address %></td>
+                        <td><%= project.progress_construction %></td>
+                        <td class="list-item-action" >
+                          <input type="checkbox" <% if project.is_home %> checked <% end %> class="project-home-select" data-id="<%= project.id %>">
+                        </td>
+                        <td class="list-item-action">
+                          <a href="/profile/project/<%= project.id %>">
+                            <button type="button" class="btn btn-primary m-r-5 m-b-5">Sửa</button>
+                          </a>
+                          <a class="project-button-delete" data-id="<%= project.id %>">
+                            <button type="button" class="btn btn-danger m-r-5 m-b-5">Xoá</button>
+                          </a>
+                        </td>
+                      </tr>
+                  <% end %>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 list-paginate">
+                <%= paginate @projects %>
+              </div>
+
+            </div>
+
+            <div class="modal" id="modal-delete-project" style="display: none;">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close model-button-close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Bạn có muốn xoá dự án này?</h4>
+                  </div>
+                  <div class="modal-body">
+                    Nếu bạn xoá dự án, mọi thông tin liên quan tới dự án sẽ bị xoá vĩnh viễn.
+                  </div>
+                  <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay lại</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done-project">Đồng ý</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+  </div>
+  <!-- end row -->
+</div>
