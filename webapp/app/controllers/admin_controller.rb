@@ -7,7 +7,7 @@ class AdminController < ApplicationController
   # ************************** #
 
   def list_user
-    authorize! :list_user, :profile
+    authorize! :list_user, :admin
 
     @search = params[:search]
     if @search.present?
@@ -22,7 +22,7 @@ class AdminController < ApplicationController
   end
 
   def edit_user
-    authorize! :edit_user, :profile
+    authorize! :edit_user, :admin
 
     @user = User::find(params[:id])
 
@@ -30,7 +30,7 @@ class AdminController < ApplicationController
   end
 
   def list_project
-    authorize! :list_project, :profile
+    authorize! :list_project, :admin
 
     @search = params[:search]
     if @search.present?
@@ -45,7 +45,7 @@ class AdminController < ApplicationController
   end
 
   def edit_project
-    authorize! :edit_project, :profile
+    authorize! :edit_project, :admin
 
     @project = Project::find(params[:id])
 
@@ -53,9 +53,18 @@ class AdminController < ApplicationController
   end
 
   def new_project
-    authorize! :new_project, :profile
+    authorize! :new_project, :admin
 
     render :'new_project', status: :ok, :layout => 'profile'
+  end
+
+  def edit_project_photo
+    authorize! :edit_photo, :admin
+
+    @project = Project::where(:id => params[:id]).first
+
+    @pageType = 'edit_project_photo'
+    render :'edit_project_photo', status: :ok, :layout => 'profile'
   end
 
   # ************************** #
@@ -63,7 +72,7 @@ class AdminController < ApplicationController
   # ************************** #
 
   def edit_role
-    authorize! :edit_role, :profile
+    authorize! :edit_role, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     userId = params[:id]
@@ -77,7 +86,7 @@ class AdminController < ApplicationController
   end
 
   def put_user
-    authorize! :put_user, :profile
+    authorize! :put_user, :admin
 
     user = User::find(params[:id])
     user.name = params[:name]
@@ -97,7 +106,7 @@ class AdminController < ApplicationController
   end
 
   def status_post
-    authorize! :status_post, :profile
+    authorize! :status_post, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     house = House::find(params[:id])
@@ -109,7 +118,7 @@ class AdminController < ApplicationController
   end
 
   def is_home_post
-    authorize! :status_post, :profile
+    authorize! :status_post, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     house = House::find(params[:id])
@@ -125,7 +134,7 @@ class AdminController < ApplicationController
   end
 
   def is_home_user
-    authorize! :status_post, :profile
+    authorize! :status_post, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     user = User::find(params[:id])
@@ -141,7 +150,7 @@ class AdminController < ApplicationController
   end
 
   def is_home_project
-    authorize! :status_post, :profile
+    authorize! :status_post, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     project = Project::find(params[:id])
@@ -157,24 +166,56 @@ class AdminController < ApplicationController
   end
 
   def put_project
-    authorize! :put_project, :profile
+    authorize! :put_project, :admin
+    userId = current_user.id
 
     project = Project::find(params[:id])
     project.save_data(params)
 
-    redirect_to controller: 'admin', action: 'list_project'
+    if Photo.create_project_photo(project, userId, params)
+      redirect_to action: 'edit_project_photo', id: project.id
+    else
+      redirect_to controller: 'admin', action: 'list_project'
+    end
   end
 
   def post_project
-    authorize! :post_project, :profile
+    authorize! :post_project, :admin
+    userId = current_user.id
 
     project = Project.new
+    project.save
+
+    project.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
+    project.link += '-'+project.id.to_s
+
     project.save_data(params)
+
+    if Photo.create_project_photo(project, userId, params)
+      redirect_to action: 'edit_project_photo', id: project.id
+    else
+      redirect_to controller: 'admin', action: 'list_project'
+    end
+  end
+
+  def put_project_photo
+    authorize! :put_photo, :admin
+    project = Project::find(params[:id])
+
+    # Photo description
+    if (params[:imagedest]).present?
+      (params[:imagedest]).each_with_index do |imagedest, index|
+        photo = project.photos[index]
+        photo.description = imagedest
+        photo.save
+      end
+    end
+
     redirect_to controller: 'admin', action: 'list_project'
   end
 
   def delete_project
-    authorize! :delete_project, :profile
+    authorize! :delete_project, :admin
     response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     project = Project::find(params[:id])

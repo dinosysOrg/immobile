@@ -29,12 +29,12 @@ $(document).ready(function(){
         window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
     });
 
-    $('#list-project-search-input').click(function() {
+    $('#list-project-search-button').click(function() {
         var keyword = $('#list-project-search-input').val();
         window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
     });
 
-    $('#list-house-search-input').click(function() {
+    $('#list-house-search-button').click(function() {
         var keyword = $('#list-house-search-input').val();
         window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
     });

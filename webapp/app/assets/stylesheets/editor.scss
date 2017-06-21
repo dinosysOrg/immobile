@@ -46,13 +46,23 @@
 }
 
 .edit-list-thumb {
-  display: flex;
+  //display: flex;
   overflow-x: auto;
 }
 
-.edit-list-thumb div {
+.edit-list-thumb-card {
+  display: flex;
+}
+
+.edit-list-thumb-card div {
   display: inline-block;
   position: relative;
+}
+
+.edit-list-thumb-card-text {
+  width: 100%;
+  margin-top: 25px;
+  margin-left: 10px;
 }
 
 .edit-list-thumb img {

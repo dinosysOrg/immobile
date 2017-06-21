@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  has_many :photos
 
   def save_data(params)
     self.name = params[:name]
@@ -35,5 +36,14 @@ class Project < ActiveRecord::Base
       self.longitude = 0.0
     end
     self.save
+
+    # Photo description
+    if (params[:imagedest]).present?
+      (params[:imagedest]).each_with_index do |imagedest, index|
+        photo = self.photos[index]
+        photo.description = imagedest
+        photo.save
+      end
+    end
   end
 end

@@ -55,6 +55,9 @@ gem 'rest-client'
 # Delay Job
 gem 'delayed_job_active_record'
 
+# Cron
+gem 'whenever'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

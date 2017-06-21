@@ -163,9 +163,34 @@
           <hr>
 
           <div class="form-group">
-            <label class="col-md-2 control-label">Gửi</label>
+            <label class="col-md-2 control-label">Ảnh chi tiết</label>
+            <div class="col-md-8" style="margin-top: 5px;">
+              <input type="file" name="img[]" multiple>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8 edit-list-thumb" style="margin-top: 5px">
+              <% @project.photos.each do |photo| %>
+                  <div class="edit-list-thumb-card" id="thumb-<%= photo.id %>">
+                    <div>
+                      <i class="fa fa-trash thumb-trash" data-id="<%= photo.id %>" aria-hidden="true"></i>
+                      <img src="<%= photo.photo_url %>?width=200">
+                    </div>
+                    <div class="edit-list-thumb-card-text">
+                      <textarea class="form-control" placeholder="Mô tả cho bức ảnh" rows="5" name="imagedest[]"><%= photo.description %></textarea>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
             <div class="col-md-8">
-              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+              <button type="submit" class="btn btn-sm btn-success">Lưu thông tin</button>
             </div>
           </div>
         </div>

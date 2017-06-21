@@ -26,25 +26,25 @@ class House < ActiveRecord::Base
     else
       self.for_rent = false
     end
-    if params[:is_show] == 'true'
-      self.is_show = true
-    else
-      self.is_show = false
-    end
+    self.disable_at = Time.strptime(params[:disable_at], '%m/%d/%Y')
     self.save
 
-    params[:furnitures].each_with_index do |furnitureId, idx|
-      houseFurniture = HouseFurniture.new
-      houseFurniture.house_id = house.id
-      houseFurniture.furniture_id = furnitureId
-      houseFurniture.save
+    if params[:furnitures].present?
+      params[:furnitures].each_with_index do |furnitureId, idx|
+        houseFurniture = HouseFurniture.new
+        houseFurniture.house_id = house.id
+        houseFurniture.furniture_id = furnitureId
+        houseFurniture.save
+      end
     end
 
-    params[:conveniences].each_with_index do |convenienceId, idx|
-      houseConvenience = HouseConvenience.new
-      houseConvenience.house_id = house.id
-      houseConvenience.convenience_id = convenienceId
-      houseConvenience.save
+    if params[:conveniences].present?
+      params[:conveniences].each_with_index do |convenienceId, idx|
+        houseConvenience = HouseConvenience.new
+        houseConvenience.house_id = house.id
+        houseConvenience.convenience_id = convenienceId
+        houseConvenience.save
+      end
     end
 
     # Address to lat, lng
@@ -57,6 +57,15 @@ class House < ActiveRecord::Base
       self.longitude = 0.0
     end
     self.save
+
+    # Photo description
+    if (params[:imagedest]).present?
+      (params[:imagedest]).each_with_index do |imagedest, index|
+        photo = self.photos[index]
+        photo.description = imagedest
+        photo.save
+      end
+    end
 
     # wish list house
     # wish list agent

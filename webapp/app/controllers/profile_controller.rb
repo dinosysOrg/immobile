@@ -18,9 +18,19 @@ class ProfileController < ApplicationController
     authorize! :edit_house, :profile
 
     @house = House::where(:link => params[:link]).first
+    @contract = Contract::where(:house_id => @house.id).first
 
     @pageType = 'edit_house'
     render :'edit_house', status: :ok, :layout => 'profile'
+  end
+
+  def edit_photo
+    authorize! :edit_photo, :profile
+
+    @house = House::where(:link => params[:link]).first
+
+    @pageType = 'edit_photo'
+    render :'edit_photo', status: :ok, :layout => 'profile'
   end
 
   def list_house
@@ -66,14 +76,21 @@ class ProfileController < ApplicationController
     house = House.new
     house.user_id = userId
     house.is_available = true
+    house.save
+
     house.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
     house.link += '-'+house.id.to_s
 
     house.save_house(house, params)
-    Photo.create_photo(house, userId, params)
-    Contract.create_contract(house, userId)
+    contract = Contract.create_contract(house, userId)
+    contract.add_service(params)
 
-    redirect_to action: 'list_house'
+
+    if Photo.create_photo(house, userId, params)
+      redirect_to action: 'edit_photo', link: house.link
+    else
+      redirect_to action: 'list_house'
+    end
   end
 
   def put_house
@@ -85,8 +102,34 @@ class ProfileController < ApplicationController
     HouseConvenience::where(:house_id => house.id).destroy_all
     HouseFurniture::where(:house_id => house.id).destroy_all
 
+    # clear services and add new
+    contract = Contract::where(:house_id => house.id).first
+    if contract.present?
+      contract.contract_services.destroy_all
+      contract.add_service(params)
+    end
+
     house.save_house(house, params)
-    Photo.create_photo(house, userId, params)
+    if Photo.create_photo(house, userId, params)
+      redirect_to action: 'edit_photo', link: house.link
+    else
+      redirect_to action: 'list_house'
+    end
+  end
+
+  def put_photo
+    authorize! :put_photo, :profile
+
+    house = House::find(params[:id])
+    # Photo description
+
+    if (params[:imagedest]).present?
+      (params[:imagedest]).each_with_index do |imagedest, index|
+        photo = house.photos[index]
+        photo.description = imagedest
+        photo.save
+      end
+    end
 
     redirect_to action: 'list_house'
   end

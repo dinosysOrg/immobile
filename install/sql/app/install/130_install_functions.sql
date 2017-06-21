@@ -1,6 +1,51 @@
 \connect :DB_NAME
 \encoding UTF8
 
+
+CREATE OR REPLACE FUNCTION staging.merge_services()
+  RETURNS void AS
+$BODY$
+DECLARE
+    r RECORD;
+BEGIN
+    FOR r IN SELECT
+      identifier,
+      name,
+      description,
+      price,
+      currency
+    FROM staging.services
+    LOOP
+        UPDATE settings.services SET
+          name = r.name,
+          description = r.description,
+          price = r.price,
+          currency = r.currency
+        WHERE identifier = r.identifier;
+        IF NOT FOUND THEN
+        INSERT INTO settings.services (
+          identifier,
+          name,
+          description,
+          price,
+          currency
+        )
+        VALUES (
+          r.identifier,
+          r.name,
+          r.description,
+          r.price,
+          r.currency
+        );
+        END IF;
+    END LOOP;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION staging.merge_services()
+  OWNER TO postgres;
+
 CREATE OR REPLACE FUNCTION staging.merge_roles()
   RETURNS void AS
 $BODY$

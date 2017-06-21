@@ -1,0 +1,44 @@
+<!-- begin css -->
+<link href="/assets/editor.scss" rel="stylesheet"/>
+<!-- end css -->
+
+<div class="content edit-content">
+  <div class="panel-heading">
+    <h4 class="edit-title">Quản lý thông tin ảnh dự án</h4>
+  </div>
+
+  <div class="panel-body panel-editor">
+    <%= form_tag('/profile/project/'+@project.id.to_s+'/photo', method: 'post', multipart: true) do %>
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8 edit-list-thumb" style="margin-top: 5px">
+              <% @project.photos.each do |photo| %>
+                  <div class="edit-list-thumb-card" id="thumb-<%= photo.id %>">
+                    <div>
+                      <i class="fa fa-trash thumb-trash" data-id="<%= photo.id %>" aria-hidden="true"></i>
+                      <img src="<%= photo.photo_url %>?width=200">
+                    </div>
+                    <div class="edit-list-thumb-card-text">
+                      <textarea class="form-control" placeholder="Mô tả cho bức ảnh" rows="5" name="imagedest[]"><%= photo.description %></textarea>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Lưu thông tin</button>
+              <a href="/profile/projects"><button class="btn btn-sm btn-warning">Bỏ qua</button></a>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

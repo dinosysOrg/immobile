@@ -3024,3 +3024,28 @@ a.list-group-item.active:focus {
     font-weight: normal;
     font-style: normal;
 }
+
+.fb-content-page {
+    display: none;
+}
+
+.fb-content {
+    position: fixed !important;
+    bottom: 0;
+    right: 20px;
+    z-index: 1020;
+    width: 300px;
+}
+
+.fb-content-title{
+    background: #33425B;
+    text-align: left;
+    cursor: pointer;
+}
+
+.fb-content-title p {
+    padding: 10px 10px 10px 25px;
+    color: #fafafa;
+    font-size: 14px;
+    margin: 0;
+}

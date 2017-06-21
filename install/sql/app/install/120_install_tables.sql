@@ -169,6 +169,7 @@ CREATE TABLE management.projects
 (
   id bigserial NOT NULL,
   name character varying(200) NOT NULL,
+  link character varying(500),
   photo character varying(500),
   description text,
   address character varying(200),
@@ -232,6 +233,7 @@ CREATE TABLE management.houses
   is_home boolean default false,
   latitude numeric(16,10),
   longitude numeric(16,10),
+  disable_at timestamp with time zone DEFAULT now(),
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now(),
   CONSTRAINT pk_houses PRIMARY KEY (id),
@@ -398,9 +400,23 @@ ALTER TABLE management.house_tags
 -- END MANAGEMENT.TABLES
 
 
-
-
 -- BEGIN STAGING.TABLES
+
+CREATE TABLE staging.services   
+(
+  identifier character varying(50) NOT NULL,
+  name character varying(200) NOT NULL,
+  description text,
+  price integer,
+  currency character varying(50),
+  CONSTRAINT services_identifier_key UNIQUE (identifier)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE staging.services
+  OWNER TO postgres;
+
 
 CREATE TABLE staging.contracts   
 (

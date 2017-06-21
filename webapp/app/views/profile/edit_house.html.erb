@@ -190,26 +190,51 @@
             </div>
           </div>
 
-
           <div class="form-group">
             <label class="col-md-2 control-label">Loại chủ quyền</label>
-            <div class="col-md-3">
+            <div class="col-md-8">
               <input type="text" class="form-control" placeholder="" name="host_type" value="<%= @house.host_type %>">
             </div>
-            <label class="col-md-2 control-label">Trạng thái</label>
-            <div class="col-md-3">
-              <select class="form-control" name="is_show">
-                <option value="true"
-                        <% if @house.is_show == true %> selected
-                        <% end %> >Chế độ công khai
-                </option>
-                <option value="false"
-                        <% if @house.is_show == false %> selected
-                        <% end %> >Chế độ riêng tư
-                </option>
-              </select>
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ngày đóng bài đăng</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" id="datepicker" name="disable_at" value="<%= Time.at(@house.disable_at).to_date %>">
             </div>
           </div>
+
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Dịch vụ đi kèm</label>
+            <div class="col-md-8">
+              <% services = Service::all(); %>
+              <% services.each_with_index do |service, idx| %>
+                  <%
+                    is_service = false
+                    if @contract.present? and @contract.contract_services.present?
+                      @contract.contract_services do |contract_service|
+                        if contract_service.service_id == service.id
+                          is_service = true
+                          break
+                        end
+                      end
+                    end
+                  %>
+
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="services[]" value="<%= service.id %> "
+                           <% if is_service == true %> checked
+                           <% end %> >
+                    <%= service.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <hr>
 
           <div class="form-group">
             <label class="col-md-2 control-label">Đường dẫn ảnh 3D</label>
@@ -229,16 +254,20 @@
             <label class="col-md-2 control-label"></label>
             <div class="col-md-8 edit-list-thumb" style="margin-top: 5px">
               <% @house.photos.each do |photo| %>
-                <div id="thumb-<%= photo.id %>">
-                  <i class="fa fa-trash thumb-trash" data-id="<%= photo.id %>" aria-hidden="true"></i>
-                  <img src="<%= photo.photo_url %>?width=200">
-                </div>
+                  <div class="edit-list-thumb-card" id="thumb-<%= photo.id %>">
+                    <div>
+                      <i class="fa fa-trash thumb-trash" data-id="<%= photo.id %>" aria-hidden="true"></i>
+                      <img src="<%= photo.photo_url %>?width=200">
+                    </div>
+                    <div class="edit-list-thumb-card-text">
+                      <textarea class="form-control" placeholder="Mô tả cho bức ảnh" rows="5" name="imagedest[]"><%= photo.description %></textarea>
+                    </div>
+                  </div>
               <% end %>
             </div>
           </div>
-          
-          <hr>
 
+          <hr>
           <div class="form-group">
             <label class="col-md-2 control-label">Tiện ích nội khu</label>
             <div class="col-md-8">
@@ -255,7 +284,9 @@
                   %>
 
                   <label class="checkbox-inline">
-                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> " <% if is_convenience == true %> checked <% end %> >
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> "
+                           <% if is_convenience == true %> checked
+                           <% end %> >
                     <%= convenience.name %>
                   </label>
               <% end %>
@@ -278,7 +309,9 @@
                   %>
 
                   <label class="checkbox-inline">
-                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> " <% if is_convenience == true %> checked <% end %> >
+                    <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> "
+                           <% if is_convenience == true %> checked
+                           <% end %> >
                     <%= convenience.name %>
                   </label>
               <% end %>
@@ -300,7 +333,9 @@
                     end
                   %>
                   <label class="checkbox-inline">
-                    <input type="checkbox" name="furnitures[]" value="<%= furniture.id %> "  <% if is_furniture == true %> checked <% end %> >
+                    <input type="checkbox" name="furnitures[]" value="<%= furniture.id %> "
+                           <% if is_furniture == true %> checked
+                           <% end %> >
                     <%= furniture.name %>
                   </label>
               <% end %>
@@ -309,9 +344,9 @@
           <hr>
 
           <div class="form-group">
-            <label class="col-md-2 control-label">Gửi</label>
+            <label class="col-md-2 control-label"></label>
             <div class="col-md-8">
-              <button type="submit" class="btn btn-sm btn-success">Submit</button>
+              <button type="submit" class="btn btn-sm btn-success">Lưu bài đăng</button>
             </div>
           </div>
         </div>

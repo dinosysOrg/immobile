@@ -182,6 +182,18 @@ var handleThemePageControl = function() {
     });
 };
 
+/* 11. Facebook message
+ ------------------------------------------------ */
+var handleFacebookMessage = function() {
+    $('#fb-content-title').click(function() {
+        if ($('.fb-content-page').css('display') == 'none') {
+            $('.fb-content-page').css('display', 'inline')
+        }else{
+            $('.fb-content-page').css('display', 'none')
+        }
+    });
+};
+
 
 /* Application Controller
 ------------------------------------------------ */
@@ -200,6 +212,7 @@ var App = function () {
             handleTooltipActivation();
             handleThemePanelExpand();
             handleThemePageControl();
+            handleFacebookMessage();
 		}
   };
 }();
