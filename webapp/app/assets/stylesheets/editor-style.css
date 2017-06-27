@@ -3074,6 +3074,7 @@ fieldset[disabled] .btn-white,
     border-color: #E0E0E0;
     padding: 10px 15px;
     background: #fff;
+    font-size: 14px;
 }
 .table-condensed > thead > tr > th, 
 .table-condensed > tbody > tr > th, 

@@ -1,0 +1,58 @@
+<% require 'base64'
+   require 'hmac-sha2'
+   require 'openssl'
+   secure_secret = 'A3EFDFABA8653DF2342E8DAC29B51AF0'
+    randomMerch = (0...16).map { (65 + rand(26)).chr }.join %>
+
+<div class="content edit-content">
+  <!--<div class="panel-heading">-->
+  <!--<h4 class="edit-title">Sửa thông tin cá nhân</h4>-->
+  <!--</div>-->
+
+  <div class="panel-body panel-editor">
+    <%= form_tag('https://mtf.onepay.vn/onecomm-pay/vpc.op', method: 'get') do %>
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="col-md-12 profile-avatar">
+              <img class="" src="/assets/budget_icon.png" alt="">
+            </div>
+          </div>
+
+          <input type="hidden" name="vpc_Version" value="2" >
+          <input type="hidden" name="vpc_Currency" value="VND" >
+          <input type="hidden" name="vpc_Command" value="pay" >
+          <input type="hidden" name="vpc_AccessCode" value="D67342C2" >
+          <input type="hidden" name="vpc_Merchant" value="ONEPAY" >
+          <input type="hidden" name="vpc_Locale" value="vn" >
+          <input type="hidden" name="vpc_ReturnURL" value="https://immobile.dinosys.vn/onepay/dr.php" >
+          <input type="hidden" name="vpc_MerchTxnRef" value="<%= randomMerch %>" >
+          <input type="hidden" name="vpc_OrderInfo" value="naptien" >
+          <input type="hidden" name="AgainLink" value="link" >
+          <input type="hidden" name="Title" value="title" >
+          <input type="hidden" name="vpc_TicketNo" value="<%= request.remote_ip %>" >
+          <input type="hidden" name="vpc_SecureHash" value="<%= OpenSSL::HMAC.hexdigest('SHA256', [secure_secret].pack('H*'), 'vpc_AccessCode=D67342C2&vpc_Amount=1000&vpc_Command=pay&vpc_Currency=VND&vpc_Locale=vn&vpc_Merchant=ONEPAY&vpc_MerchTxnRef='+randomMerch.to_s+'&vpc_OrderInfo=naptien&vpc_ReturnURL=https://immobile.dinosys.vn/onepay/dr.php&vpc_TicketNo='+request.remote_ip.to_s+'&vpc_Version=2').upcase %>" >
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiền trong ví</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" value="<%= current_user.budget %> vnd" disabled>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số tiền nạp vào</label>
+            <div class="col-md-8">
+              <input  class="form-control" value="" name="vpc_Amount" type="number" min="0">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Gửi</label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Thanh toán</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

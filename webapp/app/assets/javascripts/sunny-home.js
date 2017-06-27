@@ -1,5 +1,22 @@
+/* Application Controller
+ ------------------------------------------------ */
+$(document).ready(function () {
+    menuTypeSelect();
+});
 
-// Search autocomplete
+/* Menu change color
+ ------------------------------------------------ */
+var menuTypeSelect = function () {
+    $('.menu-card-type').click(function () {
+        var estateId = $(this).data('id');
+        var estateName = $(this).data('name');
+        $('#menu-card-title').html(estateName);
+        $('#menu-card-title').css('color', '#8F8E8E');
+    });
+};
+
+/* Search autocomplete
+ ------------------------------------------------ */
 var autocomplete;
 var componentForm = {
     street_number: 'short_name',
@@ -9,20 +26,6 @@ var componentForm = {
     country: 'long_name',
     postal_code: 'short_name'
 };
-
-
-$(document).ready(function(){
-    menuTypeSelect();
-});
-
-function menuTypeSelect(){
-    $('.menu-card-type').click(function() {
-        var estateId = $(this).data('id');
-        var estateName = $(this).data('name');
-        $('#menu-card-title').html(estateName);
-        $('#menu-card-title').css('color', '#8F8E8E');
-    });
-}
 
 function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete((document.getElementById('input-search-place')),
@@ -46,7 +49,6 @@ function fillInAddress() {
 
     window.location.replace("/search");
 }
-
 
 function getAreaData(placeSearch, type) {
     if (placeSearch != null && placeSearch.length > 0 && componentForm[type]) {

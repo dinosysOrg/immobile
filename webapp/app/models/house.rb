@@ -26,7 +26,6 @@ class House < ActiveRecord::Base
     else
       self.for_rent = false
     end
-    self.disable_at = Time.strptime(params[:disable_at], '%m/%d/%Y')
     self.save
 
     if params[:furnitures].present?

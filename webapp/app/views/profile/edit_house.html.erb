@@ -1,7 +1,3 @@
-<!-- begin css -->
-<link href="/assets/editor.scss" rel="stylesheet"/>
-<!-- end css -->
-
 <div class="content edit-content">
   <div class="panel-heading">
     <h4 class="edit-title">Sửa thông tin bài đăng</h4>
@@ -199,42 +195,6 @@
 
           <hr>
 
-          <div class="form-group">
-            <label class="col-md-2 control-label">Ngày đóng bài đăng</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" id="datepicker" name="disable_at" value="<%= Time.at(@house.disable_at).to_date %>">
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <label class="col-md-2 control-label">Dịch vụ đi kèm</label>
-            <div class="col-md-8">
-              <% services = Service::all(); %>
-              <% services.each_with_index do |service, idx| %>
-                  <%
-                    is_service = false
-                    if @contract.present? and @contract.contract_services.present?
-                      @contract.contract_services do |contract_service|
-                        if contract_service.service_id == service.id
-                          is_service = true
-                          break
-                        end
-                      end
-                    end
-                  %>
-
-                  <label class="checkbox-inline">
-                    <input type="checkbox" name="services[]" value="<%= service.id %> "
-                           <% if is_service == true %> checked
-                           <% end %> >
-                    <%= service.name %>
-                  </label>
-              <% end %>
-            </div>
-          </div>
-
-          <hr>
 
           <div class="form-group">
             <label class="col-md-2 control-label">Đường dẫn ảnh 3D</label>
@@ -343,6 +303,41 @@
           </div>
           <hr>
 
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ngày đóng bài đăng *</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" id="datepicker" name="disable_at" value="<%= Time.at(@house.disable_at).to_date %>" disabled>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Dịch vụ đi kèm</label>
+            <div class="col-md-8">
+              <% services = Service::all(); %>
+              <% services.each_with_index do |service, idx| %>
+                  <%
+                    is_service = false
+                    if @contract.present? and @contract.contract_services.present?
+                      @contract.contract_services do |contract_service|
+                        if contract_service.service_id == service.id
+                          is_service = true
+                          break
+                        end
+                      end
+                    end
+                  %>
+
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="services[]" value="<%= service.id %> "
+                           <% if is_service == true %> checked
+                           <% end %> disabled>
+                    <%= service.name %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <hr>
           <div class="form-group">
             <label class="col-md-2 control-label"></label>
             <div class="col-md-8">

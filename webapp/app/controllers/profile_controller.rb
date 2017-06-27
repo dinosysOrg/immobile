@@ -61,8 +61,17 @@ class ProfileController < ApplicationController
   end
 
   def edit_profile
+    authorize! :edit_profile, :profile
+
     @pageType = 'edit_profile'
     render :'edit_profile', status: :ok, :layout => 'profile'
+  end
+
+  def show_budget
+    authorize! :show_budget, :profile
+
+    @pageType = 'budget_profile'
+    render :'budget_profile', status: :ok, :layout => 'profile'
   end
 
   # ************************** #
@@ -81,10 +90,11 @@ class ProfileController < ApplicationController
     house.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
     house.link += '-'+house.id.to_s
 
+    house.disable_at = Time.strptime(params[:disable_at], '%m/%d/%Y')
     house.save_house(house, params)
+
     contract = Contract.create_contract(house, userId)
     contract.add_service(params)
-
 
     if Photo.create_photo(house, userId, params)
       redirect_to action: 'edit_photo', link: house.link
@@ -103,11 +113,11 @@ class ProfileController < ApplicationController
     HouseFurniture::where(:house_id => house.id).destroy_all
 
     # clear services and add new
-    contract = Contract::where(:house_id => house.id).first
-    if contract.present?
-      contract.contract_services.destroy_all
-      contract.add_service(params)
-    end
+    # contract = Contract::where(:house_id => house.id).first
+    # if contract.present?
+    #   contract.contract_services.destroy_all
+    #   contract.add_service(params)
+    # end
 
     house.save_house(house, params)
     if Photo.create_photo(house, userId, params)

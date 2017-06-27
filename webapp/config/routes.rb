@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'profile/posts', to: 'profile#list_house'
   get 'profile/edit', to: 'profile#edit_profile'
   post 'profile/edit', to: 'profile#put_profile'
+  get 'profile/budget', to: 'profile#show_budget'
 
   # Admin
   get 'profile/users', to: 'admin#list_user'

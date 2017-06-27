@@ -2,9 +2,28 @@
  * Created by QuyTruong on 6/8/17.
  */
 
-$(document).ready(function(){
+/* Search/filter button
+ ------------------------------------------------ */
+var handleSearchButton = function(){
+    $('#list-user-search-button').click(function() {
+        var keyword = $('#list-user-search-input').val();
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
+    });
 
-    //Change role user
+    $('#list-project-search-button').click(function() {
+        var keyword = $('#list-project-search-input').val();
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
+    });
+
+    $('#list-house-search-button').click(function() {
+        var keyword = $('#list-house-search-input').val();
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
+    });
+};
+
+/* Change Role user
+ ------------------------------------------------ */
+var handleRoleUser = function(){
     $('.user-role-select').change(function() {
         var userId = $(this).data('id');
         var role = $(this).val();
@@ -23,23 +42,11 @@ $(document).ready(function(){
         });
     });
 
-    //search button
-    $('#list-user-search-button').click(function() {
-        var keyword = $('#list-user-search-input').val();
-        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
-    });
+};
 
-    $('#list-project-search-button').click(function() {
-        var keyword = $('#list-project-search-input').val();
-        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
-    });
-
-    $('#list-house-search-button').click(function() {
-        var keyword = $('#list-house-search-input').val();
-        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
-    });
-
-    //change status house
+/* change house status
+ ------------------------------------------------ */
+var handleHouseStatus = function(){
     $('.house-status-select').change(function() {
         var houseId = $(this).data('id');
         var status = $(this).val();
@@ -57,8 +64,11 @@ $(document).ready(function(){
             }
         });
     });
+};
 
-    //set house at home
+/* Set house at home
+ ------------------------------------------------ */
+var handleHouseHome = function(){
     $('.house-home-select').change(function() {
         var houseId = $(this).data('id');
         var status = $(this).is(":checked");
@@ -76,8 +86,11 @@ $(document).ready(function(){
             }
         });
     });
+};
 
-    //set user at home
+/* Set user at home
+ ------------------------------------------------ */
+var handleUserHome = function () {
     $('.user-home-select').change(function() {
         var userId = $(this).data('id');
         var status = $(this).is(":checked");
@@ -95,8 +108,11 @@ $(document).ready(function(){
             }
         });
     });
+};
 
-    //set project at home
+/* Set project at home
+ ------------------------------------------------ */
+var handleProjectHome = function () {
     $('.project-home-select').change(function() {
         var projectId = $(this).data('id');
         var status = $(this).is(":checked");
@@ -114,9 +130,11 @@ $(document).ready(function(){
             }
         });
     });
+};
 
-    // Project delete
-    //Modal for delete action
+/* project modal remove
+ ------------------------------------------------ */
+var handleProjectRemove = function () {
     var projectId = 0;
     $('.project-button-delete').click(function() {
         $('#modal-delete-project').css('display','block');
@@ -129,25 +147,39 @@ $(document).ready(function(){
 
     $('.model-button-done-project').click(function() {
         $('#modal-delete-project').css('display','none');
-        //ajax
-
         removeProject(projectId)
     });
+}
 
-    // Api Delete Project
-    function removeProject(projectId) {
-        $.ajax({
-            url: '/profile/project/' + projectId,
-            type: 'DELETE',
-            dataType: 'json',
-            data: { authenticity_token: window._token },
-            contentType: 'application/x-www-form-urlencoded',
-            success: function (data) {
-                location.reload();
-            },
-            error: function (data) {
 
-            }
-        });
-    }
+/* Api Delete Project
+ ------------------------------------------------ */
+function removeProject(projectId) {
+    $.ajax({
+        url: '/profile/project/' + projectId,
+        type: 'DELETE',
+        dataType: 'json',
+        data: { authenticity_token: window._token },
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+            location.reload();
+        },
+        error: function (data) {
+
+        }
+    });
+}
+
+/* Application Controller
+ ------------------------------------------------ */
+$(document).ready(function(){
+
+    handleSearchButton();
+    handleRoleUser();
+    handleHouseStatus();
+    handleHouseHome();
+    handleUserHome();
+    handleProjectHome();
+    handleProjectRemove();
+
 });

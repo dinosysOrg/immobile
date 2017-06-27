@@ -1,6 +1,3 @@
-<!-- begin css -->
-<link href="/assets/editor.scss" rel="stylesheet"/>
-<!-- end css -->
 
 <div class="content edit-content">
   <div class="panel-heading">
@@ -126,26 +123,6 @@
           </div>
 
           <hr>
-          <div class="form-group">
-            <label class="col-md-2 control-label">Dịch vụ đi kèm</label>
-            <div class="col-md-8">
-              <% services = Service::all(); %>
-              <% services.each_with_index do |service, idx| %>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" name="services[]" value="<%= service.id %> ">
-                    <%= service.name %>
-                  </label>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-2 control-label">Ngày đóng bài đăng</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" id="datepicker" name="disable_at" value="">
-            </div>
-          </div>
-          <hr>
 
           <div class="form-group">
             <label class="col-md-2 control-label">Đường dẫn ảnh 3D</label>
@@ -201,7 +178,38 @@
             </div>
           </div>
           <hr>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Ngày đóng bài *</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" id="datepicker" name="disable_at" value="">
+            </div>
+          </div>
 
+          <div class="form-group">
+            <label class="col-md-2 control-label">Dịch vụ đi kèm</label>
+            <div class="col-md-8">
+              <% services = Service::all(); %>
+              <% services.each_with_index do |service, idx| %>
+                  <label class="checkbox-inline" style="width: 100%; margin: 0px;">
+                    <% if service.identifier == '1001' %>
+                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " checked disabled data-price="<%= service.price %>">
+                    <% else %>
+                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " data-price="<%= service.price %>">
+                    <% end %>
+                    <%= service.name %> ( <%= service.price %> <%= service.currency %> )
+                  </label>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tổng chi phí</label>
+            <div class="col-md-8 edit-house-total">
+              <span></span>
+            </div>
+          </div>
+
+          <hr>
           <div class="form-group">
             <label class="col-md-2 control-label"></label>
             <div class="col-md-8">
@@ -213,7 +221,3 @@
   </div>
 </div>
 
-
-<!-- begin script -->
-<script src="/assets/jquery-1.9.1.js"></script>
-<!-- end script -->

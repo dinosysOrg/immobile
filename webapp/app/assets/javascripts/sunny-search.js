@@ -2,6 +2,8 @@
  * Created by QuyTruong on 4/14/17.
  */
 
+/* Map setup
+ ------------------------------------------------ */
 function initMap() {
     var center = {lat: 10.783741, lng: 106.691255};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -77,11 +79,15 @@ function initMap() {
 }
 
 
+/* Application Controller
+ ------------------------------------------------ */
 $(document).ready(function () {
-    butotnListner();
+    filterListner();
 });
 
-function butotnListner(){
+/* filter listing
+ ------------------------------------------------ */
+var filterListner = function() {
     $("#bathroom-click").click(function() {
         if ($("#bathroom-box").hasClass("box-hidden") == true){
             //close all
@@ -170,4 +176,4 @@ function butotnListner(){
             $("#price-button").css("background", "#fff");
         }
     });
-}
+};

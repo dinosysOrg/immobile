@@ -36,8 +36,8 @@
 }
 
 .list-item-avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
 }
 
@@ -142,4 +142,12 @@
   padding-top: 40px;
   border-radius: 5px;
   border: solid 1px #eee;
+}
+
+.edit-house-total {
+  margin-top: 4px;
+}
+
+.edit-house-total span {
+  font-size: 18px;
 }

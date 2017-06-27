@@ -2,6 +2,8 @@
  * Created by QuyTruong on 4/14/17.
  */
 
+/* Init Map
+ ------------------------------------------------ */
 function initMap() {
     var center = {lat: 10.788994, lng: 106.689901};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -16,11 +18,15 @@ function initMap() {
 
 }
 
+/* Application Controller
+ ------------------------------------------------ */
 $(document).ready(function(){
     detailDropdown();
 });
 
-function detailDropdown(){
+/* Dropdown detail
+ ------------------------------------------------ */
+var detailDropdown = function() {
     $('#convenience-in-dropdown').click(function() {
         var icon = $('#convenience-in-dropdown i');
         if(icon.hasClass('fa-angle-down')) {
