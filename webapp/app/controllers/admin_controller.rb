@@ -241,7 +241,11 @@ class AdminController < ApplicationController
       user.budget += amount/100
       user.save
 
+      render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
+    else
+      render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
     end
+
 
   end
 

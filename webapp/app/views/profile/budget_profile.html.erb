@@ -5,7 +5,7 @@
   <!--</div>-->
 
   <div class="panel-body panel-editor">
-    <%= form_tag(root_url.sub! 'http://', 'https://' + 'onepay/do.php', method: 'post') do %>
+    <%= form_tag((root_url.sub! 'http://', 'https://' + 'onepay/do.php'), method: 'post') do %>
 
         <div class="form-horizontal">
           <div class="form-group">
