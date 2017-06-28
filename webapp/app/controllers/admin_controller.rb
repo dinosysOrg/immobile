@@ -228,7 +228,7 @@ class AdminController < ApplicationController
   end
 
   def callback_budget
-    serverKey = request.headers["HTTP_SERVER_KEY"]
+    serverKey = request.env["HTTP_SERVER_KEY"]
     unless serverKey.present?
       serverKey = request.headers["SERVER_KEY"]
     end
