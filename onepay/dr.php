@@ -186,6 +186,8 @@ function pushToServer($SERVER, $SERVER_KEY){
 	$url =  $SERVER . '/profile/budget/callback';
 	$data = $_GET;
 
+	echo ($url);
+
 	// use key 'http' even if you send the request to https://...
 	$options = array(
 	    'http' => array(
