@@ -225,4 +225,16 @@ class AdminController < ApplicationController
     render json: response
   end
 
+  def callback_budget
+    authorize! :callback_budget, :admin
+
+    responseCode = params[:vpc_TxnResponseCode]
+    amount = params[:vpc_Amount]
+    merchTxnRef = params[:vpc_MerchTxnRef]
+    userId = merchTxnRef.split('_')[0]
+    user = User::find(userId)
+
+
+  end
+
 end
