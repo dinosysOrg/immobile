@@ -185,6 +185,7 @@ function null2unknown($data) {
 function pushToServer($SERVER, $SERVER_KEY){
 	$url =  $SERVER . '/profile/budget/callback';
 	$data = $_GET;
+	$data['server_key'] = $SERVER_KEY;
 
 	echo ($url);
 
@@ -192,7 +193,6 @@ function pushToServer($SERVER, $SERVER_KEY){
 	$options = array(
 	    'http' => array(
 	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-	        'header' => "SERVER_KEY: " . $SERVER_KEY . "\r\n",
 	        'method'  => 'POST',
 	        'content' => http_build_query($data)
 	    )
