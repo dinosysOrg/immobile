@@ -23,8 +23,7 @@
 // $SECURE_SECRET = "secure-hash-secret";
 $SECURE_SECRET = "A3EFDFABA8653DF2342E8DAC29B51AF0";
 // $SERVER = "http://localhost:3000";
-$SERVER = str_replace("http://", "https://", getenv('HTTP_HOST'));
-echo $SERVER;
+$SERVER = "https://" . getenv('HTTP_HOST');
 $SERVER_KEY = "UROI8FJO989FOIJ897YFJIJO87FD89F";
 
 
