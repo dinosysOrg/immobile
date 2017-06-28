@@ -22,6 +22,10 @@
 // To not create a secure hash, let SECURE_SECRET be an empty string - ""
 // $SECURE_SECRET = "secure-hash-secret";
 $SECURE_SECRET = "A3EFDFABA8653DF2342E8DAC29B51AF0";
+// $SERVER = "http://localhost:3000";
+$SERVER = getenv('HTTP_HOST');
+$SERVER_KEY = "UROI8FJO989FOIJ897YFJIJO87FD89F";
+
 
 // If there has been a merchant secret set then sort and loop through all the
 // data in the Virtual Payment Client response. While we have the data, we can
@@ -175,18 +179,39 @@ function null2unknown($data) {
 		return $data;
 	}
 }
+
+//  -----------------------------------------------------------------------------
+// Push parameter to server 
+function pushToServer($SERVER, $SERVER_KEY){
+	$url =  $SERVER . '/profile/budget/callback';
+	$data = $_GET;
+
+	// use key 'http' even if you send the request to https://...
+	$options = array(
+	    'http' => array(
+	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+	        'header' => "SERVER_KEY: " . $SERVER_KEY . "\r\n",
+	        'method'  => 'POST',
+	        'content' => http_build_query($data)
+	    )
+	);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+	if ($result === FALSE) { /* Handle error */ }
+
+	var_dump($result);
+}
 //  ----------------------------------------------------------------------------
 
 $transStatus = "";
 if($hashValidated=="CORRECT" && $txnResponseCode=="0"){
 	$transStatus = "Giao dịch thành công";
+	pushToServer($SERVER, $SERVER_KEY);
 }elseif ($hashValidated=="INVALID HASH" && $txnResponseCode=="0"){
 	$transStatus = "Giao dịch Pendding";
 }else {
 	$transStatus = "Giao dịch thất bại";
 }
-
-
 
 
 ?>
@@ -283,8 +308,6 @@ input {
 	font-weight: bold
 }
 
-
-
 #background-image {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
@@ -327,18 +350,21 @@ input {
 	color: #339;
 	background: none;
 }
+
+.button-back {
+	text-align: center;
+}
 -->
 </style>
 
 </head>
 <body>
 
-
 <!-- start branding table -->
 <table width='100%' border='2' cellpadding='2' bgcolor='#0074C4'>
 	<tr>
 		<td bgcolor='#CED7EF' width='90%'>
-		<h2 class='co'>&nbsp;Payment Client Example</h2>
+		<h2 class='co'>&nbsp;Kết quả giao dịch</h2>
 		</td>
 		<td bgcolor='#0074C4' align='center'>
 		<h3 class='co'>OnePAY</h3>
@@ -351,89 +377,11 @@ input {
 	<h1><?php echo $transStatus;?></h1>
 </center>
 
-
+<div class="button-back">
+	<button><a href="/profile/budget">Quay lại bảng điều khiển</a></button>
+</div>
 
 <center>
-<table id="background-image" summary="Meeting Results">
-	<thead>
-		<tr>
-			<th scope="col">Name</th>
-			<th scope="col">Value</th>
-			<th scope="col">Description</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<td align="center" colspan="4"></td>
-		</tr>
-	</tfoot>
-	<tbody>
-		<tr>
-			<td><strong><i>Merchant ID </i></strong></td>
-			<td><?php
-			echo $merchantID;
-			?></td>
-			<td>Được cấp bởi OnePAY</td>
-		</tr>
-		<tr>
-			<td><strong><i>Merchant Transaction Reference</i></strong></td>
-			<td><?php
-			echo $merchTxnRef;
-			?></td>
-			<td>ID của giao dịch gửi từ website merchant</td>
-		</tr>
-		<tr>
-			<td><strong><i>Transaction OrderInfo</i></strong></td>
-			<td><?php
-			echo $orderInfo;
-			?></td>
-			<td>Tên hóa đơn</td>
-		</tr>
-		<tr>
-			<td><strong><i>Purchase Amount</i></strong></td>
-			<td><?php
-			echo $amount;
-			?></td>
-			<td>Số tiền được thanh toán</td>
-		</tr>
-		
-		<tr>
-			<td><strong><i>VPC Transaction Response Code </i></strong></td>
-			<td><?php
-			echo $txnResponseCode;
-			?></td>
-			<td>Mã trạng thái giao dịch trả về</td>
-		</tr>
-		<tr>
-			<td><strong><i>Transaction Response Code Description </i></strong></td>
-			<td><?php echo getResponseDescription ( $txnResponseCode );
-			?></td>
-			<td>Trạng thái giao dịch</td>
-		</tr>
-		<tr>
-			<td><strong><i>Message</i></strong></td>
-			<td><?php
-			echo $message;
-			?></td>
-			<td>Thông báo từ cổng thanh toán</td>
-		</tr>
-<?php
-// only display the following fields if not an error condition
-if ($txnResponseCode != "7" && $txnResponseCode != "No Value Returned") {
-	?>
-            <tr>
-			<td><strong><i>Transaction Number</i></strong></td>
-			<td><?php
-	echo $transactionNo;
-	?></td>
-			<td>ID giao dịch trên cổng thanh toán</td>
-		</tr>
-		
-<?php
-}
-?>    
-	</tbody>
-</table>
 </center>
 </body>
 </html>

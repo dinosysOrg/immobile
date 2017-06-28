@@ -1,5 +1,10 @@
 class Constant < ActiveRecord::Base
-  APP_NAME = 'Color Admin'
+  APP_NAME = 'Sunny World'
+
+  ONEPAY_URL = 'https://mtf.onepay.vn/onecomm-pay/vpc.op'
+  ONEPAY_ACCESSCODE = 'D67342C2'
+  ONEPAY_MERCHANT = 'ONEPAY'
+  ONEPAY_SERVER_KEY = 'UROI8FJO989FOIJ897YFJIJO87FD89F'
 
   GOOGLE_SERVER_KEY = 'AIzaSyB-CkC9hbVY0g8_p8FtTDRRml1cSb3BJZQ'
 

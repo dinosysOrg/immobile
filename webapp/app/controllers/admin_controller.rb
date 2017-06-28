@@ -1,6 +1,8 @@
-class AdminController < ApplicationController
-  before_action :authenticate_user!
+require 'openssl'
 
+class AdminController < ApplicationController
+  before_action :authenticate_user!, except: [:callback_budget]
+  skip_before_action :verify_authenticity_token , only: [:callback_budget]
 
   # ************************** #
   # Layout
@@ -226,14 +228,20 @@ class AdminController < ApplicationController
   end
 
   def callback_budget
-    authorize! :callback_budget, :admin
+    serverKey = request.headers["HTTP_SERVER_KEY"]
+    responseCode = params[:vpc_TxnResponseCode].to_i
 
-    responseCode = params[:vpc_TxnResponseCode]
-    amount = params[:vpc_Amount]
-    merchTxnRef = params[:vpc_MerchTxnRef]
-    userId = merchTxnRef.split('_')[0]
-    user = User::find(userId)
+    if serverKey == Constant::ONEPAY_SERVER_KEY and responseCode == 0
 
+      amount = params[:vpc_Amount].to_i
+      merchTxnRef = params[:vpc_MerchTxnRef]
+      userId = merchTxnRef.split('_')[0]
+
+      user = User::find(userId)
+      user.budget += amount/100
+      user.save
+
+    end
 
   end
 

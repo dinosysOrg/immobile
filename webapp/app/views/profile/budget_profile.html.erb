@@ -14,15 +14,15 @@
             </div>
           </div>
 
-          <input type="hidden" name="virtualPaymentClientURL" value="https://mtf.onepay.vn/onecomm-pay/vpc.op" >
+          <input type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL %>" >
           <input type="hidden" name="vpc_Version" value="2" >
           <input type="hidden" name="vpc_Currency" value="VND" >
           <input type="hidden" name="vpc_Command" value="pay" >
-          <input type="hidden" name="vpc_AccessCode" value="D67342C2" >
-          <input type="hidden" name="vpc_Merchant" value="ONEPAY" >
+          <input type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE %>" >
+          <input type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT %>" >
           <input type="hidden" name="vpc_Locale" value="vn" >
           <input type="hidden" name="vpc_ReturnURL" value="<%= root_url %>onepay/dr.php" >
-          <input type="hidden" name="vpc_MerchTxnRef" value="<%= current_user.id.to_s +'_'+ (0...16).map { (65 + rand(26)).chr }.join  %>" >
+          <input type="hidden" name="vpc_MerchTxnRef" value="<%= current_user.id.to_s + '_' + (0...16).map { (65 + rand(26)).chr }.join  %>" >
           <input type="hidden" name="vpc_OrderInfo" value="SW_NapTien" >
           <input type="hidden" name="AgainLink" value="<%= root_url %>profile/budget" >
           <input type="hidden" name="Title" value="onepay" >

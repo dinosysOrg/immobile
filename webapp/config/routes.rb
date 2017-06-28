@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   delete 'profile/project/:id', to: 'admin#delete_project'
   post 'profile/project', to: 'admin#post_project'
   post 'profile/project/:id/is_home', to: 'admin#is_home_project'
-  get 'profile/budget/callback', to: 'admin#callback_budget'
+  post 'profile/budget/callback', to: 'admin#callback_budget'
 
   # Photo
   get 'photo/:user_id/:name', to: 'photo#load_avatar'

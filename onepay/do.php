@@ -42,6 +42,9 @@ ksort ($_POST);
 $appendAmp = 0;
 
 foreach($_POST as $key => $value) {
+    if($key == "vpc_Amount") {
+        $value = $value . '00';
+    }
 
     // create the md5 input and URL leaving out any fields that have no value
     // tạo chuỗi đầu dữ liệu những tham số có dữ liệu
