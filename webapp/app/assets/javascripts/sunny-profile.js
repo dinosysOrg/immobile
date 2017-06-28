@@ -102,6 +102,23 @@ function checkHouseTotal(){
     $('.edit-house-total span').html(total + ' vnd x '+dateDiff+' ngày = '+(total*dateDiff)+' vnd');
 }
 
+// Check house total change
+/* ------------------------------------------------ */
+var handleSwitchPayment = function(){
+    $('input[type=radio][name=payment_type]').change(function() {
+        var url = $('#form_payment').attr("action");
+
+        if (this.value == 'internal') {
+            $('.input-payment-internal').prop('disabled', false);
+            $('.input-payment-external').prop('disabled', true);
+            $('#form_payment').attr("action", url.replace("do_ex.php", "do.php"));
+        }else if (this.value == 'external') {
+            $('.input-payment-internal').prop('disabled', true);
+            $('.input-payment-external').prop('disabled', false);
+            $('#form_payment').attr("action", url.replace("do.php", "do_ex.php"));
+        }
+    });
+}
 
 // Api Delete house
 /* ------------------------------------------------ */
@@ -145,5 +162,6 @@ $(document).ready(function(){
     handleModalRemove();
     handlePhotoRemove();
     handleHouseTotal();
+    handleSwitchPayment();
 
 });

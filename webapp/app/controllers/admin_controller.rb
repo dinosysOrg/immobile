@@ -230,7 +230,6 @@ class AdminController < ApplicationController
   def callback_budget
     serverKey = params[:server_key]
     responseCode = params[:vpc_TxnResponseCode].to_i
-    puts(serverKey)
 
     if serverKey == Constant::ONEPAY_SERVER_KEY and responseCode == 0
 

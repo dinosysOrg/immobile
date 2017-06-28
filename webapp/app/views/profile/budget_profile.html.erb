@@ -1,11 +1,10 @@
-
 <div class="content edit-content">
   <!--<div class="panel-heading">-->
   <!--<h4 class="edit-title">Sửa thông tin cá nhân</h4>-->
   <!--</div>-->
 
   <div class="panel-body panel-editor">
-    <%= form_tag((root_url.sub! 'http://', 'https://' + 'onepay/do.php'), method: 'post') do %>
+    <%= form_tag((root_url.sub! 'http://', 'https://') + 'onepay/do.php', method: 'post', id: :form_payment ) do %>
 
         <div class="form-horizontal">
           <div class="form-group">
@@ -14,19 +13,25 @@
             </div>
           </div>
 
-          <input type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL %>" >
-          <input type="hidden" name="vpc_Version" value="2" >
-          <input type="hidden" name="vpc_Currency" value="VND" >
-          <input type="hidden" name="vpc_Command" value="pay" >
-          <input type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE %>" >
-          <input type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT %>" >
-          <input type="hidden" name="vpc_Locale" value="vn" >
-          <input type="hidden" name="vpc_ReturnURL" value="<%= root_url.sub! 'http://', 'https://' %>onepay/dr.php" >
-          <input type="hidden" name="vpc_MerchTxnRef" value="<%= current_user.id.to_s + '_' + (0...16).map { (65 + rand(26)).chr }.join  %>" >
-          <input type="hidden" name="vpc_OrderInfo" value="SW_NapTien" >
-          <input type="hidden" name="AgainLink" value="<%= root_url.sub! 'http://', 'https://' %>profile/budget" >
-          <input type="hidden" name="Title" value="onepay" >
-          <input type="hidden" name="vpc_TicketNo" value="<%= request.remote_ip %>" >
+          <input type="hidden" name="vpc_Version" value="2">
+          <input type="hidden" name="vpc_Command" value="pay">
+
+          <input class="input-payment-internal" type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE %>">
+          <input class="input-payment-internal" type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT %>">
+          <input class="input-payment-internal" type="hidden" name="vpc_ReturnURL" value="<%= root_url.sub! 'http://', 'https://' %>onepay/dr.php">
+          <input class="input-payment-internal" type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL %>">
+
+          <input class="input-payment-external" type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE_EX %>" disabled="disabled">
+          <input class="input-payment-external" type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT_EX %>" disabled="disabled">
+          <input class="input-payment-external" type="hidden" name="vpc_ReturnURL" value="<%= root_url.sub! 'http://', 'https://' %>onepay/dr_ex.php" disabled="disabled">
+          <input class="input-payment-external" type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL_EX %>" disabled="disabled">
+
+          <input type="hidden" name="vpc_Locale" value="vn">
+          <input type="hidden" name="vpc_MerchTxnRef" value="<%= current_user.id.to_s + '_' + (0...16).map { (65 + rand(26)).chr }.join %>">
+          <input type="hidden" name="vpc_OrderInfo" value="SW_NapTien">
+          <input type="hidden" name="AgainLink" value="<%= root_url.sub! 'http://', 'https://' %>profile/budget">
+          <input type="hidden" name="Title" value="onepay">
+          <input type="hidden" name="vpc_TicketNo" value="<%= request.remote_ip %>">
 
           <div class="form-group">
             <label class="col-md-2 control-label">Tiền trong ví</label>
@@ -36,9 +41,28 @@
           </div>
 
           <div class="form-group">
-            <label class="col-md-2 control-label">Số tiền nạp vào</label>
+            <label class="col-md-2 control-label"></label>
             <div class="col-md-8">
-              <input  class="form-control" value="" name="vpc_Amount" type="number" min="0">
+              <label class="radio-inline">
+                <input type="radio" value="internal" checked="" name="payment_type">
+                Thẻ nội địa
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="external" name="payment_type">
+                Thẻ quốc tế
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Số tiền nạp vào</label>
+            <div class="col-md-6">
+              <input class="form-control" value="" name="vpc_Amount" type="number" min="0">
+            </div>
+            <div class="col-md-2">
+              <select class="form-control input-payment-internal" name="vpc_Currency" >
+                <option value="VND">VND</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
