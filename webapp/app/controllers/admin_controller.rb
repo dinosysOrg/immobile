@@ -229,6 +229,10 @@ class AdminController < ApplicationController
 
   def callback_budget
     serverKey = request.headers["HTTP_SERVER_KEY"]
+    unless serverKey.present?
+      serverKey = request.headers["SERVER_KEY"]
+    end
+
     responseCode = params[:vpc_TxnResponseCode].to_i
     puts(serverKey)
     puts(responseCode)
