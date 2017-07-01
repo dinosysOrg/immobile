@@ -22,8 +22,11 @@
 // To not create a secure hash, let SECURE_SECRET be an empty string - ""
 // $SECURE_SECRET = "secure-hash-secret";
 $SECURE_SECRET = "A3EFDFABA8653DF2342E8DAC29B51AF0";
-// $SERVER = "http://localhost:3000";
-$SERVER = "https://" . getenv('HTTP_HOST');
+if (strpos(getenv('HTTP_HOST'), 'localhost') !== false) {
+	$SERVER = "http://" . getenv('HTTP_HOST') . ":3000";
+}else{
+	$SERVER = "https://" . getenv('HTTP_HOST');
+}
 $SERVER_KEY = "UROI8FJO989FOIJ897YFJIJO87FD89F";
 
 
@@ -224,7 +227,7 @@ if($hashValidated=="CORRECT" && $txnResponseCode=="0"){
 <title><?php $title;?></title>
 <meta http-equiv="Content-Type" content="text/html, charset=utf8">
 <style type="text/css">
-<!--
+
 h1 {
 	font-family: Arial, sans-serif;
 	font-size: 24pt;
@@ -356,7 +359,7 @@ input {
 .button-back {
 	text-align: center;
 }
--->
+
 </style>
 
 </head>
@@ -380,7 +383,7 @@ input {
 </center>
 
 <div class="button-back">
-	<button><a href="/profile/budget">Quay lại bảng điều khiển</a></button>
+	<button><a href="<?php echo $SERVER; ?>/profile/budget">Quay lại bảng điều khiển</a></button>
 </div>
 
 <center>

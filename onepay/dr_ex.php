@@ -10,8 +10,11 @@
 // To not create a secure hash, let SECURE_SECRET be an empty string - ""
 // $SECURE_SECRET = "secure-hash-secret";
 $SECURE_SECRET = "6D0870CDE5F24F34F3915FB0045120DB";
-// $SERVER = "http://localhost:3000";
-$SERVER = "https://" . getenv('HTTP_HOST');
+if (strpos(getenv('HTTP_HOST'), 'localhost') !== false) {
+    $SERVER = "http://" . getenv('HTTP_HOST') . ":3000";
+}else{
+    $SERVER = "https://" . getenv('HTTP_HOST');
+}
 $SERVER_KEY = "UROI8FJO989FOIJ897YFJIJO87FD89F";
 
 // get and remove the vpc_TxnResponseCode code from the response fields as we
@@ -156,7 +159,7 @@ if($hashValidated=="CORRECT" && $txnResponseCode=="0"){
     <title><?php echo $title;?> - <?php echo $errorTxt;?>Response Page</title>
     <meta http-equiv="Content-Type" content="text/html, charset=utf8">
     <style type="text/css">
-        <!--
+
         h1 {
             font-family: Arial, sans-serif;
             font-size: 24pt;
@@ -283,106 +286,36 @@ if($hashValidated=="CORRECT" && $txnResponseCode=="0"){
             background: none;
         }
 
-        -->
+
+.button-back {
+    text-align: center;
+}
+
     </style>
 </head>
 <body>
+
+<!-- start branding table -->
 <table width='100%' border='2' cellpadding='2' bgcolor='#0074C4'>
     <tr>
         <td bgcolor='#CED7EF' width='90%'>
-            <h2 class='co'>&nbsp;Payment Client Example</h2>
+        <h2 class='co'>&nbsp;Kết quả giao dịch</h2>
         </td>
         <td bgcolor='#0074C4' align='center'>
-            <h3 class='co'>OnePAY</h3>
+        <h3 class='co'>OnePAY</h3>
         </td>
     </tr>
 </table>
+<!-- end branding table -->
+<!-- End Branding Table -->
 <center>
     <h1><?php echo $transStatus;?></h1>
 </center>
-<center>
-    <table id="background-image" summary="Meeting Results">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Value</th>
-            <th scope="col">Description</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td align="center" colspan="4"></td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr>
-            <td><strong><i>Merchant ID </i></strong></td>
-            <td><?php
-            echo $merchantID;
-                ?></td>
-            <td>Được cấp bởi OnePAY</td>
-        </tr>
-        <tr>
-            <td><strong><i>Merchant Transaction Reference</i></strong></td>
-            <td><?php
-            echo $merchTxnRef;
-                ?></td>
-            <td>ID của giao dịch gửi từ website merchant</td>
-        </tr>
-        <tr>
-            <td><strong><i>Transaction OrderInfo</i></strong></td>
-            <td><?php
-            echo $orderInfo;
-                ?></td>
-            <td>Tên hóa đơn</td>
-        </tr>
-        <tr>
-            <td><strong><i>Purchase Amount</i></strong></td>
-            <td><?php
-            echo $amount;
-                ?></td>
-            <td>Số tiền được thanh toán</td>
-        </tr>
 
-        <tr>
-            <td><strong><i>VPC Transaction Response Code </i></strong></td>
-            <td><?php
-            echo $txnResponseCode;
-                ?></td>
-            <td>Mã trạng thái giao dịch trả về</td>
-        </tr>
-        <tr>
-            <td><strong><i>Transaction Response Code Description </i></strong></td>
-            <td><?php echo getResponseDescription($txnResponseCode);
-                ?></td>
-            <td>Trạng thái giao dịch</td>
-        </tr>
-        <tr>
-            <td><strong><i>Message</i></strong></td>
-            <td><?php
-            echo $message;
-                ?></td>
-            <td>Thông báo từ cổng thanh toán</td>
-        </tr>
-<?php
-// only display the following fields if not an error condition
-        if ($txnResponseCode != "7" && $txnResponseCode != "No Value Returned") {
-            ?>
-        <tr>
-            <td><strong><i>Transaction Number</i></strong></td>
-            <td><?php
-    echo $transactionNo;
-                ?></td>
-            <td>ID giao dịch trên cổng thanh toán</td>
-        </tr>
+<div class="button-back">
+    <button><a href="<?php echo $SERVER; ?>/profile/budget">Quay lại bảng điều khiển</a></button>
+</div>
 
-                <?php
-
-        }
-        ?>
-        </tbody>
-    </table>
-</center>
 </body>
 </html>
 

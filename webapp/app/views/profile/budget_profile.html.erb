@@ -3,8 +3,16 @@
   <!--<h4 class="edit-title">Sửa thông tin cá nhân</h4>-->
   <!--</div>-->
 
+  <%
+    if root_url.include? Constant::LOCALHOST
+      paymentUrl = root_url.sub! ':'+request.port.to_s, ''
+    else
+      paymentUrl = root_url.sub! 'http://', 'https://'
+    end
+  %>
+
   <div class="panel-body panel-editor">
-    <%= form_tag((root_url.sub! 'http://', 'https://') + 'onepay/do.php', method: 'post', id: :form_payment ) do %>
+    <%= form_tag(paymentUrl + 'onepay/do.php', method: 'post', id: :form_payment ) do %>
 
         <div class="form-horizontal">
           <div class="form-group">
@@ -18,12 +26,12 @@
 
           <input class="input-payment-internal" type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE %>">
           <input class="input-payment-internal" type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT %>">
-          <input class="input-payment-internal" type="hidden" name="vpc_ReturnURL" value="<%= root_url.sub! 'http://', 'https://' %>onepay/dr.php">
+          <input class="input-payment-internal" type="hidden" name="vpc_ReturnURL" value="<%= paymentUrl %>onepay/dr.php">
           <input class="input-payment-internal" type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL %>">
 
           <input class="input-payment-external" type="hidden" name="vpc_AccessCode" value="<%= Constant::ONEPAY_ACCESSCODE_EX %>" disabled="disabled">
           <input class="input-payment-external" type="hidden" name="vpc_Merchant" value="<%= Constant::ONEPAY_MERCHANT_EX %>" disabled="disabled">
-          <input class="input-payment-external" type="hidden" name="vpc_ReturnURL" value="<%= root_url.sub! 'http://', 'https://' %>onepay/dr_ex.php" disabled="disabled">
+          <input class="input-payment-external" type="hidden" name="vpc_ReturnURL" value="<%= paymentUrl %>onepay/dr_ex.php" disabled="disabled">
           <input class="input-payment-external" type="hidden" name="virtualPaymentClientURL" value="<%= Constant::ONEPAY_URL_EX %>" disabled="disabled">
 
           <input type="hidden" name="vpc_Locale" value="vn">

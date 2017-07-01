@@ -5,6 +5,8 @@
   </div>
 
   <div class="panel-body panel-editor">
+    <input type="hidden" id="user-budget" value="<%= current_user.budget %>">
+
     <%= form_tag('/profile/post/new', method: 'post', multipart: true) do %>
         <div class="form-horizontal">
           <div class="form-group">
@@ -192,7 +194,7 @@
               <% services.each_with_index do |service, idx| %>
                   <label class="checkbox-inline" style="width: 100%; margin: 0px;">
                     <% if service.identifier == '1001' %>
-                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " checked disabled data-price="<%= service.price %>">
+                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " checked data-price="<%= service.price %>">
                     <% else %>
                         <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " data-price="<%= service.price %>">
                     <% end %>
@@ -204,8 +206,9 @@
 
           <div class="form-group">
             <label class="col-md-2 control-label">Tổng chi phí</label>
-            <div class="col-md-8 edit-house-total">
+            <div class="col-md-8 edit-house-total" >
               <span></span>
+              <input type="hidden" data-total="0">
             </div>
           </div>
 
@@ -221,3 +224,25 @@
   </div>
 </div>
 
+
+<!-- #modal-alert -->
+<div class="modal fade" id="modal-alert-budget">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Có lỗi xảy ra</h4>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger m-b-0">
+          <h4><i class="fa fa-info-circle"></i> Tiền trong ví không đủ</h4>
+          <p>Số tiền hiện tại trong ví của bạn là <%= current_user.budget %> vnd, không đủ để thực hiện giao dịch. Vui lòng nạp thêm tiền vào ví!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Thoát</a>
+        <a href="javascript:;" class="btn btn-sm btn-danger" data-dismiss="modal" id="model-button-add-budget">Nạp tiền</a>
+      </div>
+    </div>
+  </div>
+</div>

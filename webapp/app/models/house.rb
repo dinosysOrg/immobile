@@ -19,6 +19,7 @@ class House < ActiveRecord::Base
     self.description = params[:description]
     self.host_type = params[:host_type]
     self.matterport_url = params[:matterport_url]
+    self.link = ''
 
     self.status = Constant::HOUSE_STATUS_PENDING
     if params[:for_rent] == 'true'

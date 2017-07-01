@@ -21,6 +21,9 @@ class Constant < ActiveRecord::Base
   HOUSE_STATUS_APPROVE = 'approve'
   HOUSE_STATUS_REJECT = 'reject'
 
+  # Host
+  LOCALHOST = "localhost"
+
   # Response
   MESSAGE_FAIL = "Fail!"
   MESSAGE_SUCCESS = "Success!"
@@ -30,6 +33,7 @@ class Constant < ActiveRecord::Base
   STATUS_CODE_SUCCESS = 1
   STATUS_NO_RECORD = 2
 
+  # AWS / Minio
   S3_BUCKET = 'sunnyworld'
 
 end

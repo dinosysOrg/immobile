@@ -46,6 +46,14 @@ $(document)
         }else{
             $('#datepicker').removeClass('parsley-error');
         }
+
+        if(parseInt($('.edit-house-total input').data('total')) > parseInt($('#user-budget').val()) ){
+            $('#modal-alert-budget').modal('show');
+            e.preventDefault(); //prevent the default action
+        }else{
+
+        }
+
     });
 
 // Modal Remove Item
@@ -68,6 +76,11 @@ var handleModalRemove = function() {
     });
 };
 
+var handleModalBudget = function () {
+    $('#model-button-add-budget').click(function () {
+        window.open('/profile/budget', '_blank');
+    })
+};
 
 // Remove Photo in House
 /* ------------------------------------------------ */
@@ -95,11 +108,13 @@ function checkHouseTotal(){
     var dateDiff = parseInt((pickDate-currentDate)/(24*3600*1000)) + 1;
 
     var total = 0;
-    $('editor-services').each(function(){
-        total += parseInt($(this).data('price'));
+    $('.editor-services').each(function(){
+        if ($(this).is(":checked"))
+            total += parseInt($(this).data('price'));
     });
 
     $('.edit-house-total span').html(total + ' vnd x '+dateDiff+' ngày = '+(total*dateDiff)+' vnd');
+    $('.edit-house-total input').attr('data-total', (total*dateDiff));
 }
 
 // Check house total change
@@ -163,5 +178,5 @@ $(document).ready(function(){
     handlePhotoRemove();
     handleHouseTotal();
     handleSwitchPayment();
-
+    handleModalBudget();
 });

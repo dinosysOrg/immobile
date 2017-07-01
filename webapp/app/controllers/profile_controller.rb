@@ -85,16 +85,16 @@ class ProfileController < ApplicationController
     house = House.new
     house.user_id = userId
     house.is_available = true
-    house.save
-
-    house.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
-    house.link += '-'+house.id.to_s
 
     house.disable_at = Time.strptime(params[:disable_at], '%m/%d/%Y')
     house.save_house(house, params)
 
+    house.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
+    house.link += '-'+house.id.to_s
+    house.save
+
     contract = Contract.create_contract(house, userId)
-    contract.add_service(params)
+    contract.add_service(house, params, current_user)
 
     if Photo.create_photo(house, userId, params)
       redirect_to action: 'edit_photo', link: house.link
