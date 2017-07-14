@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount Monologue::Engine, at: '/blog'
-
   # Profile
   get 'profile/post/new', to: 'profile#new_house'
   get 'profile/post/:link', to: 'profile#edit_house'
