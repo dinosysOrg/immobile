@@ -4,7 +4,7 @@ CREATE DATABASE :DB_NAME
 --		LC_COLLATE = 'en-US'
 --		LC_CTYPE = 'en-US'
         TEMPLATE=template0;
-\connect echoop;
+\connect immobile;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
