@@ -32,7 +32,7 @@ gem 'cancancan', '~> 1.9'
 # Use log4r for logging
 gem 'log4r'
 # Blog
-# gem 'monologue'
+gem 'monologue'
 # Page
 gem 'kaminari'
 # S3 Minio
