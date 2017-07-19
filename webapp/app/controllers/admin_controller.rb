@@ -1,4 +1,5 @@
 require 'openssl'
+require 'json'
 
 class AdminController < ApplicationController
   before_action :authenticate_user!, except: [:callback_budget, :webhook_github]
@@ -250,7 +251,7 @@ class AdminController < ApplicationController
 
   def webhook_github
     if params[:token].to_s == Constant::WEBHOOK_TOKEN
-      json_body = JSON.parse(request.body.read)
+      json_body = JSON.parse(params[:payload])
       if json_body['ref'].present?
         branch = json_body['ref'].split('/').last
         if branch.to_s == Constant::BRANCH_MASTER
