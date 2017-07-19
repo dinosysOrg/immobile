@@ -2,7 +2,7 @@ require 'openssl'
 
 class AdminController < ApplicationController
   before_action :authenticate_user!, except: [:callback_budget]
-  skip_before_action :verify_authenticity_token, only: [:callback_budget]
+  skip_before_action :verify_authenticity_token, only: [:callback_budget, :webhook_bitbucket]
 
   # ************************** #
   # Layout
