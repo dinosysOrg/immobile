@@ -246,7 +246,27 @@ class AdminController < ApplicationController
       render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
     end
 
+  end
 
+  def webhook_github
+    if params[:token].to_s == Constant::WEBHOOK_TOKEN
+      # json_body = JSON.parse(request.body.read)
+      # if json_body['push'].present?
+      #   if json_body['push']['changes'].size > 0
+      #     json_change = json_body['push']['changes'][0]
+      #     json_new = json_change['new']
+      #     if json_new['name'].to_s == Constant::BRANCH_MASTER
+      #       # Create new webhook
+      #       Thread.new do
+      #         system('bash update.sh')
+      #       end
+      #     end
+      #   end
+      # end
+      render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
+    else
+      render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
+    end
   end
 
 end
