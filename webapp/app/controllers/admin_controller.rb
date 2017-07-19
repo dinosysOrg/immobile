@@ -251,14 +251,15 @@ class AdminController < ApplicationController
 
   def webhook_github
     if params[:token].to_s == Constant::WEBHOOK_TOKEN
+      # json_body = JSON.parse(request.body.read)
       json_body = JSON.parse(params[:payload])
       if json_body['ref'].present?
         branch = json_body['ref'].split('/').last
         if branch.to_s == Constant::BRANCH_MASTER
           # Create new webhook
-          Thread.new do
-            system('bash update.sh')
-          end
+          webhook = Webhook.new
+          webhook.save
+          webhook.update_script
         end
       end
       render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)

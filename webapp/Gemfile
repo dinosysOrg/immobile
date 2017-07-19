@@ -56,6 +56,7 @@ gem 'ruby-hmac'
 
 # Delay Job
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 # Cron
 gem 'whenever'
