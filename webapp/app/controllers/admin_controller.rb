@@ -2,7 +2,7 @@ require 'openssl'
 
 class AdminController < ApplicationController
   before_action :authenticate_user!, except: [:callback_budget]
-  skip_before_action :verify_authenticity_token , only: [:callback_budget]
+  skip_before_action :verify_authenticity_token, only: [:callback_budget]
 
   # ************************** #
   # Layout
@@ -250,19 +250,16 @@ class AdminController < ApplicationController
 
   def webhook_github
     if params[:token].to_s == Constant::WEBHOOK_TOKEN
-      # json_body = JSON.parse(request.body.read)
-      # if json_body['push'].present?
-      #   if json_body['push']['changes'].size > 0
-      #     json_change = json_body['push']['changes'][0]
-      #     json_new = json_change['new']
-      #     if json_new['name'].to_s == Constant::BRANCH_MASTER
-      #       # Create new webhook
-      #       Thread.new do
-      #         system('bash update.sh')
-      #       end
-      #     end
-      #   end
-      # end
+      json_body = JSON.parse(request.body.read)
+      if json_body['ref'].present?
+        branch = json_body['ref'].split('/').last
+        if branch.to_s == Constant::BRANCH_MASTER
+          # Create new webhook
+          Thread.new do
+            system('bash update.sh')
+          end
+        end
+      end
       render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
     else
       render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)

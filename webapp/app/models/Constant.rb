@@ -4,6 +4,7 @@ class Constant < ActiveRecord::Base
   ONEPAY_URL = 'https://mtf.onepay.vn/onecomm-pay/vpc.op'
   ONEPAY_URL_EX = 'https://mtf.onepay.vn/vpcpay/vpcpay.op'
   WEBHOOK_TOKEN = 'sunnyworld2017'
+  BRANCH_MASTER = 'master'
 
   ONEPAY_ACCESSCODE = 'D67342C2'
   ONEPAY_MERCHANT = 'ONEPAY'
