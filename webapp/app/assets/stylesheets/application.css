@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= stub 'editor-style'
+ *= stub 'editor-animate'
+ *= stub 'editor-default'
+ *= stub 'editor-style-responsive'
  */
