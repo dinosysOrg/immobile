@@ -8,4 +8,24 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( editor-style.css editor-default.css editor-animate.css editor-style-responsive.css )
+Rails.application.config.assets.precompile += %w(
+  editor-style.css
+  editor-default.css
+  editor-animate.css
+  editor-style-responsive.css
+
+  lightbox.css
+  gallery.demo.js
+  sunny-detail.js
+  sunny-home.js
+  qrcode.min.js
+  lightbox-2.6.min.js
+
+  jquery-1.9.1
+  jquery.isotope.js
+
+  editor-apps.js
+  editor-pace.js
+  sunny-admin.js
+  sunny-profile.js
+  )
