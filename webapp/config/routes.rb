@@ -51,4 +51,7 @@ Rails.application.routes.draw do
       :sessions => 'devise/sessions_custom'
   }
 
+  # Github
+  post 'api/webhook/github', to: 'admin#webhook_github'
+
 end
