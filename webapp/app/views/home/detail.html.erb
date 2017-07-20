@@ -3,6 +3,9 @@
 <link href="/assets/lightbox.css" rel="stylesheet"/>
 <!-- end css -->
 
+<%= javascript_include_tag 'jquery.isotope', 'gallery.demo', 'sunny-detail', 'qrcode.min', 'lightbox-2.6.min', 'data-turbolinks-track' => "reload" %>
+
+
 <div class="detail-container">
 
   <!-- Begin Content -->
@@ -170,13 +173,6 @@
 </div>
 <!-- End Gallery -->
 
-<!-- begin script -->
-<script src="/assets/jquery-1.9.1.js"></script>
-<script src="/assets/jquery.isotope.js"></script>
-<script src="/assets/lightbox-2.6.min.js"></script>
-<script src="/assets/gallery.demo.js"></script>
-<script src="/assets/sunny-detail.js"></script>
-<script src="/assets/qrcode.min.js"></script>
 <script>
   $(document).ready(function () {
     Gallery.init();

@@ -13,18 +13,12 @@
 
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <link href="/assets/jquery-ui.css" rel="stylesheet"/>
-  <link href="/assets/bootstrap.css" rel="stylesheet"/>
-  <link href="/assets/font-awesome.css" rel="stylesheet"/>
-  <link href="/assets/animate.css" rel="stylesheet"/>
-  <link href="/assets/style.css" rel="stylesheet"/>
-  <link href="/assets/style-responsive.css" rel="stylesheet"/>
-  <link href="/assets/default.css" id="theme" rel="stylesheet"/>
-  <link href="/assets/sunny-home.scss" rel="stylesheet"/>
+  <%= stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => "true" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => "reload" %>
+
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <!-- ================== BEGIN BASE JS ================== -->
-  <script src="/assets/pace.js"></script>
   <!-- ================== END BASE JS ================== -->
 </head>
 <body data-spy="scroll" data-target="#header-navbar" data-offset="51">
@@ -42,7 +36,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="/" class="navbar-brand">
-          <img class="header-logo" src="/assets/logo_sunnyworld.png"/>
+          <img class="header-logo" src="<%= asset_url("logo_sunnyworld.png") %>"/>
         </a>
       </div>
       <!-- end navbar-header -->
@@ -68,7 +62,7 @@
   <!-- begin #footer -->
   <div id="footer" class="footer">
     <div class="container">
-      <img class="header-logo" src="/assets/logo_sunnyworld.png"/>
+      <img class="header-logo" src="<%= asset_url("logo_sunnyworld.png") %>"/>
       <p>
         &copy; Copyright Sunnyworld 2017 <br/>
         Created by <a href="http://www.dinosys.vn">Dinosys</a> <br/>
@@ -102,13 +96,7 @@
   </div>
 </div>
 
-<!-- ================== BEGIN BASE JS ================== -->
-<script src="/assets/jquery-migrate-1.1.0.js"></script>
-<script src="/assets/bootstrap.js"></script>
 
-<script src="/assets/jquery.cookie.js"></script>
-<script src="/assets/scrollMonitor.js"></script>
-<script src="/assets/apps.js"></script>
 <!-- ================== END BASE JS ================== -->
 
 <script>

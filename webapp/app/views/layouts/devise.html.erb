@@ -4,13 +4,8 @@
   <title>Login</title>
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <link href="/assets/jquery-ui.css" rel="stylesheet"/>
-  <link href="/assets/bootstrap.css" rel="stylesheet">
-  <link href="/assets/font-awesome.css" rel="stylesheet">
-  <link href="/assets/editor-animate.css" rel="stylesheet">
-  <link href="/assets/editor-style.css" rel="stylesheet">
-  <link href="/assets/editor-style-responsive.css" rel="stylesheet">
-  <link href="/assets/editor-default.css" rel="stylesheet" id="theme">
+  <%= stylesheet_link_tag "application", "editor-style", "editor-default", "editor-animate", "editor-style-responsive", :media => "all", "data-turbolinks-track" => "reload" %>
+
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -22,4 +17,3 @@
   <%= render 'devise/sessions/content' %>
 </body>
 </html>
-

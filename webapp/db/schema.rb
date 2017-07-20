@@ -15,6 +15,9 @@ ActiveRecord::Schema.define(version: 20170719051246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
+  enable_extension "postgis"
 
   create_table "contract_services", id: :bigserial, force: :cascade do |t|
     t.integer  "contract_id", limit: 8,                   null: false
@@ -109,48 +112,15 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.integer  "project_id",      limit: 8
     t.integer  "user_id",         limit: 8
     t.integer  "estate_id",       limit: 8
+    t.boolean  "is_show",                                               default: true
     t.boolean  "is_home",                                               default: false
     t.decimal  "latitude",                    precision: 16, scale: 10
     t.decimal  "longitude",                   precision: 16, scale: 10
+    t.datetime "disable_at",                                            default: "now()"
     t.datetime "created_at",                                            default: "now()"
     t.datetime "updated_at",                                            default: "now()"
     t.boolean  "is_show",                                               default: true
     t.datetime "disable_at",                                            default: "now()"
-  end
-
-  create_table "monologue_posts", force: :cascade do |t|
-    t.boolean  "published"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "content"
-    t.string   "url"
-    t.datetime "published_at"
-  end
-
-  add_index "monologue_posts", ["url"], name: "index_monologue_posts_on_url", unique: true, using: :btree
-
-  create_table "monologue_taggings", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
-  end
-
-  add_index "monologue_taggings", ["post_id"], name: "index_monologue_taggings_on_post_id", using: :btree
-  add_index "monologue_taggings", ["tag_id"], name: "index_monologue_taggings_on_tag_id", using: :btree
-
-  create_table "monologue_tags", force: :cascade do |t|
-    t.string "name"
-  end
-
-  add_index "monologue_tags", ["name"], name: "index_monologue_tags_on_name", using: :btree
-
-  create_table "monologue_users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "photos", id: :bigserial, force: :cascade do |t|
@@ -172,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170719051246) do
 
   create_table "projects", id: :bigserial, force: :cascade do |t|
     t.string   "name",                     limit: 200,                                             null: false
+    t.string   "link",                     limit: 500
     t.string   "photo",                    limit: 500
     t.text     "description"
     t.string   "address",                  limit: 200
@@ -226,6 +197,16 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.datetime "updated_at",              default: "now()"
   end
 
+# Could not dump table "spatial_areas" because of following StandardError
+#   Unknown type 'geography' for column 'area'
+
+  create_table "spatial_ref_sys", primary_key: "srid", force: :cascade do |t|
+    t.string  "auth_name", limit: 256
+    t.integer "auth_srid"
+    t.string  "srtext",    limit: 2048
+    t.string  "proj4text", limit: 2048
+  end
+
   create_table "tags", id: :bigserial, force: :cascade do |t|
     t.string  "name",  limit: 100
     t.integer "count", limit: 8,   null: false
@@ -258,8 +239,9 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.string   "avatar",                 limit: 500
     t.string   "provider",               limit: 100
     t.string   "uid",                    limit: 500
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.boolean  "is_home",                            default: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.boolean  "is_available",                       default: true
     t.integer  "budget",                 limit: 8,   default: 0
     t.boolean  "is_home",                            default: true
