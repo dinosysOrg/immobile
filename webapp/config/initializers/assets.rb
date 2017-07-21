@@ -13,11 +13,14 @@ Rails.application.config.assets.precompile += %w(
   editor-default.css
   editor-animate.css
   editor-style-responsive.css
-
+  sunny-editor
   lightbox.css
+  pace.js
   gallery.demo.js
   sunny-detail.js
   sunny-home.js
+  sunny-search.js
+  sunny-editor.js
   qrcode.min.js
   lightbox-2.6.min.js
 
