@@ -2,7 +2,6 @@
 capybara-*.html
 .rspec
 /log
-/public/assets/*
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -44,3 +43,7 @@ bower.json
 
 .DS_Store
 **/.DS_Store
+
+
+
+webapp/public/assets/*

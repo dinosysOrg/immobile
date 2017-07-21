@@ -7,14 +7,10 @@
 
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <link href="/assets/jquery-ui.css" rel="stylesheet"/>
-  <link href="/assets/bootstrap.css" rel="stylesheet">
-  <link href="/assets/font-awesome.css" rel="stylesheet">
-  <link href="/assets/editor-animate.css" rel="stylesheet">
-  <link href="/assets/editor-style.css" rel="stylesheet">
-  <link href="/assets/editor-style-responsive.css" rel="stylesheet">
-  <link href="/assets/editor-default.css" rel="stylesheet" id="theme">
-  <link href="/assets/sunny-editor.scss" rel="stylesheet"/>
+  <%= stylesheet_link_tag "application", "editor-style", "editor-default", "editor-animate", "editor-style-responsive", :media => "all", "data-turbolinks-track" => "reload" %>
+  <%= javascript_include_tag "application", "editor-apps", "editor-pace",
+  "sunny-admin", "sunny-profile", "jquery-1.9.1" "data-turbolinks-track" => "reload" %>
+
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <!-- ================== BEGIN BASE JS ================== -->
@@ -124,20 +120,6 @@
 </div>
 <!-- end page container -->
 
-<!-- ================== BEGIN BASE JS ================== -->
-<script src="/assets/jquery-1.9.1.js"></script>
-<script src="/assets/jquery-migrate-1.1.0.js"></script>
-<script src="/assets/jquery-ui.min.js"></script>
-<script src="/assets/bootstrap.js"></script>
-<script src="/assets/jquery.slimscroll.min.js"></script>
-<script src="/assets/jquery.cookie.js"></script>
-<!-- ================== END BASE JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="/assets/editor-apps.js"></script>
-<script src="/assets/ui-modal-notification.min.js"></script>
-<script src="/assets/sunny-profile.js"></script>
-<script src="/assets/sunny-admin.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
