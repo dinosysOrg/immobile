@@ -1,3 +1,5 @@
+
+
 <div class="search-container">
 
   <!-- Begin Filter-->
@@ -153,7 +155,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho1.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho1.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 1</p>
               <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
@@ -171,7 +173,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho2.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho2.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 2</p>
               <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
@@ -188,7 +190,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho3.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho3.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 3</p>
               <p class="search-item-text-address">180 Pasteur, Quận 3, tp.HCM</p>
@@ -205,7 +207,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho4.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho4.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 4</p>
               <p class="search-item-text-address">228 Pasteur, Quận 3, tp.HCM</p>
@@ -222,7 +224,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho5.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho5.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 5</p>
               <p class="search-item-text-address">213 Pasteur, Quận 3, tp.HCM</p>
@@ -239,7 +241,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho6.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho6.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 6</p>
               <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
@@ -256,7 +258,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho7.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho7.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 7</p>
               <p class="search-item-text-address">93 Pasteur, Quận 3, tp.HCM</p>
@@ -273,7 +275,7 @@
       <a href="/detail/1">
         <div class="search-item">
           <div class="search-item-content">
-            <img class="search-item-cover" src="/assets/canho8.jpg"/>
+            <img class="search-item-cover" src="<%= asset_url("canho8.jpg") %>"/>
             <div class="search-item-text">
               <p class="search-item-text-title">Căn hộ mẫu số 8</p>
               <p class="search-item-text-address">204 Pasteur, Quận 3, tp.HCM</p>
@@ -296,9 +298,9 @@
 </div>
 
 <!-- begin script -->
-<script src="/assets/jquery-1.9.1.js"></script>
-<script src="/assets/sunny-search.js"></script>
-<script src="/assets/sunny-home.js"></script>
+
+<%= javascript_include_tag 'jquery-1.9.1', 'pace', 'sunny-search', 'sunny-home', 'data-turbolinks-track' => true %>
+
 <script type="text/javascript">
   function mapCallBack() {
     initMap();
