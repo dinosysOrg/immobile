@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [[ -z "${DB_HOST}" ]]; then read -p "Enter database host: " DB_HOST; fi
 if [[ -z "${DB_NAME}" ]]; then read -p "Enter database name: " DB_NAME; fi
 if [[ -z "${ROOT_PATH}" ]]; then read -p "Enter ROOT PATH: " ROOT_PATH; fi

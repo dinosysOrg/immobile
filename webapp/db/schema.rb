@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413035113) do
+ActiveRecord::Schema.define(version: 20170719051246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,16 +119,18 @@ ActiveRecord::Schema.define(version: 20170413035113) do
     t.datetime "disable_at",                                            default: "now()"
     t.datetime "created_at",                                            default: "now()"
     t.datetime "updated_at",                                            default: "now()"
+    t.boolean  "is_show",                                               default: true
+    t.datetime "disable_at",                                            default: "now()"
   end
 
   create_table "photos", id: :bigserial, force: :cascade do |t|
     t.integer  "user_id",     limit: 8
     t.integer  "house_id",    limit: 8
     t.integer  "project_id",  limit: 8
-    t.text     "description"
     t.string   "photo_url",   limit: 200
     t.datetime "created_at",              default: "now()"
     t.datetime "updated_at",              default: "now()"
+    t.text     "description"
   end
 
   create_table "project_conveniences", id: :bigserial, force: :cascade do |t|
@@ -170,6 +172,7 @@ ActiveRecord::Schema.define(version: 20170413035113) do
     t.decimal  "longitude",                            precision: 16, scale: 10
     t.datetime "created_at",                                                     default: "now()"
     t.datetime "updated_at",                                                     default: "now()"
+    t.string   "link",                     limit: 500
   end
 
   create_table "role_users", id: :bigserial, force: :cascade do |t|
@@ -241,6 +244,12 @@ ActiveRecord::Schema.define(version: 20170413035113) do
     t.datetime "updated_at",                                         null: false
     t.boolean  "is_available",                       default: true
     t.integer  "budget",                 limit: 8,   default: 0
+    t.boolean  "is_home",                            default: true
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "contract_services", "contracts", name: "contract_services_contract_id_fkey"
