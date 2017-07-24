@@ -43,3 +43,7 @@ bower.json
 
 .DS_Store
 **/.DS_Store
+
+
+
+webapp/public/assets/*
