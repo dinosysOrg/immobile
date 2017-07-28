@@ -12,12 +12,10 @@ class AdminController < ApplicationController
   def list_user
     authorize! :list_user, :admin
 
-    @search = params[:search]
-    if @search.present?
-      wildcard_search = "%#{@search}%"
-      @users = User::where("name LIKE ? OR email LIKE ?", wildcard_search, wildcard_search).order(created_at: :desc).page(params[:page]).per(20)
+    if params[:search].present?
+      @users = User.search(params[:search], params[:page], 20)
     else
-      @users = User::order(created_at: :desc).page(params[:page]).per(20)
+      @users = User.by_desc_order(params[:page], params[:per_page])
     end
 
     @pageType = 'list_user'
@@ -35,12 +33,10 @@ class AdminController < ApplicationController
   def list_project
     authorize! :list_project, :admin
 
-    @search = params[:search]
-    if @search.present?
-      wildcard_search = "%#{@search}%"
-      @projects = Project::where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+    if params[:search].present?
+      @projects = Project.search(params[:search], params[:page], 20)
     else
-      @projects = Project::where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+      @projects = Project.by_desc_order(params[:page], params[:per_page])
     end
 
     @pageType = 'list_project'
