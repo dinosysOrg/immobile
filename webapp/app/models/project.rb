@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
-  has_many :photos
+  include Search
 
+  has_many :photos
   scope :by_desc_order, -> (page_param, per_page) { where(:is_available => true).order(created_at: :desc).page(page_param).per(per_page) }
 
   def save_data(params)
@@ -52,7 +53,7 @@ class Project < ActiveRecord::Base
   def self.search(searh_param, page_param, per_page)
     wildcard_search = "%#{@searh_param}%"
     Project
-      .where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search)
+      .by_wildcard(wildcard_search)
       .where(:is_available => true).order(created_at: :desc).page(page_param).per(per_page)
   end
 end

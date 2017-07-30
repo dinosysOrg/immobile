@@ -18,7 +18,7 @@ class ProfileController < ApplicationController
     authorize! :edit_house, :profile
 
     @house = House::where(:link => params[:link]).first
-    @contract = Contract::where(:house_id => @house.id).first
+    @contract = Contract.where(:house_id => @house.id).first
 
     @pageType = 'edit_house'
     render :'edit_house', status: :ok, :layout => 'profile'
@@ -27,10 +27,10 @@ class ProfileController < ApplicationController
   def edit_photo
     authorize! :edit_photo, :profile
 
-    @house = House::where(:link => params[:link]).first
+    @house = House.where(:link => params[:link]).first
 
     @pageType = 'edit_photo'
-    render :'edit_photo', status: :ok, :layout => 'profile'
+    render :edit_photo, status: :ok, :layout => 'profile'
   end
 
   def list_house
@@ -40,38 +40,36 @@ class ProfileController < ApplicationController
     roleUser = RoleUser.where(:user_id => current_user.id).first
     @role = Role.find(roleUser.role_id)
 
-    @search = params[:search]
-    if @search.present?
-      wildcard_search = "%#{@search}%"
+    if params[:search].present?
       if @role.name == Constant::ROLE_ADMIN
-        @houses = House::where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.search(params[:search], params[:page], 20)
       else
-        @houses = House::where("name LIKE ? OR address LIKE ?", wildcard_search, wildcard_search).where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.search(params[:search], params[:page], 20, current_user.id)
       end
     else
       if @role.name == Constant::ROLE_ADMIN
-        @houses = House::where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
       else
-        @houses = House::where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
       end
     end
 
     @pageType = 'list_house'
-    render :'list_house', status: :ok, :layout => 'profile'
+    render :list_house, status: :ok, :layout => 'profile'
   end
 
   def edit_profile
     authorize! :edit_profile, :profile
 
     @pageType = 'edit_profile'
-    render :'edit_profile', status: :ok, :layout => 'profile'
+    render :edit_profile, status: :ok, :layout => 'profile'
   end
 
   def show_budget
     authorize! :show_budget, :profile
 
     @pageType = 'budget_profile'
-    render :'budget_profile', status: :ok, :layout => 'profile'
+    render :budget_profile, status: :ok, :layout => 'profile'
   end
 
   # ************************** #
@@ -107,10 +105,10 @@ class ProfileController < ApplicationController
     authorize! :put_house, :profile
     userId = current_user.id
 
-    house = House::find(params[:id])
+    house = House.find(params[:id])
     # clear houseFurniture and houseConvenience
-    HouseConvenience::where(:house_id => house.id).destroy_all
-    HouseFurniture::where(:house_id => house.id).destroy_all
+    HouseConvenience.where(:house_id => house.id).destroy_all
+    HouseFurniture.where(:house_id => house.id).destroy_all
 
     # clear services and add new
     # contract = Contract::where(:house_id => house.id).first
@@ -149,7 +147,7 @@ class ProfileController < ApplicationController
     authorize! :delete_house, :profile
     response = Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
 
-    house = House::find(params[:id])
+    house = House.find(params[:id])
     userId = current_user.id
     if userId == house.user_id
       house.is_available = false
