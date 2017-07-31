@@ -1,6 +1,7 @@
 require 'rest-client'
 
 class ProfileController < ApplicationController
+  include Responses
   before_action :authenticate_user!
 
   # ************************** #
@@ -145,7 +146,7 @@ class ProfileController < ApplicationController
 
   def delete_house
     authorize! :delete_house, :profile
-    response = Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
+    response = response_failure
 
     house = House.find(params[:id])
     userId = current_user.id
@@ -153,8 +154,7 @@ class ProfileController < ApplicationController
       house.is_available = false
       house.save
 
-      response.set_message(Constant::MESSAGE_SUCCESS)
-      response.set_status_code(Constant::STATUS_CODE_SUCCESS)
+      response = response_failure
     end
 
     render json: response
