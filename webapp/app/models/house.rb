@@ -1,7 +1,10 @@
 class House < ActiveRecord::Base
+  include Search
   has_many :house_conveniences
   has_many :house_furnitures
   has_many :photos
+
+
 
   def save_house(house, params)
 
@@ -71,5 +74,20 @@ class House < ActiveRecord::Base
     # wish list agent
     # budget
   end
+
+  def self.search(search_param, page_param, per_page, user_id = nil)
+    wildcard_search = "%#{search_param}%"
+    if user_id.present?
+        by_wildcard(wildcard_search)
+        .where(:user_id => user_id)
+        .where(:is_available => true)
+        .order(created_at: :desc).page(page_param).per(per_page)
+    else
+        by_wildcard(wildcard_search)
+        .where(:is_available => true)
+        .order(created_at: :desc).page(page_param).per(per_page)
+    end
+  end
+
 
 end

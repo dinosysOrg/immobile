@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Search
   scope :by_desc_order, -> (page, per_page) { order(created_at: :desc).page(page).per(per_page) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -73,7 +74,9 @@ class User < ActiveRecord::Base
 
   def self.search(search_param, page_param, per_page)
     wildcard_search = "%#{search_param}"
-    User::where("name LIKE ? OR email LIKE ?", wildcard_search, wildcard_search).order(created_at: :desc).page(page_param).per(per_page)
+    by_wildcard(wildcard_search)
+    .order(created_at: :desc)
+    .page(page_param).per(per_page)
   end
 
   def role(roleName, userID)

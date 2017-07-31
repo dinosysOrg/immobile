@@ -10,7 +10,6 @@ class AdminController < ApplicationController
   # ************************** #
 
   def list_user
-    authorize! :list_user, :admin
 
     if params[:search].present?
       @users = User.search(params[:search], params[:page], 20)
@@ -19,7 +18,7 @@ class AdminController < ApplicationController
     end
 
     @pageType = 'list_user'
-    render :'list_user', status: :ok, :layout => 'profile'
+    render :list_user, status: :ok, :layout => 'profile'
   end
 
   def edit_user
@@ -27,7 +26,7 @@ class AdminController < ApplicationController
 
     @user = User::find(params[:id])
 
-    render :'edit_user', status: :ok, :layout => 'profile'
+    render :edit_user, status: :ok, :layout => 'profile'
   end
 
   def list_project
@@ -40,7 +39,7 @@ class AdminController < ApplicationController
     end
 
     @pageType = 'list_project'
-    render :'list_project', status: :ok, :layout => 'profile'
+    render :list_project, status: :ok, :layout => 'profile'
   end
 
   def edit_project
@@ -48,22 +47,22 @@ class AdminController < ApplicationController
 
     @project = Project::find(params[:id])
 
-    render :'edit_project', status: :ok, :layout => 'profile'
+    render :edit_project, status: :ok, :layout => 'profile'
   end
 
   def new_project
     authorize! :new_project, :admin
 
-    render :'new_project', status: :ok, :layout => 'profile'
+    render :new_project, status: :ok, :layout => 'profile'
   end
 
   def edit_project_photo
     authorize! :edit_photo, :admin
 
-    @project = Project::where(:id => params[:id]).first
+    @project = Project.where(:id => params[:id]).first
 
     @pageType = 'edit_project_photo'
-    render :'edit_project_photo', status: :ok, :layout => 'profile'
+    render :edit_project_photo, status: :ok, :layout => 'profile'
   end
 
   # ************************** #
