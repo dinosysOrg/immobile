@@ -1,7 +1,7 @@
 require 'openssl'
-require 'json'
 
 class AdminController < ApplicationController
+  include Responses
   before_action :authenticate_user!, except: [:callback_budget, :webhook_github]
   skip_before_action :verify_authenticity_token, only: [:callback_budget, :webhook_github]
 
@@ -71,8 +71,6 @@ class AdminController < ApplicationController
 
   def edit_role
     authorize! :edit_role, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
-
     userId = params[:id]
     roleUser = RoleUser::where(:user_id => userId).first
 
@@ -80,7 +78,7 @@ class AdminController < ApplicationController
     roleUser.role_id = role.id
     roleUser.save
 
-    render json: response
+    render json: response_success
   end
 
   def put_user
@@ -105,19 +103,18 @@ class AdminController < ApplicationController
 
   def status_post
     authorize! :status_post, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     house = House::find(params[:id])
     status = params[:status]
     house.status = status
     house.save
 
-    render json: response
+    render json: response_success
+
   end
 
   def is_home_post
     authorize! :status_post, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     house = House::find(params[:id])
     status = params[:status]
@@ -128,12 +125,11 @@ class AdminController < ApplicationController
     end
     house.save
 
-    render json: response
+    render json: response_success
   end
 
   def is_home_user
     authorize! :status_post, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     user = User::find(params[:id])
     status = params[:status]
@@ -144,12 +140,11 @@ class AdminController < ApplicationController
     end
     user.save
 
-    render json: response
+    render json: response_success
   end
 
   def is_home_project
     authorize! :status_post, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     project = Project::find(params[:id])
     status = params[:status]
@@ -160,7 +155,7 @@ class AdminController < ApplicationController
     end
     project.save
 
-    render json: response
+    render json: response_success
   end
 
   def put_project
@@ -214,13 +209,12 @@ class AdminController < ApplicationController
 
   def delete_project
     authorize! :delete_project, :admin
-    response = Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
 
     project = Project::find(params[:id])
     project.is_available = false
     project.save
 
-    render json: response
+    render json: response_success
   end
 
   def callback_budget
@@ -237,9 +231,9 @@ class AdminController < ApplicationController
       user.budget += amount/100
       user.save
 
-      render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
+      render json: response_success
     else
-      render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
+      render json: response_failure
     end
 
   end
@@ -257,9 +251,9 @@ class AdminController < ApplicationController
           webhook.update_script
         end
       end
-      render json: Response.new(Constant::MESSAGE_SUCCESS, Constant::STATUS_CODE_SUCCESS)
+      render json: response_success
     else
-      render json: Response.new(Constant::MESSAGE_FAIL, Constant::STATUS_CODE_FAIL)
+      render json: response_failure
     end
   end
 
