@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 
   def self.search(search_param, page_param, per_page)
     wildcard_search = "%#{search_param}"
-    by_wildcard(wildcard_search)
+    by_wildcard_with_name_or_email_or_phone(wildcard_search)
     .order(created_at: :desc)
     .page(page_param).per(per_page)
   end
