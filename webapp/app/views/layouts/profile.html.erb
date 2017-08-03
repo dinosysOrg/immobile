@@ -7,14 +7,12 @@
 
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <%= stylesheet_link_tag "application", "editor-style", "editor-default", "editor-animate", "editor-style-responsive", :media => "all", "data-turbolinks-track" => "reload" %>
-  <%= javascript_include_tag "application", "editor-apps", "editor-pace",
-  "sunny-admin", "sunny-profile", "jquery-1.9.1" "data-turbolinks-track" => "reload" %>
+  <%= stylesheet_link_tag "application", "editor-style", "editor-default", "editor-animate", "sunny-editor", "editor-style-responsive", :media => "all", "data-turbolinks-track" => "reload" %>
+  <%= javascript_include_tag "jquery-1.9.1", "bootstrap", "application", "jquery-ui.min", "editor-apps", "editor-pace", "sunny-admin", "sunny-profile", "ui-modal-notification.min", "data-turbolinks-track" => "reload" %>
 
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <!-- ================== BEGIN BASE JS ================== -->
-  <script src="/assets/editor-pace.js"></script>
   <!-- ================== END BASE JS ================== -->
 
   <%= csrf_meta_tags %>

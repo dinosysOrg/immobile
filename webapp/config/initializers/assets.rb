@@ -15,6 +15,12 @@ Rails.application.config.assets.precompile += %w(
   editor-style-responsive.css
   sunny-editor
   lightbox.css
+  style.css
+
+  jquery-1.9.1
+  bootstrap.js
+  apps.js
+  scrollMonitor.js
   pace.js
   gallery.demo.js
   sunny-detail.js
@@ -24,11 +30,14 @@ Rails.application.config.assets.precompile += %w(
   qrcode.min.js
   lightbox-2.6.min.js
 
-  jquery-1.9.1
+
+  jquery-ui.min
   jquery.isotope.js
 
   editor-apps.js
   editor-pace.js
   sunny-admin.js
   sunny-profile.js
+
+  ui-modal-notification.min
   )
