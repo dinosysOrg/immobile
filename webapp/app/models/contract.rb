@@ -22,12 +22,11 @@ class Contract < ActiveRecord::Base
         total += service.price
       end
 
-      # TODO: check if have no require service
+      # TODO: optimize calc days
       totalDays = ((house.disable_at - DateTime.now.beginning_of_day).to_i / 1.day) + 1
-      current_user.budget -= total * totalDays
-      current_user.save
+      house.pending_money = totalDays
+      house.save
     end
-
   end
 
 end

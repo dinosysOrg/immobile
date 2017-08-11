@@ -90,4 +90,14 @@ class House < ActiveRecord::Base
   end
 
 
+  # deduct money of user's wallet when admin change status from pending to approve
+  def deduct_wallet
+    user = User::find(self.user_id)
+    user.budget -= self.pending_money
+    user.save
+
+    self.pending_money = 0
+    self.save
+  end
+
 end

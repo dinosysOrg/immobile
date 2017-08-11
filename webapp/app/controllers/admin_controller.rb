@@ -109,8 +109,11 @@ class AdminController < ApplicationController
     house.status = status
     house.save
 
-    render json: response_success
+    if house.status == Constant::HOUSE_STATUS_APPROVE
+      house.deduct_wallet
+    end
 
+    render json: response_success
   end
 
   def is_home_post

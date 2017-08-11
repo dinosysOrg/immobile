@@ -233,6 +233,7 @@ CREATE TABLE management.houses
   is_home boolean default false,
   latitude numeric(16,10),
   longitude numeric(16,10),
+  pending_money integer default 0,
   disable_at timestamp with time zone DEFAULT now(),
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now(),
