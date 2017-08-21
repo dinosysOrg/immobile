@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w(
   sunny-editor
   lightbox.css
   style.css
+  carousel
 
   jquery-1.9.1
   bootstrap.js

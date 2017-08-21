@@ -13,7 +13,7 @@
 
   <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <%= stylesheet_link_tag "application", "style", :media => "all", "data-turbolinks-track" => "true" %>
+  <%= stylesheet_link_tag "application", "style", "carousel", :media => "all", "data-turbolinks-track" => "true" %>
   <%= javascript_include_tag "jquery-1.9.1", "bootstrap", 'application', 'apps', 'scrollMonitor', 'pace', 'data-turbolinks-track' => "reload" %>
 
   <!-- ================== END BASE CSS STYLE ================== -->
@@ -48,6 +48,19 @@
           <li><a href="/rent">Cho thuê</a></li>
           <li><a href="/agent">Môi giới</a></li>
           <li><a href="/blog" data-click="scroll-to-target">Blog</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="btn btn-default no-color dropdown-toggle" type="button" data-toggle="dropdown">
+                <span>VN</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu no-color">
+                <li><a href="#">VN</a></li>
+                <li><a href="#">CN</a></li>
+                <li><a href="#">EN</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="/profile/posts">Đăng nhập</a></li>
         </ul>
       </div>
@@ -62,20 +75,48 @@
   <!-- begin #footer -->
   <div id="footer" class="footer">
     <div class="container">
-      <img class="header-logo" src="<%= asset_url("logo_sunnyworld.png") %>"/>
-      <p>
-        &copy; Copyright Sunnyworld 2017 <br/>
-        Created by <a href="http://www.dinosys.vn">Dinosys</a> <br/>
 
-        <a href="/contact">Contact us</a>
-      </p>
-      <p class="social-list">
-        <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
-        <a href="#"><i class="fa fa-instagram fa-fw"></i></a>
-        <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
-        <a href="#"><i class="fa fa-google-plus fa-fw"></i></a>
-        <a href="#"><i class="fa fa-dribbble fa-fw"></i></a>
-      </p>
+      <div class="row">
+        <div class="col-xs-6 col-md-3"><img class="header-logo" src="<%= asset_url("logo_sunnyworld.png") %>"/></div>
+        <div class="col-xs-6 col-md-6">
+          <div class="icon-footer-wrapper">
+            <div class="icon-footer-container">
+              <img class="icon-footer-img" src="<%= asset_url("ic-local-post-office.png") %>" alt="img"/>
+            </div>
+            <div style="display:inline-block;">
+                <div>info@sunnyworld.com.vn</div>
+            </div>
+          </div>
+          <div class="icon-footer-wrapper">
+            <div class="icon-footer-container">
+              <img class="icon-footer-img" src="<%= asset_url("ic-phone.png") %>" alt="img"/>
+            </div>
+            <div style="display:inline-block;">
+                <div>(028) 3920 6536 - (028) 3920 6537</div>
+            </div>
+          </div>
+          <div class="icon-footer-wrapper">
+            <div class="icon-footer-container">
+              <img class="icon-footer-img" src="<%= asset_url("ic-location.png") %>" alt="img"/>
+            </div>
+            <div style="display:inline-block;">
+                <div>193 Trần Hưng Đạo, Cô Giang, Quận 1, TP. Hồ Chí Minh</div>
+            </div>
+          </div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="contact-form-heading">Đăng ký để nhận tin tức sớm nhất từ Sunnyworld</div>
+          <div class="footer-contact-form">
+            <i>
+              <img class="icon-footer-img" src="<%= asset_url("ic-email.png") %>"/>
+            </i>
+            <input type="text" class="input-search" placeholder="email"/>
+          </div>
+          <div class="near-icon-container"></div>​
+        </div>
+      </div>
     </div>
   </div>
   <!-- end #footer -->
