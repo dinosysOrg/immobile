@@ -149,11 +149,11 @@ class ProfileController < ApplicationController
 
     house = House.find(params[:id])
     userId = current_user.id
-    if userId == house.user_id
+    if userId == house.user_id or current_user.check_role(Constant::ROLE_ADMIN)
       house.is_available = false
       house.save
 
-      response = response_failure
+      response = response_success
     end
 
     render json: response
