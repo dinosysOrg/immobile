@@ -41,4 +41,7 @@ class Constant < ActiveRecord::Base
   # Service
   SERVICE_POST = '1001'
 
+  # Sample
+  SAMPLE_HOUSE = 'sunnyworld_background.jpeg'
+
 end

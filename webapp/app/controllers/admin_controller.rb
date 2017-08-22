@@ -2,6 +2,7 @@ require 'openssl'
 
 class AdminController < ApplicationController
   include Responses
+  include Sortby
   before_action :authenticate_user!, except: [:callback_budget, :webhook_github]
   skip_before_action :verify_authenticity_token, only: [:callback_budget, :webhook_github]
 
@@ -12,9 +13,9 @@ class AdminController < ApplicationController
   def list_user
 
     if params[:search].present?
-      @users = User.search(params[:search], params[:page], 20)
+      @users = User.search(sort_by, params[:search], params[:page], 20)
     else
-      @users = User.by_desc_order(params[:page], params[:per_page])
+      @users = User.by_order(sort_by, params[:page], params[:per_page])
     end
 
     @pageType = 'list_user'
@@ -33,9 +34,9 @@ class AdminController < ApplicationController
     authorize! :list_project, :admin
 
     if params[:search].present?
-      @projects = Project.search(params[:search], params[:page], 20)
+      @projects = Project.search(sort_by, params[:search], params[:page], 20)
     else
-      @projects = Project.by_desc_order(params[:page], params[:per_page])
+      @projects = Project.by_order(sort_by, params[:page], params[:per_page])
     end
 
     @pageType = 'list_project'
@@ -69,9 +70,9 @@ class AdminController < ApplicationController
     authorize! :list_services, :admin
 
     if params[:search].present?
-      @services = Service.search(params[:search], params[:page], 20)
+      @services = Service.search(sort_by, params[:search], params[:page], 20)
     else
-      @services = Service.by_desc_order(params[:page], params[:per_page])
+      @services = Service.by_order(sort_by, params[:page], params[:per_page])
     end
 
     @pageType = 'list_service'

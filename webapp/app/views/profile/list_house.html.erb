@@ -29,13 +29,21 @@
                   <thead>
                   <tr role="row">
                     <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending" style="width: 150px;">Ảnh</th>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Tiêu đề</th>
+                    <th id="sort-name" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">
+                      <div style="display: inline-block; width: 95%;">Tiêu đề</div>
+                      <i class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
                     <% if @role.name == Constant::ROLE_ADMIN %>
-                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Người đăng
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">
+                          Người đăng
                         </th>
-                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Trạng thái
+                        <th id="sort-status" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">
+                          <div style="display: inline-block; width: 90%;">Trạng thái</div>
+                          <i class="fa fa-sort" aria-hidden="true"></i>
                         </th>
-                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">Home
+                        <th id="sort-home" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">
+                          <div style="display: inline-block; width: 90%;">Trang chủ</div>
+                          <i class="fa fa-sort" aria-hidden="true"></i>
                         </th>
                     <% else %>
                         <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Phòng
@@ -51,8 +59,7 @@
                           (vnd)
                         </th>
                     <% end %>
-                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức
-                      năng
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức năng
                     </th>
                   </tr>
                   </thead>
@@ -60,7 +67,7 @@
                   <% @houses.each_with_index do |house, idx| %>
                       <tr role="row">
                         <td class="list-item-image">
-                          <img class="list-item-thumb" src="<%= house.photos.first.photo_url+'?width=300' if house.photos.present? %>"/>
+                          <img class="list-item-thumb" src="<%= house.photos.present? ? house.photos.first.photo_url+'?width=300' : '/assets/'+Constant::SAMPLE_HOUSE %>"/>
                         </td>
                         <td><%= house.name %></td>
                         <% if @role.name == Constant::ROLE_ADMIN %>

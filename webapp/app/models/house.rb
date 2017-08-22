@@ -75,17 +75,17 @@ class House < ActiveRecord::Base
     # budget
   end
 
-  def self.search(search_param, page_param, per_page, user_id = nil)
+  def self.search(sort_by, search_param, page_param, per_page, user_id = nil)
     wildcard_search = "%#{search_param}%"
     if user_id.present?
         by_wildcard_with_name_or_address(wildcard_search)
         .where(:user_id => user_id)
         .where(:is_available => true)
-        .order(created_at: :desc).page(page_param).per(per_page)
+        .order(sort_by).page(page_param).per(per_page)
     else
         by_wildcard_with_name_or_address(wildcard_search)
         .where(:is_available => true)
-        .order(created_at: :desc).page(page_param).per(per_page)
+        .order(sort_by).page(page_param).per(per_page)
     end
   end
 

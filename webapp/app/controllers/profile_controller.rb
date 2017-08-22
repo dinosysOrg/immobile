@@ -2,6 +2,7 @@ require 'rest-client'
 
 class ProfileController < ApplicationController
   include Responses
+  include Sortby
   before_action :authenticate_user!
 
   # ************************** #
@@ -43,15 +44,15 @@ class ProfileController < ApplicationController
 
     if params[:search].present?
       if @role.name == Constant::ROLE_ADMIN
-        @houses = House.search(params[:search], params[:page], 20)
+        @houses = House.search(sort_by, params[:search], params[:page], 20)
       else
-        @houses = House.search(params[:search], params[:page], 20, current_user.id)
+        @houses = House.search(sort_by, params[:search], params[:page], 20, current_user.id)
       end
     else
       if @role.name == Constant::ROLE_ADMIN
-        @houses = House.where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.where(:is_available => true).order(sort_by).page(params[:page]).per(20)
       else
-        @houses = House.where(:user_id => current_user.id).where(:is_available => true).order(created_at: :desc).page(params[:page]).per(20)
+        @houses = House.where(:user_id => current_user.id).where(:is_available => true).order(sort_by).page(params[:page]).per(20)
       end
     end
 

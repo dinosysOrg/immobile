@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   include Search
 
   has_many :photos
-  scope :by_desc_order, -> (page_param, per_page) { where(:is_available => true).order(created_at: :desc).page(page_param).per(per_page) }
+  scope :by_order, -> (sort_by, page_param, per_page) { where(:is_available => true).order(sort_by).page(page_param).per(per_page) }
 
   def save_data(params)
     self.name = params[:name]
@@ -50,10 +50,10 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def self.search(search_param, page_param, per_page)
+  def self.search(sort_by, search_param, page_param, per_page)
     wildcard_search = "%#{search_param}%"
     Project
       .by_wildcard_with_name_or_address(wildcard_search)
-      .where(:is_available => true).order(created_at: :desc).page(page_param).per(per_page)
+      .where(:is_available => true).order(sort_by).page(page_param).per(per_page)
   end
 end

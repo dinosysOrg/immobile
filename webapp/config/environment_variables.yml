@@ -37,13 +37,13 @@ production:
     FACEBOOK_APP_ID : 310642566038027
     FACEBOOK_APP_SECRET: 1678f6099d91778ca70e5ffb6acdba6f
 
-    BASE_URL_FACEBOOK_CALL_BACK: https://immobile.dinosys.vn/users/auth/facebook/callback
+    BASE_URL_FACEBOOK_CALL_BACK: https://sunnyworld.dinosys.vn/users/auth/facebook/callback
 
     #Google app
     GOOGLE_APP_ID: 426374303502-qhti3gvasgdqadonvn43u0o355f0h5u1.apps.googleusercontent.com
     GOOGLE_APP_SECRET: Mz2ygKm4mglSd6n7zw5d0c5b
 
-    BASE_URL_GOOGLE_CALL_BACK: https://immobile.dinosys.vn/users/auth/google_oauth2/callback
+    BASE_URL_GOOGLE_CALL_BACK: https://sunnyworld.dinosys.vn/users/auth/google_oauth2/callback
 
     #Minio
     MINIO_ENDPOINT: https://minio.dinosys.vn

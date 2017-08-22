@@ -26,6 +26,45 @@ var handleSearchButton = function(){
     });
 };
 
+/* Sort by field in table
+ ------------------------------------------------ */
+var handleSortTable = function(){
+    $('#sort-title').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=title" + switchSortAsc('title') );
+    });
+    $('#sort-name').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=name" + switchSortAsc('name') );
+    });
+    $('#sort-address').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=address" + switchSortAsc('address') );
+    });
+    $('#sort-status').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=status" + switchSortAsc('status') );
+    });
+    $('#sort-home').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=is_home" + switchSortAsc('is_home') );
+    });
+    $('#sort-email').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=email" + switchSortAsc('email') );
+    });
+    $('#sort-agent').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=agent" + switchSortAsc('agent') );
+    });
+    $('#sort-price').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=price" + switchSortAsc('price') );
+    });
+};
+
+var switchSortAsc = function(sort){
+    var asc_results = new RegExp('[\?&]' + 'asc' + '=([^&#]*)').exec(window.location.href);
+    var sort_results = new RegExp('[\?&]' + 'sort_by' + '=([^&#]*)').exec(window.location.href);
+    if (sort_results == null) return "&asc=true";
+    else if (sort_results[1] != sort) return "&asc=true";
+    else if (asc_results == null) return "&asc=true";
+    else if (asc_results[1] == 'true') return "&asc=false";
+    else return "&asc=true";
+};
+
 /* Change Role user
  ------------------------------------------------ */
 var handleRoleUser = function(){
@@ -186,5 +225,6 @@ $(document).ready(function(){
     handleUserHome();
     handleProjectHome();
     handleProjectRemove();
+    handleSortTable();
 
 });

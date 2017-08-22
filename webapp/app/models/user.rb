@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Search
-  scope :by_desc_order, -> (page, per_page) { order(created_at: :desc).page(page).per(per_page) }
+  scope :by_order, -> (sort_by, page, per_page) { order(sort_by).page(page).per(per_page) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable, :timeoutable,
@@ -72,10 +72,10 @@ class User < ActiveRecord::Base
     Thread.current[:user] = user
   end
 
-  def self.search(search_param, page_param, per_page)
+  def self.search(sort_by, search_param, page_param, per_page)
     wildcard_search = "%#{search_param}"
     by_wildcard_with_name_or_email_or_phone(wildcard_search)
-    .order(created_at: :desc)
+    .order(sort_by)
     .page(page_param).per(per_page)
   end
 

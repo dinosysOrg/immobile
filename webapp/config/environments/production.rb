@@ -82,11 +82,11 @@ Rails.application.configure do
   # Devise
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'immobile.dinosys.vn'}
+  config.action_mailer.default_url_options = { :host => 'sunnyworld.dinosys.vn'}
   config.action_mailer.smtp_settings = {
       :address => 'smtp.gmail.com',
       :port => 587,
-      :domain => 'immobile.dinosys.vn',
+      :domain => 'sunnyworld.dinosys.vn',
       :user_name => 'dinosys.app@gmail.com',
       :password => 'echoop.dev.204',
       :authentication => :plain,
