@@ -201,12 +201,11 @@ class AdminController < ApplicationController
     userId = current_user.id
 
     project = Project.new
-    project.save
+    project.save_data(params)
 
     project.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
     project.link += '-'+project.id.to_s
-
-    project.save_data(params)
+    project.save
 
     if Photo.create_project_photo(project, userId, params)
       redirect_to action: 'edit_project_photo', id: project.id

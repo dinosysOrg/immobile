@@ -318,7 +318,7 @@
                   <%
                     is_service = false
                     if @contract.present? and @contract.contract_services.present?
-                      @contract.contract_services do |contract_service|
+                      @contract.contract_services.each do |contract_service|
                         if contract_service.service_id == service.id
                           is_service = true
                           break
@@ -329,7 +329,7 @@
 
                   <label class="checkbox-inline">
                     <input type="checkbox" name="services[]" value="<%= service.id %> "
-                           <% if is_service == true %> checked
+                           <% if is_service %> checked
                            <% end %> disabled>
                     <%= service.name %>
                   </label>
