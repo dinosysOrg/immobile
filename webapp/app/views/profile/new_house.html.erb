@@ -146,7 +146,7 @@
             <div class="col-md-8">
               <% conveniences = Convenience::where(:in_house => true) %>
               <% conveniences.each_with_index do |convenience, idx| %>
-                  <label class="checkbox-inline">
+                  <label class="checkbox-inline edit-checkbox col-md-3">
                     <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> ">
                     <%= convenience.name %>
                   </label>
@@ -159,7 +159,7 @@
             <div class="col-md-8">
               <% conveniences = Convenience::where(:in_house => false) %>
               <% conveniences.each_with_index do |convenience, idx| %>
-                  <label class="checkbox-inline">
+                  <label class="checkbox-inline edit-checkbox col-md-3">
                     <input type="checkbox" name="conveniences[]" value="<%= convenience.id %> ">
                     <%= convenience.name %>
                   </label>
@@ -172,7 +172,7 @@
             <div class="col-md-8">
               <% furnitures = Furniture::all() %>
               <% furnitures.each_with_index do |furnitures, idx| %>
-                  <label class="checkbox-inline">
+                  <label class="checkbox-inline edit-checkbox col-md-3">
                     <input type="checkbox" name="furnitures[]" value="<%= furnitures.id %> ">
                     <%= furnitures.name %>
                   </label>
@@ -193,8 +193,8 @@
               <% services = Service::all(); %>
               <% services.each_with_index do |service, idx| %>
                   <label class="checkbox-inline" style="width: 100%; margin: 0px;">
-                    <% if service.identifier == '1001' %>
-                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " checked data-price="<%= service.price %>">
+                    <% if service.identifier == Constant::SERVICE_POST %>
+                        <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " checked onclick="return false;" data-price="<%= service.price %>">
                     <% else %>
                         <input class="editor-services" type="checkbox" name="services[]" value="<%= service.id %> " data-price="<%= service.price %>">
                     <% end %>

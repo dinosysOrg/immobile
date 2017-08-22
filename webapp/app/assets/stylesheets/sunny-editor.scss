@@ -27,6 +27,7 @@
 .list-item-action {
   padding-top: 25px !important;
   padding-right: 0px !important;
+  width: 100px;
 }
 
 .list-item-thumb {
@@ -152,4 +153,8 @@
 
 .edit-house-total span {
   font-size: 18px;
+}
+
+.edit-checkbox {
+  margin-left: 0 !important;
 }

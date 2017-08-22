@@ -1,0 +1,54 @@
+
+<div class="content edit-content">
+  <div class="panel-heading">
+  <h4 class="edit-title">Sửa thông tin dịch vụ</h4>
+  </div>
+
+  <div class="panel-body panel-editor">
+    <%= form_tag('/profile/service/'+@service.id.to_s+'/edit', method: 'post') do %>
+
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tên dịch vụ</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true" value="<%= @service.name %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Giá dịch vụ</label>
+            <div class="col-md-4">
+              <input id="price" type="number" class="form-control" placeholder="" name="price" value="<%= @service.price %>">
+            </div>
+            <div class="col-md-4">
+              <select class="form-control" name="currency">
+                <option value="vnd"
+                        <% if @service.currency == 'vnd' %> selected
+                        <% end %> >VND
+                </option>
+                <option value="usd"
+                        <% if @service.currency == 'usd' %> selected
+                        <% end %> >USD
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mô tả</label>
+            <div class="col-md-8">
+              <textarea class="form-control" placeholder="Mô tả chi tiết" rows="8" name="description"><%= @service.description %></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Lưu thông tin</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -38,4 +38,7 @@ class Constant < ActiveRecord::Base
   # AWS / Minio
   S3_BUCKET = 'sunnyworld'
 
+  # Service
+  SERVICE_POST = '1001'
+
 end

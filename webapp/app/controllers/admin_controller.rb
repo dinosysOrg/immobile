@@ -65,6 +65,27 @@ class AdminController < ApplicationController
     render :edit_project_photo, status: :ok, :layout => 'profile'
   end
 
+  def list_services
+    authorize! :list_services, :admin
+
+    if params[:search].present?
+      @services = Service.search(params[:search], params[:page], 20)
+    else
+      @services = Service.by_desc_order(params[:page], params[:per_page])
+    end
+
+    @pageType = 'list_service'
+    render :list_service, status: :ok, :layout => 'profile'
+  end
+
+  def edit_service
+    authorize! :edit_service, :admin
+
+    @service = Service::find(params[:id])
+
+    render :edit_service, status: :ok, :layout => 'profile'
+  end
+
   # ************************** #
   # API
   # ************************** #
@@ -218,6 +239,14 @@ class AdminController < ApplicationController
     project.save
 
     render json: response_success
+  end
+
+  def put_service
+    authorize! :put_service, :admin
+    service = Service::find(params[:id])
+    service.save_data(params)
+
+    redirect_to controller: 'admin', action: 'list_services'
   end
 
   def callback_budget

@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       post 'project', to: 'admin#post_project'
       post 'project/:id/is_home', to: 'admin#is_home_project'
       post 'budget/callback', to: 'admin#callback_budget'
+      get 'services', to: 'admin#list_services'
+      get 'service/:id', to: 'admin#edit_service'
+      post 'service/:id/edit', to: 'admin#put_service'
     end
   end
 

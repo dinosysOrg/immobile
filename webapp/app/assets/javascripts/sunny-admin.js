@@ -19,6 +19,11 @@ var handleSearchButton = function(){
         var keyword = $('#list-house-search-input').val();
         window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
     });
+
+    $('#list-service-search-button').click(function() {
+        var keyword = $('#list-service-search-input').val();
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?search="+keyword );
+    });
 };
 
 /* Change Role user

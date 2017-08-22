@@ -72,7 +72,6 @@ class ProfileController < ApplicationController
     @pageType = 'budget_profile'
     render :budget_profile, status: :ok, :layout => 'profile'
   end
-
   # ************************** #
   # API
   # ************************** #

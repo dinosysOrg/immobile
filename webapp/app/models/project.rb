@@ -50,8 +50,8 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def self.search(searh_param, page_param, per_page)
-    wildcard_search = "%#{searh_param}%"
+  def self.search(search_param, page_param, per_page)
+    wildcard_search = "%#{search_param}%"
     Project
       .by_wildcard_with_name_or_address(wildcard_search)
       .where(:is_available => true).order(created_at: :desc).page(page_param).per(per_page)

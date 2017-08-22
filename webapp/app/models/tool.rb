@@ -29,7 +29,7 @@ class Tool < ActiveRecord::Base
   def self.unaccent(text)
     SOURCE_CHARACTERS.each_with_index { |val, index|
       if text == nil
-        puts('check')
+        break
       end
       text = text.gsub(val,DESTINATION_CHARACTERS[index])
     }
