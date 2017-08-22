@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       get 'edit', to: 'profile#edit_profile'
       post 'edit', to: 'profile#put_profile'
       get 'budget', to: 'profile#show_budget'
+      get 'bookmarks', to: 'profile#list_bookmark'
+      post 'bookmark/new', to: 'profile#post_bookmark'
+      delete 'bookmark/:id', to: 'profile#delete_bookmark'
     end
   end
 
@@ -53,6 +56,8 @@ Rails.application.routes.draw do
   get 'search', to: 'home#search'
   get 'detail/:id', to: 'home#detail'
   get 'contact', to: 'home#contact'
+
+  # posts, agents, blogs, projects
 
   # Devise
   devise_for :users, :controllers => {

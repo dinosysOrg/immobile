@@ -44,4 +44,10 @@ class Constant < ActiveRecord::Base
   # Sample
   SAMPLE_HOUSE = 'sunnyworld_background.jpeg'
 
+  # Provider
+  PROVIDER_POSTS = 'posts'
+  PROVIDER_AGENTS = 'agents'
+  PROVIDER_PROJECT = 'projects'
+  PROVIDER_BLOGS = 'blogs'
+
 end

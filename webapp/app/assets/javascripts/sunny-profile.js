@@ -91,6 +91,25 @@ var handlePhotoRemove = function(){
     });
 };
 
+// Remove Bookmark
+/* ------------------------------------------------ */
+var handleBookmarkRemove = function(){
+    var bookmarkId = 0;
+    $('.bookmark-button-delete').click(function() {
+        $('#modal-delete-bookmark').css('display','block');
+        bookmarkId = $(this).data('id');
+    });
+
+    $('.model-button-close').click(function() {
+        $('#modal-delete-bookmark').css('display','none');
+    });
+
+    $('.model-button-done-bookmark').click(function() {
+        $('#modal-delete-bookmark').css('display','none');
+        removeBookmark(bookmarkId)
+    });
+};
+
 // Check house total change
 /* ------------------------------------------------ */
 var handleHouseTotal = function(){
@@ -171,11 +190,31 @@ function removePhoto(photoId) {
     });
 }
 
+
+// Api Bookmark
+/* ------------------------------------------------ */
+function removeBookmark(bookmarkId) {
+    $.ajax({
+        url: '/profile/bookmark/' + bookmarkId,
+        type: 'DELETE',
+        dataType: 'json',
+        data: { authenticity_token: window._token },
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+            location.reload();
+        },
+        error: function (data) {
+
+        }
+    });
+}
+
 /* Application Controller
  ------------------------------------------------ */
 $(document).ready(function(){
     handleModalRemove();
     handlePhotoRemove();
+    handleBookmarkRemove();
     handleHouseTotal();
     handleSwitchPayment();
     handleModalBudget();

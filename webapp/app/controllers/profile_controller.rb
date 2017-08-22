@@ -73,6 +73,25 @@ class ProfileController < ApplicationController
     @pageType = 'budget_profile'
     render :budget_profile, status: :ok, :layout => 'profile'
   end
+
+  def list_bookmark
+    authorize! :list_bookmark, :profile
+
+    # Check role admin
+    roleUser = RoleUser.where(:user_id => current_user.id).first
+    @role = Role.find(roleUser.role_id)
+
+    if @role.name == Constant::ROLE_ADMIN
+      @bookmarks = Bookmark::order(sort_by).page(params[:page]).per(20)
+    else
+      @bookmarks = Bookmark::where(:user_id => current_user.id).order(sort_by).page(params[:page]).per(20)
+    end
+
+
+    @pageType = 'list_bookmark'
+    render :list_bookmark, status: :ok, :layout => 'profile'
+  end
+
   # ************************** #
   # API
   # ************************** #
@@ -161,6 +180,8 @@ class ProfileController < ApplicationController
   end
 
   def put_profile
+    authorize! :edit_profile, :profile
+
     current_user.name = params[:name]
     current_user.address = params[:address]
     current_user.phone = params[:phone]
@@ -177,5 +198,29 @@ class ProfileController < ApplicationController
     redirect_to action: 'edit_profile'
   end
 
+  def post_bookmark
+    authorize! :post_bookmark, :profile
+
+    bookmark = Bookmark.new
+    bookmark.user_id = current_user.id
+    bookmark.save_data(params)
+
+    render json: response_success
+  end
+
+  def delete_bookmark
+    authorize! :delete_bookmark, :profile
+    response = response_failure
+
+    bookmark = Bookmark.find(params[:id])
+    userId = current_user.id
+    if userId == bookmark.user_id or current_user.check_role(Constant::ROLE_ADMIN)
+      bookmark.delete
+
+      response = response_success
+    end
+
+    render json: response
+  end
 
 end

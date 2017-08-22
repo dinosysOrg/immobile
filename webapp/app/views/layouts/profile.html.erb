@@ -98,6 +98,7 @@
             <li <% if @pageType == 'list_service' %> class="active" <% end %> ><a href="/profile/services"><i class="fa fa-tags" aria-hidden="true"></i> <span>Danh sách dịch vụ</span></a></li>
             <li <% if @pageType == 'list_user' %> class="active" <% end %> ><a href="/profile/users"><i class="fa fa-users" aria-hidden="true"></i> <span>Danh sách khách hàng</span></a></li>
         <% end %>
+        <li <% if @pageType == 'list_bookmark' %> class="active" <% end %> ><a href="/profile/bookmarks"><i class="fa fa-bookmark" aria-hidden="true"></i> <span>Danh sách Ưa thích</span></a></li>
         <li <% if @pageType == 'edit_profile' %> class="active" <% end %> ><a href="/profile/edit"><i class="fa fa-cog" aria-hidden="true"></i> <span>Thông tin cá nhân</span></a></li>
         <li <% if @pageType == 'budget_profile' %> class="active" <% end %> ><a href="/profile/budget"><i class="fa fa-credit-card" aria-hidden="true"></i> <span>Nạp tiền vào ví</span></a></li>
         <li><a rel="nofollow" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Đăng xuất</span></a></li>
