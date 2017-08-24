@@ -42,15 +42,22 @@
                       <%
                         title = 'N/A'
                         type = 'N/A'
+                        link = ''
                         if bookmark.provider == Constant::PROVIDER_POSTS
-                          title = House.find(bookmark.object_id).name
+                          house = House.find(bookmark.object_id)
+                          title = house.name
                           type = 'Bài đăng'
+                          link = house.link
                         elsif bookmark.provider == Constant::PROVIDER_AGENTS
-                          title = User.find(bookmark.object_id).name
+                          user = User.find(bookmark.object_id)
+                          title = user.name
                           type = 'Tư vấn viên'
+                          link = user.link
                         elsif bookmark.provider == Constant::PROVIDER_PROJECT
-                          title = Project.find(bookmark.object_id).name
+                          project = Project.find(bookmark.object_id)
+                          title = project.name
                           type = 'Dự án'
+                          link = project.link
                         # elsif bookmark.provider == Constant::PROVIDER_BLOGS
                         #   title = Blog.find(bookmark.object_id).name
                         end
@@ -59,7 +66,7 @@
                         <td><%= title %></td>
                         <td><%= type %></td>
                         <td class="list-item-action">
-                          <a href="/<%= bookmark.provider %>/<%= bookmark.object_id %>">
+                          <a href="/<%= bookmark.provider %>/<%= link %>">
                             <button type="button" class="btn btn-primary m-r-5 m-b-5">Xem</button>
                           </a>
                           <a class="bookmark-button-delete" data-id="<%= bookmark.id %>">
@@ -93,7 +100,7 @@
                   <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay
                       lại</a>
-                    <a href="javascript:;" class="btn btn-sm btn-white model-button-doneouse">Đồng ý</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done-bookmark">Đồng ý</a>
                   </div>
                 </div>
               </div>

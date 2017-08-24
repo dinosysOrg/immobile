@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
     render :'new_house', status: :ok, :layout => 'profile'
   end
 
-  def edit_house
+  def edit_houseloca
     authorize! :edit_house, :profile
 
     @house = House::where(:link => params[:link]).first
@@ -198,12 +198,17 @@ class ProfileController < ApplicationController
     redirect_to action: 'edit_profile'
   end
 
-  def post_bookmark
-    authorize! :post_bookmark, :profile
+  def toggle_bookmark
+    authorize! :toggle_bookmark, :profile
 
-    bookmark = Bookmark.new
-    bookmark.user_id = current_user.id
-    bookmark.save_data(params)
+    bookmark = Bookmark::where(:user_id => current_user.id).where(:object_id => params[:object_id]).where(:provider => params[:provider]).first
+    if bookmark.present?
+      bookmark.delete
+    else
+      bookmark = Bookmark.new
+      bookmark.user_id = current_user.id
+      bookmark.save_data(params)
+    end
 
     render json: response_success
   end
@@ -212,15 +217,13 @@ class ProfileController < ApplicationController
     authorize! :delete_bookmark, :profile
     response = response_failure
 
-    bookmark = Bookmark.find(params[:id])
-    userId = current_user.id
-    if userId == bookmark.user_id or current_user.check_role(Constant::ROLE_ADMIN)
+    bookmark = Bookmark::find(params[:id])
+    if bookmark.user_id == current_user.id || current_user.check_role(Constant::ROLE_ADMIN)
       bookmark.delete
-
       response = response_success
     end
-
     render json: response
   end
+
 
 end

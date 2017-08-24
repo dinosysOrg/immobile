@@ -44,7 +44,7 @@ class Constant < ActiveRecord::Base
   # Sample
   SAMPLE_HOUSE = 'sunnyworld_background.jpeg'
 
-  # Provider
+  # Provider for bookmark
   PROVIDER_POSTS = 'posts'
   PROVIDER_AGENTS = 'agents'
   PROVIDER_PROJECT = 'projects'

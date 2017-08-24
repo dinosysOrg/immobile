@@ -563,8 +563,14 @@
 }
 
 .home-card-mini .desc {
+  display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 90%;
+}
+
+.home-card-mini .bookmark {
+  display: inline-block;
 }
 
 .home-card-mini .desc-title {

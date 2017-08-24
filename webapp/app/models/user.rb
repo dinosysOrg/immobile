@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
     user.avatar = auth.info.image + '?type=large' # assuming the user model has an image
     user.save!
 
+    # Link for seo parameter
+    user.link = Tool.unaccent(user.name.gsub(' ', '-')).downcase.to_s
+    user.link += '-'+user.id.to_s
+    user.save!
+
     user.create_role
     user.skip_confirmation!
     return user
@@ -56,6 +61,11 @@ class User < ActiveRecord::Base
     user.uid = auth.uid
     user.name = auth.info.name # assuming the user model has a name
     user.avatar = auth.info.image # assuming the user model has an image
+    user.save!
+
+    # Link for seo parameter
+    user.link = Tool.unaccent(user.name.gsub(' ', '-')).downcase.to_s
+    user.link += '-'+user.id.to_s
     user.save!
 
     user.create_role

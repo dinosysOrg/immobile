@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post 'edit', to: 'profile#put_profile'
       get 'budget', to: 'profile#show_budget'
       get 'bookmarks', to: 'profile#list_bookmark'
-      post 'bookmark/new', to: 'profile#post_bookmark'
+      put 'bookmark', to: 'profile#toggle_bookmark'
       delete 'bookmark/:id', to: 'profile#delete_bookmark'
     end
   end

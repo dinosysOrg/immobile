@@ -16,6 +16,8 @@
   <%= stylesheet_link_tag "application", "style", "carousel", :media => "all", "data-turbolinks-track" => "false" %>
   <%= javascript_include_tag "jquery-1.9.1", "bootstrap", 'application', 'apps', 'scrollMonitor', 'pace', 'data-turbolinks-track' => "false" %>
 
+  <%= csrf_meta_tags %>
+  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
   <!-- ================== END BASE CSS STYLE ================== -->
 
   <!-- ================== BEGIN BASE JS ================== -->

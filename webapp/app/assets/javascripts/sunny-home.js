@@ -2,7 +2,31 @@
  ------------------------------------------------ */
 $(document).ready(function () {
     menuTypeSelect();
+    handelBookmark();
 });
+
+
+/* Bookmark listener
+ ------------------------------------------------ */
+var handelBookmark = function(){
+    $('.home-card-mini .bookmark').click(function () {
+        var houseId = $(this).data('id');
+        $.ajax({
+            url: '/profile/bookmark?object_id=' + houseId + '&provider=posts',
+            type: 'PUT',
+            dataType: 'json',
+            data: { authenticity_token: window._token },
+            contentType: 'application/x-www-form-urlencoded',
+            success: function (data) {
+
+            },
+            error: function (data) {
+
+            }
+        });
+    });
+};
+
 
 /* Menu change color
  ------------------------------------------------ */

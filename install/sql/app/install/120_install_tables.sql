@@ -105,6 +105,25 @@ WITH (
 
 -- BEGIN MANAGEMENT.TABLES
 
+CREATE TABLE management.blogs   
+(
+  id bigserial NOT NULL,
+  name character varying(200),
+  link character varying(200),
+  description character varying(500),
+  content text,
+  cover_url character varying(500),
+  category character varying(100),
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT pk_blogs PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE management.blogs
+  OWNER TO postgres;
+
 CREATE TABLE management.bookmarks   
 (
   id bigserial NOT NULL,
@@ -163,6 +182,7 @@ CREATE TABLE management.users
   firstname character varying(100),
   lastname character varying(100),
   name character varying(100),
+  link character varying(100),
   avatar character varying(500),
   provider character varying(100),
   uid character varying(500),
