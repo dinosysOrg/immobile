@@ -1,0 +1,135 @@
+<%= stylesheet_link_tag "sunny-editor", :media => "all", "data-turbolinks-track" => "reload" %>
+<%= javascript_include_tag "sunny-admin" %>
+<div id="content" class="content">
+
+  <!-- begin page-header -->
+  <h1 class="page-header">Danh sách Tin tức
+  </h1>
+  <!-- end page-header -->
+
+  <div class="input-group list-house-search">
+    <!--<span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>-->
+    <!--<input id="list-house-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tiêu đề, địa chỉ" value="<%= @search if @search.present? %>">-->
+    <!--<button type="button" class="btn btn-success" id="list-house-search-button">Tìm kiếm</button>-->
+  </div>
+
+  <!-- begin row -->
+  <div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12 ui-sortable">
+      <!-- begin panel -->
+      <div class="panel panel-inverse">
+
+        <div class="panel-body">
+          <div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="data-table" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="data-table_info">
+                  <thead>
+                  <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending" style="width: 150px;">Ảnh</th>
+                    <th id="sort-name" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">
+                      <div style="display: inline-block; width: 90%;">Tiêu đề</div>
+                      <i class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <th id="sort-category" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">
+                      <div style="display: inline-block; width: 90%;">Loại</div>
+                      <i class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <% if @role.name == Constant::ROLE_ADMIN %>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">
+                          Người đăng
+                        </th>
+                        <th id="sort-status" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">
+                          <div style="display: inline-block; width: 90%;">Trạng thái</div>
+                          <i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th id="sort-home" class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 50px;">
+                          <div style="display: inline-block; width: 90%;">Trang chủ</div>
+                          <i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                    <% else %>
+                        <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 80px;">Mô tả
+                        </th>
+                    <% end %>
+                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;">Chức năng
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @blogs.each_with_index do |blog, idx| %>
+                      <tr role="row">
+                        <td class="list-item-image">
+                          <img class="list-item-thumb" src="<%= blog.cover_url.present? ? blog.cover_url+'?width=300' : '/assets/'+Constant::SAMPLE_BLOG %>"/>
+                        </td>
+                        <td><%= blog.name %></td>
+                        <td><%= blog.category %></td>
+                        <% if @role.name == Constant::ROLE_ADMIN %>
+                            <% user = User::find(blog.user_id) %>
+                            <td><%= user.name %></td>
+                            <td class="list-item-action">
+                              <select class="form-control blog-status-select" data-id="<%= blog.id %>">
+                                <option value="<%= Constant::HOUSE_STATUS_PENDING %>" <% if blog.status == Constant::HOUSE_STATUS_PENDING %> selected <% end %> >Chờ duyệt</option>
+                                <option value="<%= Constant::HOUSE_STATUS_REJECT %>" <% if blog.status == Constant::HOUSE_STATUS_REJECT %> selected <% end %> >Từ chối</option>
+                                <option value="<%= Constant::HOUSE_STATUS_APPROVE %>" <% if blog.status == Constant::HOUSE_STATUS_APPROVE %> selected <% end %> >Chấp nhận</option>
+                              </select>
+                            </td>
+                            <td class="list-item-action" >
+                              <input type="checkbox" <% if blog.is_home %> checked <% end %> class="blog-home-select" data-id="<%= blog.id %>">
+                            </td>
+                        <% else %>
+                            <td><%= blog.description %></td>
+                        <% end %>
+                        <td class="list-item-action">
+                          <a href="/profile/blog/<%= blog.link %>">
+                            <button type="button" class="btn btn-primary m-r-5 m-b-5">Sửa</button>
+                          </a>
+                          <a class="blog-button-delete" data-id="<%= blog.id %>">
+                            <button type="button" class="btn btn-danger m-r-5 m-b-5">Xoá</button>
+                          </a>
+                        </td>
+                      </tr>
+                  <% end %>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5 list-paginate">
+                <%= paginate @blogs %>
+              </div>
+
+            </div>
+
+            <div class="modal" id="modal-delete-blog" style="display: none;">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close model-button-close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Bạn có muốn xoá tin này?</h4>
+                  </div>
+                  <div class="modal-body">
+                    Nếu bạn xoá, mọi thông tin liên quan tới tin này sẽ bị xoá vĩnh viễn.
+                  </div>
+                  <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-close" data-dismiss="modal">Quay
+                      lại</a>
+                    <a href="javascript:;" class="btn btn-sm btn-white model-button-done-blog">Đồng ý</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+  </div>
+  <!-- end row -->
+</div>

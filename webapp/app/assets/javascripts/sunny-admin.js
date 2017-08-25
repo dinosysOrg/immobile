@@ -53,6 +53,9 @@ var handleSortTable = function(){
     $('#sort-price').click(function() {
         window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=price" + switchSortAsc('price') );
     });
+    $('#sort-category').click(function() {
+        window.location.href = window.location.href.replace( /[\?#].*|$/, "?sort_by=category" + switchSortAsc('category') );
+    });
 };
 
 var switchSortAsc = function(sort){

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       get 'bookmarks', to: 'profile#list_bookmark'
       put 'bookmark', to: 'profile#toggle_bookmark'
       delete 'bookmark/:id', to: 'profile#delete_bookmark'
+      get 'blog/new', to: 'profile#new_blog'
+      get 'blogs', to: 'profile#list_blog'
     end
   end
 

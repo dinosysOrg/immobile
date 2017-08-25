@@ -92,6 +92,30 @@ class ProfileController < ApplicationController
     render :list_bookmark, status: :ok, :layout => 'profile'
   end
 
+  def new_blog
+    authorize! :new_blog, :blog
+
+    @pageType = 'new_blog'
+    render :new_blog, status: :ok, :layout => 'profile'
+  end
+
+  def list_blog
+    authorize! :list_blog, :blog
+
+    # Check role admin
+    roleUser = RoleUser.where(:user_id => current_user.id).first
+    @role = Role.find(roleUser.role_id)
+
+    if @role.name == Constant::ROLE_ADMIN
+      @blogs = Blog::order(sort_by).page(params[:page]).per(20)
+    else
+      @blogs = Blog::where(:user_id => current_user.id).order(sort_by).page(params[:page]).per(20)
+    end
+
+    @pageType = 'list_blog'
+    render :list_blog, status: :ok, :layout => 'profile'
+  end
+
   # ************************** #
   # API
   # ************************** #

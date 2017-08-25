@@ -1,0 +1,68 @@
+<!-- Include external CSS. -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+<!-- Include Editor style. -->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+
+<div class="content edit-content">
+  <div class="panel-heading">
+  <h4 class="edit-title">Đăng Tin tức</h4>
+  </div>
+
+  <div class="panel-body panel-editor">
+    <%= form_tag('/profile/blog/', method: 'post', multipart: true) do %>
+
+        <div class="form-horizontal">
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Tiêu đề</label>
+            <div class="col-md-8">
+              <input id="name" type="text" class="form-control" placeholder="" name="name" data-parsley-required="true" value="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Mô tả ngắn</label>
+            <div class="col-md-8">
+              <textarea class="form-control" placeholder="" rows="4" name="description"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Nội dung</label>
+            <div class="col-md-8">
+              <textarea id="content-input" class="form-control" placeholder="" rows="8" name="content"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">Chính sách bán hàng</label>
+            <div class="col-md-8">
+              <input id="sale_policy" type="text" class="form-control" placeholder="" name="sale_policy" value="">
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-8">
+              <button type="submit" class="btn btn-sm btn-success">Lưu thông tin</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Include external JS libs. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/js/froala_editor.pkgd.min.js"></script>
+
+<!-- Initialize the editor. -->
+<script> $(function() { $('#content-input').froalaEditor() }); </script>
