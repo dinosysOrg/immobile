@@ -9,7 +9,7 @@ IF NOT EXISTS(SELECT column_name
                 WHERE table_schema = 'management' AND table_name = 'houses' AND column_name = 'pending_money')
   THEN
     ALTER TABLE management.houses
-      ADD COLUMN pending_money integer default 0;
+      ADD COLUMN pending_money bigint default 0;
   END IF;
 
 END

@@ -24,7 +24,7 @@ class Contract < ActiveRecord::Base
 
       # TODO: optimize calc days
       totalDays = ((house.disable_at - DateTime.now.beginning_of_day).to_i / 1.day) + 1
-      house.pending_money = totalDays
+      house.pending_money = totalDays * total
       house.save
     end
   end
