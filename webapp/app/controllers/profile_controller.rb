@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
     render :'new_house', status: :ok, :layout => 'profile'
   end
 
-  def edit_houseloca
+  def edit_house
     authorize! :edit_house, :profile
 
     @house = House::where(:link => params[:link]).first
