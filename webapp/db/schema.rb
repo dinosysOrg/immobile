@@ -19,6 +19,30 @@ ActiveRecord::Schema.define(version: 20170719051246) do
   enable_extension "pgcrypto"
   enable_extension "postgis"
 
+  create_table "blogs", id: :bigserial, force: :cascade do |t|
+    t.string   "name",         limit: 200
+    t.string   "link",         limit: 200
+    t.string   "description",  limit: 500
+    t.text     "content"
+    t.string   "cover_url",    limit: 500
+    t.string   "category",     limit: 100
+    t.datetime "created_at",               default: "now()"
+    t.datetime "updated_at",               default: "now()"
+    t.integer  "user_id",      limit: 8
+    t.boolean  "is_available",             default: true
+    t.boolean  "is_show",                  default: false
+    t.boolean  "is_home",                  default: false
+    t.string   "status",       limit: 100
+  end
+
+  create_table "bookmarks", id: :bigserial, force: :cascade do |t|
+    t.integer  "user_id",    limit: 8
+    t.integer  "object_id",  limit: 8
+    t.string   "provider",   limit: 100
+    t.datetime "created_at",             default: "now()"
+    t.datetime "updated_at",             default: "now()"
+  end
+
   create_table "contract_services", id: :bigserial, force: :cascade do |t|
     t.integer  "contract_id", limit: 8,                   null: false
     t.integer  "service_id",  limit: 8,                   null: false
@@ -119,18 +143,16 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.datetime "disable_at",                                            default: "now()"
     t.datetime "created_at",                                            default: "now()"
     t.datetime "updated_at",                                            default: "now()"
-    t.boolean  "is_show",                                               default: true
-    t.datetime "disable_at",                                            default: "now()"
   end
 
   create_table "photos", id: :bigserial, force: :cascade do |t|
     t.integer  "user_id",     limit: 8
     t.integer  "house_id",    limit: 8
     t.integer  "project_id",  limit: 8
+    t.text     "description"
     t.string   "photo_url",   limit: 200
     t.datetime "created_at",              default: "now()"
     t.datetime "updated_at",              default: "now()"
-    t.text     "description"
   end
 
   create_table "project_conveniences", id: :bigserial, force: :cascade do |t|
@@ -172,7 +194,6 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.decimal  "longitude",                            precision: 16, scale: 10
     t.datetime "created_at",                                                     default: "now()"
     t.datetime "updated_at",                                                     default: "now()"
-    t.string   "link",                     limit: 500
   end
 
   create_table "role_users", id: :bigserial, force: :cascade do |t|
@@ -244,7 +265,7 @@ ActiveRecord::Schema.define(version: 20170719051246) do
     t.datetime "updated_at",                                         null: false
     t.boolean  "is_available",                       default: true
     t.integer  "budget",                 limit: 8,   default: 0
-    t.boolean  "is_home",                            default: true
+    t.string   "link",                   limit: 100
   end
 
   create_table "webhooks", force: :cascade do |t|
