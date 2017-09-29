@@ -43,7 +43,11 @@ class PhotoController < ApplicationController
   end
 
 
-  def delete_photo
+  # ************************** #
+  # API
+  # ************************** #
+
+  def delete
     authorize! :delete_photo, :photo
     response = Response.new(Constant::MESSAGE_FAIL, Constant::MESSAGE_FAIL)
 
@@ -59,10 +63,6 @@ class PhotoController < ApplicationController
     render json: response
   end
 
-
-  # ************************** #
-  # API
-  # ************************** #
 
 
 end

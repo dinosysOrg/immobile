@@ -5,7 +5,7 @@
   </div>
 
   <div class="panel-body panel-editor">
-    <%= form_tag('/profile/service/'+@service.id.to_s+'/edit', method: 'post') do %>
+    <%= form_tag('/profile/service/'+@service.id.to_s, method: 'put') do %>
 
         <div class="form-horizontal">
 

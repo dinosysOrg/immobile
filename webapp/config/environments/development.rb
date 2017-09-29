@@ -48,7 +48,7 @@ Rails.application.configure do
       :port => 587,
       :domain => 'localhost:3000',
       :user_name => 'dinosys.app@gmail.com',
-      :password => 'echoop.dev.204',
+      :password => 'dino.dev.204.hcm',
       :authentication => "plain",
       :enable_starttls_auto => true
   }

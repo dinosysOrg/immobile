@@ -4,7 +4,7 @@ DO
 $$
 BEGIN
 
-CREATE TABLE blog.posts   
+CREATE TABLE IF NOT EXISTS blog.posts   
 (
   id bigserial NOT NULL,
   user_id bigint,

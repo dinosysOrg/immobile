@@ -94,14 +94,14 @@
         <li <% if @pageType == 'new_house' %> class="active" <% end %> ><a href="/profile/house/new"><i class="fa fa-plus" aria-hidden="true"></i> <span>Đăng bài</span></a></li>
         <li <% if @pageType == 'list_house' %> class="active" <% end %> ><a href="/profile/house"><i class="fa fa-list-ul" aria-hidden="true"></i> <span>Danh sách bài đăng</span></a></li>
         <% if @role.name == Constant::ROLE_ADMIN %>
-            <li <% if @pageType == 'list_project' %> class="active" <% end %> ><a href="/profile/projects"><i class="fa fa-building-o" aria-hidden="true"></i> <span>Danh sách dự án</span></a></li>
-            <li <% if @pageType == 'list_service' %> class="active" <% end %> ><a href="/profile/services"><i class="fa fa-tags" aria-hidden="true"></i> <span>Danh sách dịch vụ</span></a></li>
-            <li <% if @pageType == 'list_user' %> class="active" <% end %> ><a href="/profile/users"><i class="fa fa-users" aria-hidden="true"></i> <span>Danh sách khách hàng</span></a></li>
+            <li <% if @pageType == 'list_project' %> class="active" <% end %> ><a href="/profile/project"><i class="fa fa-building-o" aria-hidden="true"></i> <span>Danh sách dự án</span></a></li>
+            <li <% if @pageType == 'list_service' %> class="active" <% end %> ><a href="/profile/service"><i class="fa fa-tags" aria-hidden="true"></i> <span>Danh sách dịch vụ</span></a></li>
+            <li <% if @pageType == 'list_user' %> class="active" <% end %> ><a href="/profile/user"><i class="fa fa-users" aria-hidden="true"></i> <span>Danh sách khách hàng</span></a></li>
             <li <% if @pageType == 'list_blog' %> class="active" <% end %> ><a href="/profile/post"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Danh sách tin tức</span></a></li>
         <% elsif @role.name == Constant::ROLE_BLOGER %>
             <li <% if @pageType == 'list_blog' %> class="active" <% end %> ><a href="/profile/post"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Danh sách tin tức</span></a></li>
         <% end %>
-        <li <% if @pageType == 'list_bookmark' %> class="active" <% end %> ><a href="/profile/bookmarks"><i class="fa fa-bookmark" aria-hidden="true"></i> <span>Danh sách Ưa thích</span></a></li>
+        <li <% if @pageType == 'list_bookmark' %> class="active" <% end %> ><a href="/profile/bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i> <span>Danh sách Ưa thích</span></a></li>
         <li <% if @pageType == 'edit_profile' %> class="active" <% end %> ><a href="/profile/edit"><i class="fa fa-cog" aria-hidden="true"></i> <span>Thông tin cá nhân</span></a></li>
         <li <% if @pageType == 'budget_profile' %> class="active" <% end %> ><a href="/profile/budget"><i class="fa fa-credit-card" aria-hidden="true"></i> <span>Nạp tiền vào ví</span></a></li>
         <li><a rel="nofollow" href="/users/sign_out"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Đăng xuất</span></a></li>

@@ -4,7 +4,7 @@ DO
 $$
 BEGIN
 
-CREATE TABLE management.bookmarks   
+CREATE TABLE IF NOT EXISTS management.bookmarks   
 (
   id bigserial NOT NULL,
   user_id bigint,
