@@ -158,7 +158,7 @@ var handleSwitchPayment = function(){
 /* ------------------------------------------------ */
 function removeHouse(houseId) {
     $.ajax({
-        url: '/profile/post/' + houseId,
+        url: '/profile/house/' + houseId,
         type: 'DELETE',
         dataType: 'json',
         data: { authenticity_token: window._token },

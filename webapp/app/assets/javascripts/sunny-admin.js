@@ -98,7 +98,7 @@ var handleHouseStatus = function(){
         var houseId = $(this).data('id');
         var status = $(this).val();
         $.ajax({
-            url: '/profile/post/'+houseId+'/status?status='+status,
+            url: '/profile/house/'+houseId+'/status?status='+status,
             type: 'POST',
             dataType: 'json',
             data: { authenticity_token: window._token },
@@ -120,7 +120,7 @@ var handleHouseHome = function(){
         var houseId = $(this).data('id');
         var status = $(this).is(":checked");
         $.ajax({
-            url: '/profile/post/'+houseId+'/is_home?status='+status,
+            url: '/profile/house/'+houseId+'/is_home?status='+status,
             type: 'POST',
             dataType: 'json',
             data: { authenticity_token: window._token },

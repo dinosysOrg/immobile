@@ -136,6 +136,8 @@ class User < ActiveRecord::Base
     roleUser = RoleUser.new
     roleUser.user_id = self.id
 
+    # Hardcode for admin
+    # TODO: move to sql
     if self.email == 'quytruong1991@gmail.com'
       role = Role.where(:name => Constant::ROLE_ADMIN).first
       roleUser.role_id = role.id

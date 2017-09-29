@@ -9,3 +9,6 @@ CREATE SCHEMA management
 CREATE SCHEMA staging
  AUTHORIZATION postgres;
 
+CREATE SCHEMA blog
+ AUTHORIZATION postgres;
+

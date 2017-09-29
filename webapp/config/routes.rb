@@ -1,23 +1,30 @@
 Rails.application.routes.draw do
 
+  scope 'profile/' do
+
+    resources 'house' do
+      collection do
+        get ':link/photo', to: 'house#edit_photo'
+        post ':id/photo', to: 'house#create_photo'
+
+        post ':id/status', to: 'house#status_post'
+        post ':id/is_home', to: 'house#is_home_post'
+      end
+    end
+
+    resources 'post' do
+    end
+
+  end
+
   resources 'profile', except: [:show] do
     collection do
-      get 'post/new', to: 'profile#new_house'
-      get 'post/:link', to: 'profile#edit_house'
-      get 'post/:link/photo', to: 'profile#edit_photo'
-      post 'post/new', to: 'profile#post_house'
-      post 'post/:id', to: 'profile#put_house'
-      post 'post/:id/photo', to: 'profile#put_photo'
-      delete 'post/:id', to: 'profile#delete_house'
-      get 'posts', to: 'profile#list_house'
       get 'edit', to: 'profile#edit_profile'
       post 'edit', to: 'profile#put_profile'
       get 'budget', to: 'profile#show_budget'
       get 'bookmarks', to: 'profile#list_bookmark'
       put 'bookmark', to: 'profile#toggle_bookmark'
       delete 'bookmark/:id', to: 'profile#delete_bookmark'
-      get 'blog/new', to: 'profile#new_blog'
-      get 'blogs', to: 'profile#list_blog'
     end
   end
 
@@ -29,8 +36,6 @@ Rails.application.routes.draw do
       get 'user/:id', to: 'admin#edit_user'
       post 'user/:id/edit', to: 'admin#put_user'
       post 'user/:id/is_home', to: 'admin#is_home_user'
-      post 'post/:id/status', to: 'admin#status_post'
-      post 'post/:id/is_home', to: 'admin#is_home_post'
       get 'projects', to: 'admin#list_project'
       get 'project/new', to: 'admin#new_project'
       get 'project/:id', to: 'admin#edit_project'

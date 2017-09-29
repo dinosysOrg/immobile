@@ -12,7 +12,7 @@ default: &default
   password: dino.dev
   host: localhost
   port: 5432
-  schema_search_path: "public,settings,measurements,management"
+  schema_search_path: "public,settings,measurements,management,blog"
 
 development:
   <<: *default

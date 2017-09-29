@@ -1,4 +1,4 @@
-\connect :DB_NAME
+\housest :DB_NAME
 
 -- BEGIN SETTINGS.TABLES
 
@@ -101,10 +101,8 @@ WITH (
 -- END SETTINGS.TABLES
 
 
-
--- BEGIN MANAGEMENT.TABLES
-
-CREATE TABLE management.blogs   
+-- BEGIN BLOG.TABLES
+CREATE TABLE blog.posts   
 (
   id bigserial NOT NULL,
   user_id bigint,
@@ -125,8 +123,12 @@ CREATE TABLE management.blogs
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE management.blogs
+ALTER TABLE management.posts
   OWNER TO postgres;
+-- END BLOG.TABLES
+
+
+-- BEGIN MANAGEMENT.TABLES
 
 CREATE TABLE management.bookmarks   
 (

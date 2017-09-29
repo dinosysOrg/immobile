@@ -58,34 +58,34 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <% @blogs.each_with_index do |blog, idx| %>
+                  <% @posts.each_with_index do |post, idx| %>
                       <tr role="row">
                         <td class="list-item-image">
-                          <img class="list-item-thumb" src="<%= blog.cover_url.present? ? blog.cover_url+'?width=300' : '/assets/'+Constant::SAMPLE_BLOG %>"/>
+                          <img class="list-item-thumb" src="<%= post.cover_url.present? ? post.cover_url+'?width=300' : '/assets/'+Constant::SAMPLE_BLOG %>"/>
                         </td>
-                        <td><%= blog.name %></td>
-                        <td><%= blog.category %></td>
+                        <td><%= post.name %></td>
+                        <td><%= post.category %></td>
                         <% if @role.name == Constant::ROLE_ADMIN %>
-                            <% user = User::find(blog.user_id) %>
+                            <% user = User::find(post.user_id) %>
                             <td><%= user.name %></td>
                             <td class="list-item-action">
-                              <select class="form-control blog-status-select" data-id="<%= blog.id %>">
-                                <option value="<%= Constant::HOUSE_STATUS_PENDING %>" <% if blog.status == Constant::HOUSE_STATUS_PENDING %> selected <% end %> >Chờ duyệt</option>
-                                <option value="<%= Constant::HOUSE_STATUS_REJECT %>" <% if blog.status == Constant::HOUSE_STATUS_REJECT %> selected <% end %> >Từ chối</option>
-                                <option value="<%= Constant::HOUSE_STATUS_APPROVE %>" <% if blog.status == Constant::HOUSE_STATUS_APPROVE %> selected <% end %> >Chấp nhận</option>
+                              <select class="form-control blog-status-select" data-id="<%= post.id %>">
+                                <option value="<%= Constant::HOUSE_STATUS_PENDING %>" <% if post.status == Constant::HOUSE_STATUS_PENDING %> selected<% end %> >Chờ duyệt</option>
+                                <option value="<%= Constant::HOUSE_STATUS_REJECT %>" <% if post.status == Constant::HOUSE_STATUS_REJECT %> selected<% end %> >Từ chối</option>
+                                <option value="<%= Constant::HOUSE_STATUS_APPROVE %>" <% if post.status == Constant::HOUSE_STATUS_APPROVE %> selected<% end %> >Chấp nhận</option>
                               </select>
                             </td>
                             <td class="list-item-action" >
-                              <input type="checkbox" <% if blog.is_home %> checked <% end %> class="blog-home-select" data-id="<%= blog.id %>">
+                              <input type="checkbox" <% if post.is_home %> checked<% end %> class="blog-home-select" data-id="<%= post.id %>">
                             </td>
                         <% else %>
-                            <td><%= blog.description %></td>
+                            <td><%= post.description %></td>
                         <% end %>
                         <td class="list-item-action">
-                          <a href="/profile/blog/<%= blog.link %>">
+                          <a href="/profile/post/<%= post.link %>/edit">
                             <button type="button" class="btn btn-primary m-r-5 m-b-5">Sửa</button>
                           </a>
-                          <a class="blog-button-delete" data-id="<%= blog.id %>">
+                          <a class="blog-button-delete" data-id="<%= post.id %>">
                             <button type="button" class="btn btn-danger m-r-5 m-b-5">Xoá</button>
                           </a>
                         </td>
@@ -98,7 +98,7 @@
             </div>
             <div class="row">
               <div class="col-sm-5 list-paginate">
-                <%= paginate @blogs %>
+                <%= paginate @posts %>
               </div>
 
             </div>

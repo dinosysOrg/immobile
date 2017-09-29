@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-body panel-editor">
-    <%= form_tag('/profile/post/'+@house.id.to_s, method: 'post', multipart: true) do %>
+    <%= form_tag('/profile/house/'+@house.id.to_s, method: 'put', multipart: true) do %>
         <div class="form-horizontal">
           <div class="form-group">
             <label class="col-md-2 control-label">Tiêu đề *</label>

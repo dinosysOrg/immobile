@@ -123,36 +123,6 @@ class AdminController < ApplicationController
     redirect_to controller: 'admin', action: 'edit_user', id: user.id
   end
 
-  def status_post
-    authorize! :status_post, :admin
-
-    house = House::find(params[:id])
-    status = params[:status]
-    house.status = status
-    house.save
-
-    if house.status == Constant::HOUSE_STATUS_APPROVE
-      house.deduct_wallet
-    end
-
-    render json: response_success
-  end
-
-  def is_home_post
-    authorize! :status_post, :admin
-
-    house = House::find(params[:id])
-    status = params[:status]
-    if status == 'true'
-      house.is_home = true
-    else
-      house.is_home = false
-    end
-    house.save
-
-    render json: response_success
-  end
-
   def is_home_user
     authorize! :status_post, :admin
 
