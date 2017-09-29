@@ -121,7 +121,7 @@ $title = $_GET["Title"];
 //  -----------------------------------------------------------------------------
 // Push parameter to server 
 function pushToServer($SERVER, $SERVER_KEY){
-    $url =  $SERVER . '/profile/budget/callback';
+    $url =  $SERVER . '/api/budget/callback';
     $data = $_GET;
     $data['server_key'] = $SERVER_KEY;
 
