@@ -1,0 +1,22 @@
+<div class="content agents">
+  <h2 class="content-title agents">TƯ VẤN VIÊN</h2>
+  <p class="content-desc agents">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="container agent-search">
+    <div class="home-card-search">
+      <i class="fa fa-search"></i>
+      <input type="text" class="home-input-search" id="input-search-place"
+             <% if @searchText != nil %> value="<%= @searchText %>"
+             <% end %>
+             placeholder="Nhập tên tư vấn viên"/>
+    </div>
+  </div>
+  <div class="agents-container">
+    <div class="row">
+      <% @agents.each do |agent| %>
+        <div class="col-xs-6 col-sm-3 agent-card">
+          <%= render partial: "agent", locals: {agent: agent} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

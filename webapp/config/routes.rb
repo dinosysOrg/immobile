@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get 'search', to: 'home#search'
   get 'detail/:id', to: 'home#detail'
   get 'contact', to: 'home#contact'
+  get 'agents', to: 'home#agents'
 
   # posts, agents, blogs, projects
 

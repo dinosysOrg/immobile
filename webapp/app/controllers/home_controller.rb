@@ -1,7 +1,14 @@
 class HomeController < ApplicationController
 
   def index
-    @estates = Estate::all();
+    @estates = Estate.all
+
+
+  end
+
+  def agents
+    agent_roles = RoleUser.where(role_id: 2).pluck('user_id')
+    @agents = User.where('id in (?)', agent_roles)
   end
 
   def search
