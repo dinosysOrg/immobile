@@ -14,5 +14,6 @@ Rails.application.config.assets.precompile += %w( profile.js )
 
 Rails.application.config.assets.precompile += %w( jquery/* )
 Rails.application.config.assets.precompile += %w( base/* )
+Rails.application.config.assets.precompile += %w( plugin/* )
 Rails.application.config.assets.precompile += %w( home/* )
 Rails.application.config.assets.precompile += %w( profile/* )

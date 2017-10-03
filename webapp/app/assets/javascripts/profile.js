@@ -16,5 +16,6 @@
 
 //= require_tree ./jquery
 //= require_tree ./base
+//= require_tree ./plugin
 //= require_tree ./profile
 //= require_self

@@ -11,6 +11,11 @@
   <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
   <!-- ================== END BASE CSS STYLE ================== -->
+  
+  <!-- ================== BEGIN BASE JS ================== -->
+  <%= javascript_include_tag 'profile', 'data-turbolinks-track' => false %>
+  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+  <!-- ================== END BASE JS ================== -->
 
 </head>
 <body class="pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
@@ -118,11 +123,6 @@
 </div>
 <!-- end page container -->
 
-
-<!-- ================== BEGIN BASE JS ================== -->
-<%= javascript_include_tag 'profile', 'data-turbolinks-track' => false %>
-<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-<!-- ================== END BASE JS ================== -->
 
 <script>
   $(document).ready(function() {
