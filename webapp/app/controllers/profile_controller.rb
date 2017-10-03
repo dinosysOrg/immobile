@@ -36,6 +36,4 @@ class ProfileController < ApplicationController
     redirect_to action: 'edit'
   end
 
-
-
 end

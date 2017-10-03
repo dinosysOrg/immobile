@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag "sunny-editor", :media => "all", "data-turbolinks-track" => "reload" %>
-<%= javascript_include_tag "sunny-admin" %>
 <div id="content" class="content">
 
   <!-- begin page-header -->
@@ -7,10 +5,11 @@
   </h1>
   <!-- end page-header -->
 
-  <div class="input-group list-house-search">
-    <!--<span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>-->
-    <!--<input id="list-house-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tiêu đề, địa chỉ" value="<%= @search if @search.present? %>">-->
-    <!--<button type="button" class="btn btn-success" id="list-house-search-button">Tìm kiếm</button>-->
+  <div class="input-group list-post-search">
+    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <input id="list-post-search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên, địa chỉ" value="<%= @search if @search.present? %>">
+    <button type="button" class="btn btn-success" id="list-project-search-button">Tìm kiếm</button>
+    <a href="/profile/post/new"><button type="button" class="btn btn-primary" id="list-project-add-button">Tạo mới</button></a>
   </div>
 
   <!-- begin row -->

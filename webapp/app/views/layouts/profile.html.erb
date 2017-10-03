@@ -5,18 +5,13 @@
   <meta content="" name="description">
   <meta content="" name="author">
 
-  <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <%= stylesheet_link_tag "application", "editor-style", "editor-default", "editor-animate", "sunny-editor", "editor-style-responsive", :media => "all", "data-turbolinks-track" => "reload" %>
-  <%= javascript_include_tag "jquery-1.9.1", "bootstrap", "application", "jquery-ui.min", "editor-apps", "editor-pace", "sunny-admin", "sunny-profile", "ui-modal-notification.min", "data-turbolinks-track" => "reload" %>
 
+  <!-- ================== BEGIN BASE CSS STYLE ================== -->
+  <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
   <!-- ================== END BASE CSS STYLE ================== -->
 
-  <!-- ================== BEGIN BASE JS ================== -->
-  <!-- ================== END BASE JS ================== -->
-
-  <%= csrf_meta_tags %>
-  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 </head>
 <body class="pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
   <div class="pace-progress-inner"></div>
@@ -123,7 +118,11 @@
 </div>
 <!-- end page container -->
 
-<!-- ================== END PAGE LEVEL JS ================== -->
+
+<!-- ================== BEGIN BASE JS ================== -->
+<%= javascript_include_tag 'profile', 'data-turbolinks-track' => false %>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+<!-- ================== END BASE JS ================== -->
 
 <script>
   $(document).ready(function() {
@@ -132,8 +131,6 @@
     $( "#datepicker" ).datepicker({ minDate: dateToday });
   });
 </script>
-
-
 
 
 </body></html>

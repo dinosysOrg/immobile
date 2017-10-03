@@ -1,3 +1,6 @@
+/**
+ * Created by QuyTruong on 10/3/17.
+ */
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -10,7 +13,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require_tree ./jquery
 //= require_tree ./base
-//= require_tree ./home
+//= require_tree ./profile
 //= require_self

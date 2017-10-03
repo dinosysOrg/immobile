@@ -11,17 +11,13 @@
   <meta content="" name="description"/>
   <meta content="" name="author"/>
 
-  <!-- ================== BEGIN BASE CSS STYLE ================== -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-  <%= stylesheet_link_tag "application", "style", "carousel", :media => "all", "data-turbolinks-track" => "false" %>
-  <%= javascript_include_tag "jquery-1.9.1", "bootstrap", 'application', 'apps', 'scrollMonitor', 'pace', 'data-turbolinks-track' => "false" %>
 
+  <!-- ================== BEGIN BASE CSS STYLE ================== -->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
-  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
   <!-- ================== END BASE CSS STYLE ================== -->
 
-  <!-- ================== BEGIN BASE JS ================== -->
-  <!-- ================== END BASE JS ================== -->
 </head>
 <body data-spy="scroll" data-target="#header-navbar" data-offset="51">
 <!-- begin #page-container -->
@@ -142,7 +138,9 @@
 </div>
 
 
-
+<!-- ================== BEGIN BASE JS ================== -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 <!-- ================== END BASE JS ================== -->
 
 <script>
