@@ -23,6 +23,10 @@ class Constant < ActiveRecord::Base
   HOUSE_STATUS_APPROVE = 'approve'
   HOUSE_STATUS_REJECT = 'reject'
 
+  BLOG_STATUS_PENDING = 'pending'
+  BLOG_STATUS_APPROVE = 'approve'
+  BLOG_STATUS_REJECT = 'reject'
+
   # Host
   LOCALHOST = "localhost"
 

@@ -30,9 +30,14 @@
           </div>
 
           <div class="form-group">
-            <label class="col-md-2 control-label">Chính sách bán hàng</label>
+            <label class="col-md-2 control-label">Danh mục</label>
             <div class="col-md-8">
-              <input id="sale_policy" type="text" class="form-control" placeholder="" name="sale_policy" value="">
+              <select class="form-control" name="blog_category_id">
+                <% blog_categories = BlogCategory::all() %>
+                <% blog_categories.each_with_index do |blog_category, idx| %>
+                    <option value="<%= blog_category.id %>"><%= blog_category.description %> </option>
+                <% end %>
+              </select>
             </div>
           </div>
 

@@ -18,7 +18,7 @@ class Ability
 
     # For only blogger
     if user.role(Constant::ROLE_BLOGER,user.id)
-      can [:list_blog, :new_blog], :post
+      can [:list_blog, :new_blog, :create_blog], :post
     end
   end
 end

@@ -98,6 +98,17 @@ CREATE TABLE settings.spatial_areas (
 WITH (
   OIDS=FALSE
 );
+
+CREATE TABLE settings.blog_categories (
+  id bigserial NOT NULL,
+  identifier varchar(255) NOT NULL UNIQUE,
+  name varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
+  CONSTRAINT pk_settings_blog_categories PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
 -- END SETTINGS.TABLES
 
 
@@ -111,7 +122,7 @@ CREATE TABLE blog.posts
   description character varying(500),
   content text,
   cover_url character varying(500),
-  category character varying(100),
+  blog_category_id bigint,
   is_available boolean default true,
   is_show boolean default true,
   is_home boolean default false,
@@ -592,4 +603,18 @@ WITH (
 );
 ALTER TABLE staging.spatial_areas
   OWNER TO postgres;
+
+
+CREATE TABLE staging.blog_categories (
+  identifier varchar(255) NOT NULL,
+  name varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
+  CONSTRAINT pk_staging_blog_categories PRIMARY KEY (identifier)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE staging.blog_categories
+  OWNER TO postgres;
+  
 -- END STAGING.TABLES

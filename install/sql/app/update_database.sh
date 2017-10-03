@@ -3,8 +3,8 @@ if [[ -z "${DB_HOST}" ]]; then read -p "Enter database host: " DB_HOST; fi
 if [[ -z "${DB_NAME}" ]]; then read -p "Enter database name: " DB_NAME; fi
 if [[ -z "${ROOT_PATH}" ]]; then read -p "Enter ROOT PATH: " ROOT_PATH; fi
 
-CURR_VERSION=100
-TARGET_VERSION=106
+CURR_VERSION=106
+TARGET_VERSION=107
 
 while [ $CURR_VERSION -lt $TARGET_VERSION ]
 do

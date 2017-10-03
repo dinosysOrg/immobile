@@ -29,4 +29,28 @@ class PostController < ApplicationController
 
     @pageType = 'list_blog'
   end
+
+
+  # ************************** #
+  # API
+  # ************************** #
+  def create
+    authorize! :create_blog, :post
+
+    post = Post.new
+    post.user_id = current_user.id
+    post.is_available = true
+    post.is_show = false
+    post.is_home = false
+    post.setData(params)
+    post.save
+
+    post.link = Tool.unaccent(params[:name].gsub(' ', '-')).downcase.to_s
+    post.link += '-'+post.id.to_s
+    post.save
+
+    # TODO: Cover URL
+    redirect_to action: 'index'
+  end
+
 end
