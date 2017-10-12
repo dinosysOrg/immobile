@@ -422,7 +422,32 @@ body.page-navbar-fixed-top-sm {
     color: #fff;
 }
 
+.content.agents {
+  padding: 80px 20px 15px 10px;
+}
 
+.content .content-title.agents {
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  margin-top: 0;
+}
+
+.content .content-desc.agents {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    font-family: Muli;
+    font-size: 14px;
+    text-align: center;
+    width: 600px;
+    color: #212121;
+}
+
+.container.agent-search {
+  text-align: center;
+  padding-bottom: 30px;
+}
 
 /* -------------------------------
    4.0 Home Setting

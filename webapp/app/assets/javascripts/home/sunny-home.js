@@ -4,9 +4,6 @@ $(document).ready(function () {
     menuTypeSelect();
     handelBookmark();
 
-    $('#agentsInfo').bind('slide.bs.carousel', function (e) {
-        console.log(e.direction);
-    });
 });
 
 
